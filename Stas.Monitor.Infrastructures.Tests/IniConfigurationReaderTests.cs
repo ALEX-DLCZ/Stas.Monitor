@@ -59,27 +59,6 @@ public class IniConfigurationReaderTests
         Assert.That(_iniConfigurationReader.GetSectionMaps().Count, Is.EqualTo(0));
     }
     
-    [Test]
-    public void GetFileInfo_ShouldNotReturnException()
-    {
-      
-      
-      // Arrange
-      string pathArg = "Resources/config.ini";
-      // Act
-      var fileInfoResult = _iniConfigurationReader.GetFileInfo(pathArg);
-      // Assert
-      Assert.That(fileInfoResult, Is.Not.Null);
-    }
-    [Test]
-    public void GetFileInfo_ShouldReturnException()
-    {
-      // Arrange
-      string pathArg = "Resources/BHAAAAAAA.ini";
-      // Act
-      // Assert
-      Assert.Throws<FileNotFoundException>(() => _iniConfigurationReader.GetFileInfo(pathArg));
-    }
     
     [Test]
     public void Should_Map_A_File_To_A_Configuration_Object()

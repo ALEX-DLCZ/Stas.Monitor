@@ -2,16 +2,12 @@
 
 namespace Stas.Monitor.Infrastructures;
 
-
-
 public class MainConfigurationReader : IConfigurationReader
 {
   private IDictionary<string, IDictionary<string, string>> _readedConfiguration;
 
   public MainConfigurationReader(string pathArg)
   {
-    try
-    {
       var fileType = pathArg.Split(".").Last();
 
       IConfigurationStrategy strategyType;
@@ -21,16 +17,11 @@ public class MainConfigurationReader : IConfigurationReader
       }
       else
       {
-        throw new Exception("type of file is not supported");
+        throw new FileNotFoundException("type of file is not supported");
       }
-      
+
       _readedConfiguration = SetReadedConfiguration(pathArg, strategyType);
-    }
-    catch ( Exception e )
-    {
-      Console.WriteLine(e);
-      throw;
-    }
+    
   }
 
 
@@ -38,15 +29,24 @@ public class MainConfigurationReader : IConfigurationReader
   {
     return _readedConfiguration;
   }
-  private IDictionary<string, IDictionary<string, string>> SetReadedConfiguration(string pathArg, IConfigurationStrategy strategyType)
+
+  private IDictionary<string, IDictionary<string, string>> SetReadedConfiguration(string pathArg,
+    IConfigurationStrategy strategyType)
   {
-    //var fileInfo = strategyType.GetFileInfo(pathArg);
-    
-      foreach (var line in File.ReadLines(pathArg))
+
+    try
+    {
+      foreach ( var line in File.ReadLines(pathArg) )
       {
         strategyType.ReadLine(line);
       }
+    }
+    catch ( FileNotFoundException e )
+    {
+      throw new FileNotFoundException("File not found");
+    }
+
+
     return strategyType.GetSectionMaps();
   }
-  
 }

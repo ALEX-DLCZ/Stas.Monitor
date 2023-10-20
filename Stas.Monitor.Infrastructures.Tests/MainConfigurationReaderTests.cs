@@ -19,10 +19,17 @@ public class MainConfigurationReaderTests
   }
   
   [Test]
+  public void IsFileNOTExistTest()
+  {
+    var path = "Resources/configNotExiste.ini";
+    Assert.Throws<FileNotFoundException>(() => new MainConfigurationReader(path));
+  }
+  
+  [Test]
   public void MainConfiguration_WhenFileIsNotIni_ShouldThrowException()
   {
     var path = "Resources/configNotIni.txt";
-    Assert.Throws<Exception>(() => new MainConfigurationReader(path));
+    Assert.Throws<FileNotFoundException>(() => new MainConfigurationReader(path));
   }
   
   [Test]

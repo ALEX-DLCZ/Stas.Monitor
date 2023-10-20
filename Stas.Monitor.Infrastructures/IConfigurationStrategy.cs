@@ -4,7 +4,7 @@ public interface IConfigurationStrategy
 {
   
   
-  FileInfo GetFileInfo(string pathArg);
+  //FileInfo GetFileInfo(string pathArg);
   
   void ReadLine(string line);
   
