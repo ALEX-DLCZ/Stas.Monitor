@@ -65,19 +65,27 @@ public class IniConfigurationReaderTests
       
       
       // Arrange
-      string pathArg = "Resources/valid-sample.ini";
+      string pathArg = "Resources/config.ini";
       // Act
       var fileInfoResult = _iniConfigurationReader.GetFileInfo(pathArg);
       // Assert
       Assert.That(fileInfoResult, Is.Not.Null);
     }
+    [Test]
+    public void GetFileInfo_ShouldReturnException()
+    {
+      // Arrange
+      string pathArg = "Resources/BHAAAAAAA.ini";
+      // Act
+      // Assert
+      Assert.Throws<FileNotFoundException>(() => _iniConfigurationReader.GetFileInfo(pathArg));
+    }
     
     [Test]
     public void Should_Map_A_File_To_A_Configuration_Object()
     {
-      using var reader = File.OpenText("Resources/valid-sample.ini");
-      var content = reader.ReadToEnd();
-      Assert.That(content, Is.Empty);
+      using var reader = File.OpenText("Resources/config.ini");
+      Assert.DoesNotThrow(() => reader.ReadToEnd());
     }
     
 /*

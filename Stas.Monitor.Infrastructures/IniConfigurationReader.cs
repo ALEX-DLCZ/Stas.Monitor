@@ -13,12 +13,21 @@ public class IniConfigurationReader : IConfigurationStrategy
 
   public FileInfo GetFileInfo(string pathArg) 
   {
-    var fileInfo = new FileInfo(pathArg);
+    FileInfo fileInfo;
+    try
+    {
+      fileInfo = new FileInfo(pathArg);
       if ( !fileInfo.Exists )
       {
         throw new FileNotFoundException();
       }
-    return fileInfo;
+      return fileInfo;
+
+    }
+    catch ( FileNotFoundException e )
+    {
+      throw new FileNotFoundException("File not found", e);
+    }
     
   }
   

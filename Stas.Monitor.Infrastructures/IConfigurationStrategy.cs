@@ -9,6 +9,5 @@ public interface IConfigurationStrategy
   void ReadLine(string line);
   
   IDictionary<string,IDictionary<string,string>> GetSectionMaps();
-
-
+  
 }

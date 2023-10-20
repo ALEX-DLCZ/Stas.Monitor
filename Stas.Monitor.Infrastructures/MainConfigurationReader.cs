@@ -6,7 +6,7 @@ namespace Stas.Monitor.Infrastructures;
 
 public class MainConfigurationReader : IConfigurationReader
 {
-  private readonly IDictionary<string, IDictionary<string, string>> _readedConfiguration;
+  private IDictionary<string, IDictionary<string, string>> _readedConfiguration;
 
   public MainConfigurationReader(string pathArg)
   {
@@ -42,21 +42,11 @@ public class MainConfigurationReader : IConfigurationReader
   {
     //var fileInfo = strategyType.GetFileInfo(pathArg);
     
-    try
-    {
       foreach (var line in File.ReadLines(pathArg))
       {
         strategyType.ReadLine(line);
       }
-    }
-    catch (IOException e)
-    {
-      Console.WriteLine(e.ToString());
-    }
-    
-    
-    
-    return _readedConfiguration;
+    return strategyType.GetSectionMaps();
   }
   
 }
