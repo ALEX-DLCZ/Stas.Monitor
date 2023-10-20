@@ -4,14 +4,24 @@ namespace Stas.Monitor.Presentations;
 
 public class MainPresenter
 {
+
+private readonly IMainView _view;
+private readonly IThermometerRepository _repository;
+
+
   public MainPresenter(IMainView view, IThermometerRepository repository)
   {
-    throw new NotImplementedException();
+    
+    _view = view;
+    _repository = repository;
   }
 
   public void Start()
   {
-    throw new NotImplementedException();
+    _view.ThermometerNames = _repository.AllThermometers;
+    
+    
+    
   }
   
 }
