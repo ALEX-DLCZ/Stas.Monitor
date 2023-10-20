@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Stas.Monitor.Views.MainWindow"
+        Title="Stas.Monitor.Views">
+        <Grid RowDefinitions="*, 48" ColumnDefinitions="128,*">
+                <StackPanel
+                        Background="Orange">
+                        <ListBox Name="Choices"/>
+                        <!-- <Button Click="Button_OnClick">Jouer</Button> -->
+                        <!-- initialisation d'un menu déroulant d'une liste de nom thermometerNames: Select_Name_OnClick -->
+                        <TreeView BorderThickness="1">
+                                <TreeViewItem Header="Expanded" IsExpanded="True">
+                                        <TreeViewItem Header="Child1"/>
+                                        <TreeViewItem Header="Child2"/>
+                                        <TreeViewItem Header="Child3"/>
+                                </TreeViewItem>
+                        </TreeView>
+                        
+                </StackPanel>
+                
+                <StackPanel  Grid.Column="1"
+                             Background="White">
+                        
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" 
+                            Background="Gray">
+                        <TextBlock Name="Result"></TextBlock>
+                </StackPanel>
+                        
+                
+                
+        </Grid>
+</Window>
