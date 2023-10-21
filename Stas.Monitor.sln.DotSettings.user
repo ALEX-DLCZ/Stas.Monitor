@@ -7,6 +7,10 @@
       &lt;TestId&gt;NUnit3x::EB9B3961-B470-45FD-8826-82EABD7D35A8::net6.0::Stas.Monitor.App.Tests.ArchTests&lt;/TestId&gt;&#xD;
       &lt;TestId&gt;NUnit3x::6856AA20-1ACB-42DE-9D71-1E94DABD714A::net6.0::Stas.Monitor.Infrastructures.Tests.IniConfigurationReaderTests&lt;/TestId&gt;&#xD;
       &lt;TestId&gt;NUnit3x::9C82CF23-B758-4B69-BE16-2938BD807347::net6.0::Stas.Monitor.Presentations.Tests.MainPresenterTests.Should_Provide_His_View_With_Thermometer_Name&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::6856AA20-1ACB-42DE-9D71-1E94DABD714A::net6.0::Stas.Monitor.Infrastructures.Tests.MainConfigurationReaderTests.IsFileExistTest&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::6856AA20-1ACB-42DE-9D71-1E94DABD714A::net6.0::Stas.Monitor.Infrastructures.Tests.MainConfigurationReaderTests&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::6856AA20-1ACB-42DE-9D71-1E94DABD714A::net6.0::Stas.Monitor.Infrastructures.Tests.CsvInfoReaderTests&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::6856AA20-1ACB-42DE-9D71-1E94DABD714A::net6.0::Stas.Monitor.Infrastructures.Tests.MainInfoReaderTests&lt;/TestId&gt;&#xD;
     &lt;/TestAncestor&gt;&#xD;
     &lt;Project Location="C:\0alex\HELMO\B2_A.I\PROG\Stas.Monitor\Stas.Monitor.Infrastructures.Tests" Presentation="&amp;lt;Stas.Monitor.Infrastructures.Tests&amp;gt;" /&gt;&#xD;
   &lt;/Or&gt;&#xD;

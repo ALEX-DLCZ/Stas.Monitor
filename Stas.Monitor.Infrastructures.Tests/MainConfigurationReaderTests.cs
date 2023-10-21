@@ -38,16 +38,14 @@ public class MainConfigurationReaderTests
     var path = "Resources\\config.ini";
     var reader = new MainConfigurationReader(path);
     var readedConfiguration = reader.GetReadedConfiguration();
-    Assert.That(readedConfiguration.Count, Is.EqualTo(3));
-    Assert.That(readedConfiguration.ContainsKey("cuisine"), Is.True);
-    Assert.That(readedConfiguration.ContainsKey("salle de bain"), Is.True);
-    Assert.That(readedConfiguration.ContainsKey("salon"), Is.True);
-    Assert.That(readedConfiguration["cuisine"].Count, Is.EqualTo(2));
-    Assert.That(readedConfiguration["salle de bain"].Count, Is.EqualTo(2));
-    Assert.That(readedConfiguration["salon"].Count, Is.EqualTo(2));
-    Assert.That(readedConfiguration["cuisine"].ContainsKey("path1"), Is.True);
-    Assert.That(readedConfiguration["cuisine"].ContainsKey("path2"), Is.True);
-    Assert.That(readedConfiguration["salle de bain"]["path1"], Is.EqualTo("\\INIFile\\cs file\\mesures\\salle de bain.csv"));
+    Assert.That(readedConfiguration.Count, Is.EqualTo(2));
+    Assert.That(readedConfiguration.ContainsKey("general"), Is.True);
+    Assert.That(readedConfiguration.ContainsKey("paths"), Is.True);
+    Assert.That(readedConfiguration["general"].Count, Is.EqualTo(3));
+    Assert.That(readedConfiguration["paths"].Count, Is.EqualTo(2));
+    Assert.That(readedConfiguration["general"].ContainsKey("thermometre1"), Is.True);
+    Assert.That(readedConfiguration["paths"].ContainsKey("mesures"), Is.True);
+    Assert.That(readedConfiguration["paths"]["mesures"], Is.EqualTo("\\INIFile\\CSVfile\\mesures.csv"));
   }
   
 }

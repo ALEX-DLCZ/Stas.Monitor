@@ -20,8 +20,6 @@ private readonly IThermometerRepository _repository;
   {
     _view.ThermometerNames = _repository.AllThermometers;
     
-    
-    
   }
   
 }
