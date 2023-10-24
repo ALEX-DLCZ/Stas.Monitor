@@ -1,31 +1,15 @@
-﻿namespace Stas.Monitor.Infrastructures;
+﻿
+namespace Stas.Monitor.Infrastructures;
 
 public class CsvInfoReader: IInfoStrategy
 {
-  private readonly Queue<List<string>> _infoQueue;
-
-  public CsvInfoReader()
-  {
-    _infoQueue = new Queue<List<string>>();
-  }
-
-  public void ReadLine(string line)
+  
+  public List<string> GetSoloLine(string line)
   {
     if ( IsEmpty(line) )
     {
-      return;
+      throw new Exception("line is empty");
     }
-    _infoQueue.Enqueue(SplitLine(line));
-    
-  }
-
-  public Queue<List<string>> GetInfo()
-  {
-    return _infoQueue;
-  }
-
-  public List<string> GetSoloLine(string line)
-  {
     return SplitLine(line);
   }
 

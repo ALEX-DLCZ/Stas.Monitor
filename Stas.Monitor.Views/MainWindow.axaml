@@ -6,18 +6,12 @@
         x:Class="Stas.Monitor.Views.MainWindow"
         Title="Stas.Monitor.Views">
         <Grid RowDefinitions="*, 48" ColumnDefinitions="128,*">
-                <StackPanel
+                <StackPanel 
                         Background="Orange">
-                        <ListBox Name="Choices"/>
+                        <!-- <ListBox Name="Choices"/> -->
                         <!-- <Button Click="Button_OnClick">Jouer</Button> -->
-                        <!-- initialisation d'un menu déroulant d'une liste de nom thermometerNames: Select_Name_OnClick -->
-                        <TreeView BorderThickness="1">
-                                <TreeViewItem Header="Expanded" IsExpanded="True">
-                                        <TreeViewItem Header="Child1"/>
-                                        <TreeViewItem Header="Child2"/>
-                                        <TreeViewItem Header="Child3"/>
-                                </TreeViewItem>
-                        </TreeView>
+                        <!-- Les noms thermomètres seront affichés dans un contrôle ComboBox et seront triés -->
+                        <ComboBox Name="Thermometers" Items="" SelectedIndex="0"  />
                         
                 </StackPanel>
                 

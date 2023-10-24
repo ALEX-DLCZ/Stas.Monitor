@@ -14,26 +14,33 @@ public class CsvInfoReaderTests
   [Test]
   public void ReadLine_WhenLineIsEmpty_ShouldNotAddToQueue()
   {
-    _csvInfoReader.ReadLine("");
+    //_csvInfoReader.ReadLine("");
 
-    var info = _csvInfoReader.GetInfo();
 
-    Assert.That(info.Count, Is.EqualTo(0));
+    //retourne une Exception
+    Assert.Throws<Exception>(() => _csvInfoReader.GetSoloLine(""));
   }
 
   [Test]
   public void ReadLine_WhenLineIsNotEmpty_ShouldAddToQueue()
   {
-    _csvInfoReader.ReadLine("thermometre1;2021-10-01 00:00:00;C;20");
 
-    var info = _csvInfoReader.GetInfo();
+    var info = _csvInfoReader.GetSoloLine("thermometre1;2021-10-01 00:00:00;C;20");
 
-    Assert.That(info.Count, Is.EqualTo(1));
+    Assert.That(info.Count, Is.EqualTo(4));
+    Assert.That(info[0], Is.EqualTo("thermometre1"));
+    Assert.That(info[1], Is.EqualTo("2021-10-01 00:00:00"));
+    Assert.That(info[2], Is.EqualTo("C"));
+    Assert.That(info[3], Is.EqualTo("20"));
+    
+    /*
     Assert.That(info.Peek().Count, Is.EqualTo(4));
     Assert.That(info.Peek()[0], Is.EqualTo("thermometre1"));
     Assert.That(info.Peek()[1], Is.EqualTo("2021-10-01 00:00:00"));
     Assert.That(info.Peek()[2], Is.EqualTo("C"));
     Assert.That(info.Peek()[3], Is.EqualTo("20"));
+    */
+    
   }
   
   [Test]

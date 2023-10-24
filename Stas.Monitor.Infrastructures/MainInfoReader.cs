@@ -11,6 +11,7 @@ public class MainInfoReader : IInfoReader
   public MainInfoReader(string pathArg)
   {
     _pathArg = pathArg;
+    _readedInfo = new Queue<List<string>>();
     var fileType = _pathArg.Split(".").Last();
 
     IInfoStrategy strategyType;
@@ -23,9 +24,9 @@ public class MainInfoReader : IInfoReader
       throw new FileNotFoundException("type of file is not supported");
     }
 
-    _readedInfo = SetReadedInfo();
+    SetReadedInfo();
   }
-  
+
   public Queue<List<string>> GetInfo()
   {
     return _readedInfo;
@@ -37,20 +38,29 @@ public class MainInfoReader : IInfoReader
     return _strategyType.GetSoloLine(line);
   }
 
-  private Queue<List<string>> SetReadedInfo( )
+  private void SetReadedInfo()
   {
     try
     {
+      var selectedTime = DateTime.Parse(LastNewInfo()[1]);
+      selectedTime = selectedTime.AddMinutes(-1);
+
+
       foreach ( var line in File.ReadLines(_pathArg) )
       {
-        _strategyType.ReadLine(line);
+        var temp = _strategyType.GetSoloLine(line);
+        //vérifie si le temps n'est pas dépassé sinon on quitte la boucle
+        if ( DateTime.Parse(temp[1]) < selectedTime )
+        {
+          break;
+        }
+
+        _readedInfo.Enqueue(_strategyType.GetSoloLine(line));
       }
     }
     catch ( FileNotFoundException e )
     {
       throw new FileNotFoundException("File not found");
     }
-
-    return _strategyType.GetInfo();
   }
 }
