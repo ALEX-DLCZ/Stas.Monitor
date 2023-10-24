@@ -23,8 +23,13 @@ public class CsvInfoReader: IInfoStrategy
   {
     return _infoQueue;
   }
-  
-  
+
+  public List<string> GetSoloLine(string line)
+  {
+    return SplitLine(line);
+  }
+
+
   private bool IsEmpty(string line)
   {
     return line.Equals(null)||line.Equals("");
@@ -34,6 +39,7 @@ public class CsvInfoReader: IInfoStrategy
   {
     return line.Split(";").ToList();
   }
+  
   
   
   

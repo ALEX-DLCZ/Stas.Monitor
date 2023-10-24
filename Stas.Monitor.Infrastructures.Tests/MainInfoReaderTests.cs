@@ -56,7 +56,20 @@ salon;2024-10-18 13:43:52;C;18.50
     Assert.That(readedInfo.Peek()[1], Is.EqualTo("2023-10-18 12:43:52"));
     Assert.That(readedInfo.Peek()[2], Is.EqualTo("C"));
     Assert.That(readedInfo.Peek()[3], Is.EqualTo("18.50"));
-    
-    
   }
+  
+  [Test]
+  public void GetLastNewInfoTest()
+  {
+    var path = "Resources/mesures.csv";
+    var reader = new MainInfoReader(path);
+    var lastNewInfo = reader.LastNewInfo();
+    Assert.That(lastNewInfo.Count, Is.EqualTo(4));
+    Assert.That(lastNewInfo[0], Is.EqualTo("salon"));
+    Assert.That(lastNewInfo[1], Is.EqualTo("2023-10-18 12:43:52"));
+    Assert.That(lastNewInfo[2], Is.EqualTo("C"));
+    Assert.That(lastNewInfo[3], Is.EqualTo("18.50"));
+  }
+  
+  
 }
