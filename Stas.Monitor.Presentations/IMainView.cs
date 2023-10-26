@@ -2,5 +2,8 @@
 
 public interface IMainView
 {
-  string[] ThermometerNames { set; }
+    void SetPresenter(MainPresenter mainPresenter); 
+    
+    void SetSelectedThermometer(string thermometerName);
+    string[] ThermometerNames { set; }
 }

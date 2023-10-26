@@ -31,8 +31,8 @@ public partial class App : Application
     if ( ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop )
     {
       _mainWindow = new MainWindow();
-      SetupApp(desktop?.Args ?? Array.Empty<string>());
       desktop.MainWindow = _mainWindow;
+      SetupApp(desktop?.Args ?? Array.Empty<string>());
 
       DispatcherTimer.Run(() =>
       {
@@ -49,8 +49,9 @@ public partial class App : Application
     try
     {
       var mainConfigurationReader = new MainConfigurationReader(args[1]);
-      var waff = mainConfigurationReader.GetReadedConfiguration();
-      Console.WriteLine(waff.Count);
+      var thermoRepository = new ThermometerRepository(mainConfigurationReader);
+      var mainPresenter = new MainPresenter(_mainWindow, thermoRepository);
+      mainPresenter.Start();
     }
     catch ( Exception e )
     {

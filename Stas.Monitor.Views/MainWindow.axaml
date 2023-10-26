@@ -2,29 +2,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="450"
         x:Class="Stas.Monitor.Views.MainWindow"
         Title="Stas.Monitor.Views">
-        <Grid RowDefinitions="*, 48" ColumnDefinitions="128,*">
-                <StackPanel 
-                        Background="Orange">
-                        <!-- <ListBox Name="Choices"/> -->
-                        <!-- <Button Click="Button_OnClick">Jouer</Button> -->
-                        <!-- Les noms thermomètres seront affichés dans un contrôle ComboBox et seront triés -->
-                        <ComboBox Name="Thermometers" Items="" SelectedIndex="0"  />
-                        
-                </StackPanel>
+
+    <Grid ColumnDefinitions="*" RowDefinitions="Auto,*" Margin="5">
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            
+            <ComboBox Background="Orange" SelectedIndex="0" Name="ComboBoxThermometers">
+                <ComboBoxItem Content="Item 1" />
+                <ComboBoxItem Content="Item 2" />
+                <ComboBoxItem Content="Item 3" />
                 
-                <StackPanel  Grid.Column="1"
-                             Background="White">
-                        
-                </StackPanel>
-                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" 
-                            Background="Gray">
-                        <TextBlock Name="Result"></TextBlock>
-                </StackPanel>
-                        
-                
-                
-        </Grid>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="1" Background="Aqua">
+            <TextBlock Text="Hello World!" />
+        </StackPanel>
+    </Grid>
+
+
 </Window>

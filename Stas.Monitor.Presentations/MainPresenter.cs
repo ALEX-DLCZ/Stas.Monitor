@@ -10,8 +10,9 @@ public class MainPresenter
 
   public MainPresenter(IMainView view, IThermometerRepository repository)
   {
-    _view = view;
-    _repository = repository;
+    _view = view ?? throw new ArgumentException("view");
+    _view.SetPresenter(this);
+    _repository = repository ?? throw new ArgumentException("repository");
   }
 
   public void Start()
