@@ -52,10 +52,6 @@ public partial class App : Application
       var waff = mainConfigurationReader.GetReadedConfiguration();
       Console.WriteLine(waff.Count);
     }
-    catch ( FileNotFoundException e )
-    {
-      Console.WriteLine(e.Message);
-    }
     catch ( Exception e )
     {
       Console.WriteLine("BHAA SUPER ERREUR PROBLEMEEEEEEE");

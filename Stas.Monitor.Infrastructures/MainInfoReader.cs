@@ -12,12 +12,12 @@ public class MainInfoReader : IInfoReader
   {
     _pathArg = pathArg;
     _readedInfo = new Queue<List<string>>();
+    _strategyType = new CsvInfoReader();
     var fileType = _pathArg.Split(".").Last();
 
     IInfoStrategy strategyType;
     if ( fileType == "csv" )
     {
-      _strategyType = new CsvInfoReader();
     }
     else
     {
@@ -48,14 +48,12 @@ public class MainInfoReader : IInfoReader
 
       foreach ( var line in File.ReadLines(_pathArg) )
       {
-        var temp = _strategyType.GetSoloLine(line);
-        //vérifie si le temps n'est pas dépassé sinon on quitte la boucle
-        if ( DateTime.Parse(temp[1]) < selectedTime )
+        var tempList = _strategyType.GetSoloLine(line);
+        if ( DateTime.Parse(tempList[1]) < selectedTime )
         {
           break;
         }
-
-        _readedInfo.Enqueue(_strategyType.GetSoloLine(line));
+        _readedInfo.Enqueue(tempList);
       }
     }
     catch ( FileNotFoundException e )
