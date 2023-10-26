@@ -53,6 +53,7 @@ public class MainInfoReader : IInfoReader
         {
           break;
         }
+
         _readedInfo.Enqueue(tempList);
       }
     }

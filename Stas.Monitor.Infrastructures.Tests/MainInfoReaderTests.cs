@@ -57,7 +57,7 @@ salon;2023-10-18 12:21:52;18.50;6.50
     Assert.That(readedInfo.Peek()[2], Is.EqualTo("C"));
     Assert.That(readedInfo.Peek()[3], Is.EqualTo("18.50"));
   }
-  
+
   [Test]
   public void GetLastNewInfoTest()
   {
@@ -70,6 +70,4 @@ salon;2023-10-18 12:21:52;18.50;6.50
     Assert.That(lastNewInfo[2], Is.EqualTo("C"));
     Assert.That(lastNewInfo[3], Is.EqualTo("18.50"));
   }
-  
-  
 }

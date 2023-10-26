@@ -3,11 +3,12 @@
 public class Configuration
 {
   private readonly IDictionary<string, IDictionary<string, string>> _configDico;
+
   public Configuration(IConfigurationReader reader)
   {
     _configDico = reader.GetReadedConfiguration();
-    
   }
+
   public Thermometer[] Thermometers
   {
     get
@@ -18,8 +19,8 @@ public class Configuration
         var thermometer = new Thermometer(section.Value);
         thermometers.Add(thermometer);
       }
+
       return thermometers.ToArray();
     }
   }
-  
 }

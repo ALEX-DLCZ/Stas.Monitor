@@ -15,7 +15,7 @@ public class MainPresenterTests
     var presenter = new MainPresenter(mockedView, mockedRepository);
 
     presenter.Start();
-    
+
     mockedView.Received(1).ThermometerNames = baahh;
   }
 }

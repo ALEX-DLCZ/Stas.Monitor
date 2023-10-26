@@ -2,36 +2,34 @@
 
 public class MainConfigurationReaderTests
 {
-  
-  
-  
   [Test]
   public void IsFileExistTest()
   {
     using var reader = File.OpenText("Resources/config.ini");
     Assert.DoesNotThrow(() => reader.ReadToEnd());
   }
+
   [Test]
   public void IsFileExistTest2()
   {
     using var reader = File.OpenText("Resources/configNotIni.txt");
     Assert.DoesNotThrow(() => reader.ReadToEnd());
   }
-  
+
   [Test]
   public void IsFileNOTExistTest()
   {
     var path = "Resources/configNotExiste.ini";
     Assert.Throws<FileNotFoundException>(() => new MainConfigurationReader(path));
   }
-  
+
   [Test]
   public void MainConfiguration_WhenFileIsNotIni_ShouldThrowException()
   {
     var path = "Resources/configNotIni.txt";
     Assert.Throws<FileNotFoundException>(() => new MainConfigurationReader(path));
   }
-  
+
   [Test]
   public void GetReadedConfigurationTest()
   {
@@ -45,7 +43,7 @@ public class MainConfigurationReaderTests
     Assert.That(readedConfiguration["paths"].Count, Is.EqualTo(2));
     Assert.That(readedConfiguration["general"].ContainsKey("thermometre1"), Is.True);
     Assert.That(readedConfiguration["paths"].ContainsKey("mesures"), Is.True);
-    Assert.That(readedConfiguration["paths"]["mesures"], Is.EqualTo("\\INIFile\\CSVfile\\mesures.csv"));
+    Assert.That(readedConfiguration["paths"]["mesures"],
+      Is.EqualTo("\\INIFile\\CSVfile\\mesures.csv"));
   }
-  
 }

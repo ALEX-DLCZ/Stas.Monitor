@@ -1,6 +1,6 @@
 ﻿namespace Stas.Monitor.Infrastructures;
 
-public interface IInfoStrategy 
+public interface IInfoStrategy
 {
   List<string> GetSoloLine(string line);
 }

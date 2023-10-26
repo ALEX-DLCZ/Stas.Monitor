@@ -12,11 +12,8 @@ public class ArchTests
 {
   private static readonly Assembly[] Assemblies = new[]
   {
-    typeof(App).Assembly,
-    typeof(Configuration).Assembly, 
-    typeof(IniConfigurationReader).Assembly,
-    typeof(MainPresenter).Assembly,
-    typeof(MainWindow).Assembly
+    typeof(App).Assembly, typeof(Configuration).Assembly, typeof(IniConfigurationReader).Assembly,
+    typeof(MainPresenter).Assembly, typeof(MainWindow).Assembly
   };
 
 

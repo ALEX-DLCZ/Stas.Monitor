@@ -2,12 +2,9 @@
 
 public interface IConfigurationStrategy
 {
-  
-  
   //FileInfo GetFileInfo(string pathArg);
-  
+
   void ReadLine(string line);
-  
-  IDictionary<string,IDictionary<string,string>> GetSectionMaps();
-  
+
+  IDictionary<string, IDictionary<string, string>> GetSectionMaps();
 }

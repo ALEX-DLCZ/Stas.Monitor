@@ -8,20 +8,19 @@ public class MainConfigurationReader : IConfigurationReader
 
   public MainConfigurationReader(string pathArg)
   {
-      var fileType = pathArg.Split(".").Last();
+    var fileType = pathArg.Split(".").Last();
 
-      IConfigurationStrategy strategyType;
-      if ( fileType == "ini" )
-      {
-        strategyType = new IniConfigurationReader();
-      }
-      else
-      {
-        throw new FileNotFoundException("type of file is not supported");
-      }
+    IConfigurationStrategy strategyType;
+    if ( fileType == "ini" )
+    {
+      strategyType = new IniConfigurationReader();
+    }
+    else
+    {
+      throw new FileNotFoundException("type of file is not supported");
+    }
 
-      _readedConfiguration = SetReadedConfiguration(pathArg, strategyType);
-    
+    _readedConfiguration = SetReadedConfiguration(pathArg, strategyType);
   }
 
 
@@ -33,7 +32,6 @@ public class MainConfigurationReader : IConfigurationReader
   private IDictionary<string, IDictionary<string, string>> SetReadedConfiguration(string pathArg,
     IConfigurationStrategy strategyType)
   {
-
     try
     {
       foreach ( var line in File.ReadLines(pathArg) )
