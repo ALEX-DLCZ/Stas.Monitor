@@ -8,13 +8,7 @@
 
     <Grid ColumnDefinitions="*" RowDefinitions="Auto,*" Margin="5">
         <StackPanel Grid.Column="0" Grid.Row="0">
-            
-            <ComboBox Background="Orange" SelectedIndex="0" Name="ComboBoxThermometers">
-                <ComboBoxItem Content="Item 1" />
-                <ComboBoxItem Content="Item 2" />
-                <ComboBoxItem Content="Item 3" />
-                
-            </ComboBox>
+            <ComboBox Background="Orange" SelectedIndex="0" Name="ComboBoxThermometers"/>
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="1" Background="Aqua">
             <TextBlock Text="Hello World!" />

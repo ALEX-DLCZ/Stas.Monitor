@@ -19,4 +19,9 @@ public class MainPresenter
   {
     _view.ThermometerNames = _repository.AllThermometers;
   }
+  
+  public void ThermometerSelected(int thermometerName)
+  {
+    Console.WriteLine(thermometerName);
+  }
 }
