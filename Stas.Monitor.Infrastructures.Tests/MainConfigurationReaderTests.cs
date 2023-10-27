@@ -19,21 +19,28 @@ public class MainConfigurationReaderTests
   [Test]
   public void IsFileNOTExistTest()
   {
-    var path = "Resources/configNotExiste.ini";
+    var path = new [] {"connfig","Resources/configNotExiste.ini"};
     Assert.Throws<FileNotFoundException>(() => new MainConfigurationReader(path));
+  }
+  
+  [Test]
+  public void IsMainConfig_receveEmptyArray()
+  {
+    var path = new string[0];
+    Assert.Throws<IndexOutOfRangeException>(() => new MainConfigurationReader(path));
   }
 
   [Test]
   public void MainConfiguration_WhenFileIsNotIni_ShouldThrowException()
   {
-    var path = "Resources/configNotIni.txt";
+    var path = new [] {"connfig","Resources/configNotIni.txt"};
     Assert.Throws<FileNotFoundException>(() => new MainConfigurationReader(path));
   }
 
   [Test]
   public void GetReadedConfigurationTest()
   {
-    var path = "Resources\\config.ini";
+    var path = new [] {"connfig","Resources\\config.ini"};
     var reader = new MainConfigurationReader(path);
     var readedConfiguration = reader.GetReadedConfiguration();
     Assert.That(readedConfiguration.Count, Is.EqualTo(2));

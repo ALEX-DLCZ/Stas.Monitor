@@ -13,7 +13,12 @@ namespace Stas.Monitor.App;
 
 public partial class App : Application
 {
-  private MainWindow? _mainWindow;
+  private MainWindow _mainWindow;
+
+  public App()
+  {
+    _mainWindow = new MainWindow();
+  }
 
   public override void Initialize()
   {
@@ -48,16 +53,31 @@ public partial class App : Application
   {
     try
     {
-      var mainConfigurationReader = new MainConfigurationReader(args[1]);
+      var mainConfigurationReader = new MainConfigurationReader(args);
       var thermoRepository = new ThermometerRepository(mainConfigurationReader);
       var mainPresenter = new MainPresenter(_mainWindow, thermoRepository);
       mainPresenter.Start();
     }
-    catch ( Exception e )
+    catch ( Exception e)
     {
-      Console.WriteLine("BHAA SUPER ERREUR PROBLEMEEEEEEE");
+      Log.Logger.Error(e.Message);
+      Environment.Exit(1);
     }
 
-    Console.WriteLine("Hello World!");
   }
 }
+
+
+
+
+
+
+/*
+[general]
+thermometre1 = cuisine
+thermometre2 = salon
+thermometre3 = chambre
+[paths]
+mesures = \INIFile\CSVfile\mesures.csv
+alertes = \INIFile\CSVfile\alertes.csv
+*/

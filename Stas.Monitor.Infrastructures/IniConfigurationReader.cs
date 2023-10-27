@@ -33,7 +33,6 @@ public class IniConfigurationReader : IConfigurationStrategy
 
   private void ProcessKeyValuePair(string line)
   {
-    if ( _currentSection == null ) return;
     var parts = line.Split("=", 2);
     var key = parts[0].Trim();
     var value = parts[1].Trim();

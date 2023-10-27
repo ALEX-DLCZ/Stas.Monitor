@@ -6,9 +6,17 @@ public class MainConfigurationReader : IConfigurationReader
 {
   private IDictionary<string, IDictionary<string, string>> _readedConfiguration;
 
-  public MainConfigurationReader(string pathArg)
+  public MainConfigurationReader(string[] pathArg)
   {
-    var fileType = pathArg.Split(".").Last();
+    string fileType = "";
+    try
+    {
+       fileType = pathArg[1].Split(".").Last();
+    }
+    catch ( IndexOutOfRangeException e )
+    {
+      throw new IndexOutOfRangeException("monitor: missing configuration file argument");
+    }
 
     IConfigurationStrategy strategyType;
     if ( fileType == "ini" )
@@ -17,10 +25,10 @@ public class MainConfigurationReader : IConfigurationReader
     }
     else
     {
-      throw new FileNotFoundException("type of file is not supported");
+      throw new FileNotFoundException("monitor: type of file is not supported");
     }
 
-    _readedConfiguration = SetReadedConfiguration(pathArg, strategyType);
+    _readedConfiguration = SetReadedConfiguration(pathArg[1], strategyType);
   }
 
 
@@ -41,7 +49,7 @@ public class MainConfigurationReader : IConfigurationReader
     }
     catch ( FileNotFoundException e )
     {
-      throw new FileNotFoundException("File not found");
+      throw new FileNotFoundException("monitor: configuration file not found");
     }
 
 

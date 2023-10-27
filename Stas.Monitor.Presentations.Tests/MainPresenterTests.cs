@@ -18,4 +18,5 @@ public class MainPresenterTests
 
     mockedView.Received(1).ThermometerNames = baahh;
   }
+  
 }
