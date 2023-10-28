@@ -21,6 +21,9 @@ public class Configuration
           var thermometer = new Thermometer(section.Value);
           thermometers.Add(thermometer);
         }
+        thermometers.Sort((t1, t2) => string.Compare(t1.ToString(), t2.ToString(), StringComparison.Ordinal));
+        
+        
 
       }
       catch ( KeyNotFoundException e )
@@ -29,5 +32,21 @@ public class Configuration
       }
       return thermometers.ToArray();
     }
+  }
+  public List<string> GetPaths()
+  {
+    var paths = new List<string>();
+    try
+    {
+      foreach ( var section in _configDico["paths"] )
+      {
+        paths.Add(section.Value);
+      }
+    }
+    catch ( KeyNotFoundException e )
+    {
+      throw new KeyNotFoundException("monitor: missing required section paths");
+    }
+    return paths;
   }
 }

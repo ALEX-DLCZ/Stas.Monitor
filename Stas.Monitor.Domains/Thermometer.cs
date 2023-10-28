@@ -9,5 +9,14 @@ public class Thermometer
     _name = name;
   }
 
-  public string Name => _name;
+  private string Name => _name;
+  
+  public override string ToString()
+  {
+    return Name;
+  }
+  
+  
+  
+  
 }

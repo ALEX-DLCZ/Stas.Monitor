@@ -22,7 +22,10 @@ public class InfoMesure : IInfo
   {
     return new List<string>()
     {
-      _nomThermometre, _dateHeureMesure.ToString(), _typeMesure, _valeurMesure.ToString()
+      _nomThermometre, 
+      _dateHeureMesure.ToString(),
+      _typeMesure,
+      _valeurMesure.ToString()
     };
   }
 }

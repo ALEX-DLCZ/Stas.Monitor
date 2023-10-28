@@ -24,8 +24,16 @@ public class ThermometerRepositoryTests
           {
             { "Thermometer 1", "COM1" }, { "Thermometer 2", "COM2" }
           }
+        },
+        {
+          "paths",
+          new Dictionary<string, string>()
+          {
+            { "mesure", "Resources/mesures.csv" }, { "alerte", "Resources/alertes.csv" }
+          }
         }
       });
+    
     var repository = new ThermometerRepository(mockedReader);
     var actual = repository.AllThermometers;
     Assert.AreEqual(expected, actual);
