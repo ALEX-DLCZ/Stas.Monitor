@@ -6,7 +6,7 @@ public class ThermometerRepository : IThermometerRepository
 {
   private readonly Thermometer[] _thermometers;
   private readonly InfoCreator _infoCreator;
-  private List<IInfo> _allInfos;
+  private LinkedList<IInfo> _allInfos;
   
 
   public ThermometerRepository(IConfigurationReader reader)
@@ -20,11 +20,13 @@ public class ThermometerRepository : IThermometerRepository
   }
   
   public string[] AllThermometers => _thermometers.Select(t => t.ToString()).ToArray();
+
+  public LinkedList<IInfo> AllInfos => _allInfos;
   
   public void UpdateInfos()
   {
-    _allInfos.Add(_infoCreator.UpdateInfoMesure());
-    _allInfos.Add(_infoCreator.UpdateInfoAlerte());
+    _allInfos.AddFirst(_infoCreator.UpdateInfoMesure());
+    _allInfos.AddFirst(_infoCreator.UpdateInfoAlerte());
   }
   
 }

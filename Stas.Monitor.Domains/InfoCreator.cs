@@ -11,7 +11,7 @@ public class InfoCreator
     _readerAlerte = readerAlerte;
   }
 
-  public List<IInfo> GetInfos()
+  public LinkedList<IInfo> GetInfos()
   {
     var infos = new List<IInfo>();
     var info = _readerMesure.GetInfo();
@@ -25,8 +25,12 @@ public class InfoCreator
     {
       infos.Add(CreateInfoAlert(info.Dequeue()));
     }
+    
+    infos = infos.OrderBy(i => DateTime.Parse(i.GetInfo()[1])).ToList();
+    
+    var linkedInfos = new LinkedList<IInfo>(infos);
 
-    return infos;
+    return linkedInfos;
   }
 
   public InfoMesure UpdateInfoMesure()

@@ -73,16 +73,6 @@ salon;2023-10-18 12:21:52;18.50;6.50
     var creator = new InfoCreator(readerMesure, readerAlerte);
     var infos = creator.GetInfos();
     Assert.That(infos.Count, Is.EqualTo(20));
-    //vérifie que les 10 premiers éléments sont des InfoMesure
-    for ( int i = 0; i < 10; i++ )
-    {
-      Assert.IsInstanceOf<InfoMesure>(infos[i]);
-    }
-    //vérifie que les 10 derniers éléments sont des InfoAlerte
-    for ( int i = 10; i < 20; i++ )
-    {
-      Assert.IsInstanceOf<InfoAlerte>(infos[i]);
-    }
     //vérifie que _readerMesure.GetInfo() et _readerAlerte.GetInfo() ont été appelés une fois
     readerMesure.Received(1).GetInfo();
     readerAlerte.Received(1).GetInfo();

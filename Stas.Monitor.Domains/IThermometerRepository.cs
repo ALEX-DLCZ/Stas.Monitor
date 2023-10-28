@@ -3,4 +3,6 @@
 public interface IThermometerRepository
 {
   string[] AllThermometers { get; }
+
+  LinkedList<IInfo> AllInfos { get; }
 }

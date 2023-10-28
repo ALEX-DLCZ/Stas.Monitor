@@ -36,6 +36,6 @@ public class ThermometerRepositoryTests
     
     var repository = new ThermometerRepository(mockedReader);
     var actual = repository.AllThermometers;
-    Assert.AreEqual(expected, actual);
+    Assert.That(actual, Is.EqualTo(expected));
   }
 }

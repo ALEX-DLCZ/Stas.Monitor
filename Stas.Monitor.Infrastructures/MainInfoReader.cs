@@ -21,7 +21,7 @@ public class MainInfoReader : IInfoReader
     }
     else
     {
-      throw new FileNotFoundException("type of file is not supported");
+      throw new FileNotFoundException("Monitor : type of file is not supported");
     }
 
     SetReadedInfo();
@@ -59,7 +59,7 @@ public class MainInfoReader : IInfoReader
     }
     catch ( FileNotFoundException e )
     {
-      throw new FileNotFoundException("File not found");
+      throw new FileNotFoundException("File not found" + e.Message);
     }
   }
 }

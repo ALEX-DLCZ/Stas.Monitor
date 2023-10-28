@@ -12,6 +12,9 @@
       &lt;TestId&gt;NUnit3x::6856AA20-1ACB-42DE-9D71-1E94DABD714A::net6.0::Stas.Monitor.Infrastructures.Tests.CsvInfoReaderTests&lt;/TestId&gt;&#xD;
       &lt;TestId&gt;NUnit3x::6856AA20-1ACB-42DE-9D71-1E94DABD714A::net6.0::Stas.Monitor.Infrastructures.Tests.MainInfoReaderTests&lt;/TestId&gt;&#xD;
       &lt;TestId&gt;NUnit3x::6856AA20-1ACB-42DE-9D71-1E94DABD714A::net6.0::Stas.Monitor.Infrastructures.Tests.ThermometerRepositoryTests&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::97BE05D8-A0F9-4FFC-87B2-EA83BA926837::net6.0::Stas.Monitor.Domains.Tests.InfoCreatorTests&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::9C82CF23-B758-4B69-BE16-2938BD807347::net6.0::Stas.Monitor.Presentations.Tests.MainPresenterTests.dummy_test_always_true1&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;NUnit3x::9C82CF23-B758-4B69-BE16-2938BD807347::net6.0::Stas.Monitor.Presentations.Tests.MainPresenterTests&lt;/TestId&gt;&#xD;
     &lt;/TestAncestor&gt;&#xD;
     &lt;Project Location="C:\0alex\HELMO\B2_A.I\PROG\Stas.Monitor\Stas.Monitor.Infrastructures.Tests" Presentation="&amp;lt;Stas.Monitor.Infrastructures.Tests&amp;gt;" /&gt;&#xD;
   &lt;/Or&gt;&#xD;
