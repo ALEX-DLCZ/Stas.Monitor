@@ -38,4 +38,8 @@ public class InfoMesure : IInfo
   {
     return _nomThermometre == thermoName;
   }
+  public string[] GetInfoForView()
+  {
+    return new string[] {_valeurMesure.ToString(), _dateHeureMesure.ToString()};
+  }
 }

@@ -8,5 +8,5 @@ public interface IMainView
     
     string[] ThermometerNames { set; }
     
-    LinkedList<IInfo> InfosThermometer { set; }
+    LinkedList<string[]> InfosThermometer { set; }
 }

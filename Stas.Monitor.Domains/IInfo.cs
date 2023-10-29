@@ -6,4 +6,6 @@ public interface IInfo
   
   bool IsAlerte();
   bool IsCorrectThermo(string thermoName);
+  
+  string[] GetInfoForView();
 }

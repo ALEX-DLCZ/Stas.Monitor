@@ -32,9 +32,10 @@ public class ThermometerRepository : IThermometerRepository
   public LinkedList<IInfo> AllInfos(int thermometerId)
   {
     var infos = new LinkedList<IInfo>();
+    var thermoSelected = _thermometers[thermometerId].ToString();
     foreach (var info in _allInfos)
     {
-      if (info.IsCorrectThermo(_thermometers[thermometerId].ToString()))
+      if (info.IsCorrectThermo(thermoSelected))
       {
         infos.AddLast(info);
       }

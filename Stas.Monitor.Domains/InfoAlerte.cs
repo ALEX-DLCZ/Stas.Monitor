@@ -39,4 +39,8 @@ public class InfoAlerte : IInfo
   {
     return _nomThermometre == thermoName;
   }
+  public string[] GetInfoForView()
+  {
+    return new string[] {_temperatureAttendue.ToString(), _dateHeureAlerte.ToString(), _ecartTemperature.ToString()};
+  }
 }

@@ -42,4 +42,6 @@ public class CsvInfoReaderTests
     Assert.That(info[2], Is.EqualTo("C"));
     Assert.That(info[3], Is.EqualTo("20"));
   }
+  
+
 }

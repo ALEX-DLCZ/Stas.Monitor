@@ -47,7 +47,7 @@ public partial class MainWindow : Window, IMainView
       }
     }
     
-    public LinkedList<IInfo> InfosThermometer
+    public LinkedList<string[]> InfosThermometer
     {
       set
       {
