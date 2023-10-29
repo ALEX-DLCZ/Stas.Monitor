@@ -1,14 +1,16 @@
-﻿namespace Stas.Monitor.Domains;
+﻿using System.Globalization;
+
+namespace Stas.Monitor.Domains;
 
 public class InfoAlerte : IInfo
 {
   //. Elle est composée du nom du thermomètre, de la date et heure de l’alerte, de la température
   //attendue, de l’écart avec la température attendue ou de la température effectivement mesurée. 
 
-  private string _nomThermometre;
-  private DateTime _dateHeureAlerte;
-  private double _temperatureAttendue;
-  private double _ecartTemperature;
+  private readonly string _nomThermometre;
+  private readonly DateTime _dateHeureAlerte;
+  private readonly double _temperatureAttendue;
+  private readonly double _ecartTemperature;
 
   public InfoAlerte(string nomThermometre, DateTime dateHeureAlerte, double temperatureAttendue,
     double ecartTemperature)
@@ -24,9 +26,9 @@ public class InfoAlerte : IInfo
     return new List<string>()
     {
       _nomThermometre,
-      _dateHeureAlerte.ToString(),
-      _temperatureAttendue.ToString(),
-      _ecartTemperature.ToString()
+      _dateHeureAlerte.ToString(CultureInfo.CurrentCulture),
+      _temperatureAttendue.ToString(CultureInfo.CurrentCulture),
+      _ecartTemperature.ToString(CultureInfo.CurrentCulture)
     };
   }
 
@@ -42,9 +44,9 @@ public class InfoAlerte : IInfo
 
   public string[] GetInfoForView()
   {
-    return new string[]
+    return new[]
     {
-      _temperatureAttendue.ToString(), _dateHeureAlerte.ToString(), _ecartTemperature.ToString()
+      _temperatureAttendue.ToString(CultureInfo.CurrentCulture), _dateHeureAlerte.ToString(CultureInfo.CurrentCulture), _ecartTemperature.ToString(CultureInfo.CurrentCulture)
     };
   }
 }

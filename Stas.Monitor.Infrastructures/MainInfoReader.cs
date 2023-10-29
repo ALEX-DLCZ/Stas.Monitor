@@ -4,9 +4,9 @@ namespace Stas.Monitor.Infrastructures;
 
 public class MainInfoReader : IInfoReader
 {
-  private Queue<List<string>> _readedInfo;
-  private string _pathArg;
-  private IInfoStrategy _strategyType;
+  private readonly Queue<List<string>> _readedInfo;
+  private readonly string _pathArg;
+  private readonly IInfoStrategy _strategyType;
 
   public MainInfoReader(string pathArg)
   {
@@ -15,7 +15,6 @@ public class MainInfoReader : IInfoReader
     _strategyType = new CsvInfoReader();
     var fileType = _pathArg.Split(".").Last();
 
-    IInfoStrategy strategyType;
     if ( fileType == "csv" )
     {
     }

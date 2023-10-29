@@ -1,5 +1,4 @@
-﻿using Stas.Monitor.Domains;
-
+﻿
 namespace Stas.Monitor.Presentations;
 
 public interface IMainView

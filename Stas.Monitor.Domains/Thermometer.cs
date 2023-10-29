@@ -2,14 +2,12 @@
 
 public class Thermometer
 {
-  private string _name;
-
   public Thermometer(string name)
   {
-    _name = name;
+    Name = name;
   }
 
-  private string Name => _name;
+  private string Name { get; }
 
   public override string ToString()
   {

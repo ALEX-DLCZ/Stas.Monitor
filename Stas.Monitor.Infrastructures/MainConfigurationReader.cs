@@ -4,16 +4,16 @@ namespace Stas.Monitor.Infrastructures;
 
 public class MainConfigurationReader : IConfigurationReader
 {
-  private IDictionary<string, IDictionary<string, string>> _readedConfiguration;
+  private readonly IDictionary<string, IDictionary<string, string>> _readedConfiguration;
 
   public MainConfigurationReader(string[] pathArg)
   {
-    string fileType = "";
+    string fileType;
     try
     {
       fileType = pathArg[1].Split(".").Last();
     }
-    catch ( IndexOutOfRangeException e )
+    catch ( IndexOutOfRangeException )
     {
       throw new IndexOutOfRangeException("monitor: missing configuration file argument");
     }
@@ -47,7 +47,7 @@ public class MainConfigurationReader : IConfigurationReader
         strategyType.ReadLine(line);
       }
     }
-    catch ( FileNotFoundException e )
+    catch ( FileNotFoundException )
     {
       throw new FileNotFoundException("monitor: configuration file not found");
     }

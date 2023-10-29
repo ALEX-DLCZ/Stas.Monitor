@@ -2,8 +2,8 @@
 
 public class InfoCreator
 {
-  private IInfoReader _readerMesure;
-  private IInfoReader _readerAlerte;
+  private readonly IInfoReader _readerMesure;
+  private readonly IInfoReader _readerAlerte;
 
   public InfoCreator(IInfoReader readerMesure, IInfoReader readerAlerte)
   {
@@ -46,7 +46,7 @@ public class InfoCreator
   }
 
 
-  private InfoMesure CreateInfoMesure(List<string> info)
+  private InfoMesure CreateInfoMesure(IReadOnlyList<string> info)
   {
     var nomThermometre = info[0];
     var dateHeureMesure = DateTime.Parse(info[1]);
@@ -57,7 +57,7 @@ public class InfoCreator
     return new InfoMesure(nomThermometre, dateHeureMesure, typeMesure, valeurMesure);
   }
 
-  private InfoAlerte CreateInfoAlert(List<string> info)
+  private InfoAlerte CreateInfoAlert(IReadOnlyList<string> info)
   {
     var nomThermometre = info[0];
     var dateHeureAlerte = DateTime.Parse(info[1]);

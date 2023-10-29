@@ -1,12 +1,11 @@
-﻿using Stas.Monitor.Domains;
-
+﻿
 namespace Stas.Monitor.Infrastructures;
 
 public class IniConfigurationReader : IConfigurationStrategy
 {
-  private IDictionary<string, string> _currentSection;
+  private IDictionary<string, string> _currentSection = new Dictionary<string, string>();
 
-  private IDictionary<string, IDictionary<string, string>> _sectionMaps =
+  private readonly IDictionary<string, IDictionary<string, string>> _sectionMaps =
     new Dictionary<string, IDictionary<string, string>>();
 
 
@@ -14,7 +13,6 @@ public class IniConfigurationReader : IConfigurationStrategy
   {
     if ( IsCommentOrEmpty(line) )
     {
-      return;
     }
     else if ( IsNewSection(line) )
     {

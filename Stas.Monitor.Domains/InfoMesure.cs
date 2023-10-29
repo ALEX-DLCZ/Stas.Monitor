@@ -1,13 +1,15 @@
-﻿namespace Stas.Monitor.Domains;
+﻿using System.Globalization;
+
+namespace Stas.Monitor.Domains;
 
 public class InfoMesure : IInfo
 {
   //Elle est composée du nom du thermomètre, de la date et heure de la mesure, du type de la mesure et de la valeur mesurée. 
 
-  private string _nomThermometre;
-  private DateTime _dateHeureMesure;
-  private string _typeMesure;
-  private double _valeurMesure;
+  private readonly string _nomThermometre;
+  private readonly DateTime _dateHeureMesure;
+  private readonly string _typeMesure;
+  private readonly double _valeurMesure;
 
   public InfoMesure(string nomThermometre, DateTime dateHeureMesure, string typeMesure,
     double valeurMesure)
@@ -23,9 +25,9 @@ public class InfoMesure : IInfo
     return new List<string>()
     {
       _nomThermometre, 
-      _dateHeureMesure.ToString(),
+      _dateHeureMesure.ToString(CultureInfo.CurrentCulture),
       _typeMesure,
-      _valeurMesure.ToString()
+      _valeurMesure.ToString(CultureInfo.CurrentCulture)
     };
   }
   
@@ -40,6 +42,6 @@ public class InfoMesure : IInfo
   }
   public string[] GetInfoForView()
   {
-    return new string[] {_valeurMesure.ToString(), _dateHeureMesure.ToString()};
+    return new[] {_valeurMesure.ToString(CultureInfo.CurrentCulture), _dateHeureMesure.ToString(CultureInfo.CurrentCulture)};
   }
 }

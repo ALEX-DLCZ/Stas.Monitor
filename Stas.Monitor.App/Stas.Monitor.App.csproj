@@ -49,4 +49,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\CodeMetricsConfig.txt">
+      <Link>CodeMetricsConfig.txt</Link>
+    </AdditionalFiles>
+  </ItemGroup>
 </Project>
