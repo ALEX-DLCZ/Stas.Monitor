@@ -1,11 +1,20 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Stas.Monitor.Views.InfoView">
-    <Grid>
-        <!-- fait un hello world -->
-        <TextBlock Text="Hello World!"/>
+             xmlns:views="clr-namespace:Stas.Monitor.Views"
+             x:Class="Stas.Monitor.Views.InfoView"
+             x:DataType="views:InfoView"
+             Width="350" >
+
+    <Grid ColumnDefinitions="*,*" RowDefinitions="*,*" Margin="5" Background="Black">
+        <StackPanel Orientation="Horizontal" >
+            <TextBlock Name="Temperature" FontWeight="Bold" Text="??,??" FontSize="50" />
+            <TextBlock Text="°" FontSize="50" />
+        </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Vertical"  VerticalAlignment="Center" >
+                <TextBlock Name="Date" Text="dd/MM/YYYY HH:MM:SS"  HorizontalAlignment="Right" />
+                <TextBlock Name="TemperatureExpected" Text="Attendu : 20,50" Background="Red"  HorizontalAlignment="Right" />
+            </StackPanel>
     </Grid>
+
+
 </UserControl>
