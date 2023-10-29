@@ -21,18 +21,19 @@ public class Configuration
           var thermometer = new Thermometer(section.Value);
           thermometers.Add(thermometer);
         }
-        thermometers.Sort((t1, t2) => string.Compare(t1.ToString(), t2.ToString(), StringComparison.Ordinal));
-        
-        
 
+        thermometers.Sort((t1, t2) =>
+          string.Compare(t1.ToString(), t2.ToString(), StringComparison.Ordinal));
       }
       catch ( KeyNotFoundException e )
       {
         throw new KeyNotFoundException("monitor: missing required section thermometers (general)");
       }
+
       return thermometers.ToArray();
     }
   }
+
   public List<string> GetPaths()
   {
     var paths = new List<string>();
@@ -47,6 +48,7 @@ public class Configuration
     {
       throw new KeyNotFoundException("monitor: missing required section paths");
     }
+
     return paths;
   }
 }

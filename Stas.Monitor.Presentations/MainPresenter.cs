@@ -19,16 +19,17 @@ public class MainPresenter
   {
     _view.ThermometerNames = _repository.AllThermometers;
   }
-  
+
   public void ThermometerSelected(int thermometerId)
   {
     var baaahh = _repository.AllInfos(thermometerId);
-    
+
     var infos = new LinkedList<string[]>();
-    foreach (var info in baaahh)
+    foreach ( var info in baaahh )
     {
       infos.AddLast(info.GetInfoForView());
     }
+
     _view.InfosThermometer = infos;
   }
 }

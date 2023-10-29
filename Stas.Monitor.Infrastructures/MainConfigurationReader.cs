@@ -11,7 +11,7 @@ public class MainConfigurationReader : IConfigurationReader
     string fileType = "";
     try
     {
-       fileType = pathArg[1].Split(".").Last();
+      fileType = pathArg[1].Split(".").Last();
     }
     catch ( IndexOutOfRangeException e )
     {

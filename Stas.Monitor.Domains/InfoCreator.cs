@@ -25,9 +25,9 @@ public class InfoCreator
     {
       infos.Add(CreateInfoAlert(info.Dequeue()));
     }
-    
+
     infos = infos.OrderBy(i => DateTime.Parse(i.GetInfo()[1])).ToList();
-    
+
     var linkedInfos = new LinkedList<IInfo>(infos);
 
     return linkedInfos;

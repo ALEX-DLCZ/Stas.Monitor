@@ -20,7 +20,6 @@ public partial class MainWindow : Window, IMainView
     _comboBox.SelectionChanged += ComboBox_SelectionChanged;
 
     _infoViewItems = this.FindControl<ItemsControl>("InfoViewItems");
-
   }
 
   private void InitializeComponent()
@@ -44,6 +43,7 @@ public partial class MainWindow : Window, IMainView
 
 
   /*
+   ChatGPT
         // Définissez le nombre de fois que vous souhaitez afficher le ContentControl (par exemple 5 fois)
       int numberOfInfoViews = 5;
 

@@ -66,7 +66,6 @@ public partial class App : Application
   }
 }
 
-
 /*
 [general]
 thermometre1 = cuisine

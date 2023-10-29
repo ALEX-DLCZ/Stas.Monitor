@@ -29,18 +29,22 @@ public class InfoAlerte : IInfo
       _ecartTemperature.ToString()
     };
   }
-  
+
   public bool IsAlerte()
   {
     return true;
   }
-  
+
   public bool IsCorrectThermo(string thermoName)
   {
     return _nomThermometre == thermoName;
   }
+
   public string[] GetInfoForView()
   {
-    return new string[] {_temperatureAttendue.ToString(), _dateHeureAlerte.ToString(), _ecartTemperature.ToString()};
+    return new string[]
+    {
+      _temperatureAttendue.ToString(), _dateHeureAlerte.ToString(), _ecartTemperature.ToString()
+    };
   }
 }
