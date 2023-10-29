@@ -58,13 +58,11 @@ public partial class App : Application
       var mainPresenter = new MainPresenter(_mainWindow, thermoRepository);
       mainPresenter.Start();
     }
-    catch ( Exception e)
+    catch ( Exception e )
     {
       Log.Logger.Error(e.Message);
-      throw;
       Environment.Exit(1);
     }
-
   }
 }
 

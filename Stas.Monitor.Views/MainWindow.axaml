@@ -11,9 +11,8 @@
         <StackPanel Grid.Column="0" Grid.Row="0">
             <ComboBox Background="Orange" SelectedIndex="0" Name="ComboBoxThermometers"/>
         </StackPanel>
-        <StackPanel Grid.Column="0" Grid.Row="1" Background="Aqua">
-            <!-- ajouter la vue de InfoView -->
-            <ContentControl Name="InfoViewContent"/>
+        <StackPanel Grid.Column="0" Grid.Row="1" Background="#555555">
+            <ItemsControl Name="InfoViewItems"/>
         </StackPanel>
     </Grid>
 

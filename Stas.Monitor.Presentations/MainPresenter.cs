@@ -23,14 +23,12 @@ public class MainPresenter
   public void ThermometerSelected(int thermometerId)
   {
     var baaahh = _repository.AllInfos(thermometerId);
-    // convertir baaahh en LinkedList<string[]> en utilisant GetInfo() de IInfo 
     
     var infos = new LinkedList<string[]>();
     foreach (var info in baaahh)
     {
       infos.AddLast(info.GetInfoForView());
     }
-    
     _view.InfosThermometer = infos;
   }
 }

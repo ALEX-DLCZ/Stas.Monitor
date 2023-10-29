@@ -1,6 +1,7 @@
 ﻿using Avalonia;
+using System;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+using Avalonia.Interactivity;
 
 namespace Stas.Monitor.Views;
 
@@ -8,29 +9,16 @@ public partial class InfoView : UserControl
 {
   
   
-  public InfoView()
+  public InfoView(string[] infos)
   {
     InitializeComponent();
+    Temperature.Text = infos[0];
+    Date.Text = infos[1];
+    //infos varie entre 2 et 3 éléments
+    if (infos.Length == 3) TemperatureExpected.Text = "valeur attendue: " + infos[2];
+    
+    
   }
-
-  private void InitializeComponent()
-  {
-    AvaloniaXamlLoader.Load(this);
-  }
-  /*
-  public string[] Infos
-  {
-    set
-    {
-      Temperature.Text = value[0];
-      Date.Text = value[1];
-      TemperatureExpected.Text = value[2];
-    }
-  }
-  */
-  
-  
-
   
   
   
