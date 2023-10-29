@@ -25,8 +25,10 @@ public class MainPresenter
     var fsf = _repository.AllInfos;
   }
   
-  public void ThermometerSelected(int thermometerName)
+  public void ThermometerSelected(int thermometerId)
   {
-    Console.WriteLine(thermometerName);
+    Console.WriteLine(thermometerId);
+    
+    _view.InfosThermometer = _repository.AllInfos(thermometerId);
   }
 }

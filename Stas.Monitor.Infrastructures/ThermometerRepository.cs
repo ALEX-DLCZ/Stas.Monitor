@@ -21,7 +21,6 @@ public class ThermometerRepository : IThermometerRepository
   
   public string[] AllThermometers => _thermometers.Select(t => t.ToString()).ToArray();
 
-  public LinkedList<IInfo> AllInfos => _allInfos;
   
   public void UpdateInfos()
   {
@@ -29,5 +28,19 @@ public class ThermometerRepository : IThermometerRepository
     _allInfos.AddFirst(_infoCreator.UpdateInfoAlerte());
   }
   
+  // AllInfos with a ThermometerId. the id is the index of the thermometer in the array
+  public LinkedList<IInfo> AllInfos(int thermometerId)
+  {
+    var infos = new LinkedList<IInfo>();
+    foreach (var info in _allInfos)
+    {
+      if (info.IsCorrectThermo(_thermometers[thermometerId].ToString()))
+      {
+        infos.AddLast(info);
+      }
+    }
+
+    return infos;
+  }
 }
 

@@ -61,15 +61,12 @@ public partial class App : Application
     catch ( Exception e)
     {
       Log.Logger.Error(e.Message);
+      throw;
       Environment.Exit(1);
     }
 
   }
 }
-
-
-
-
 
 
 /*
@@ -78,6 +75,6 @@ thermometre1 = cuisine
 thermometre2 = salon
 thermometre3 = chambre
 [paths]
-mesures = \INIFile\CSVfile\mesures.csv
-alertes = \INIFile\CSVfile\alertes.csv
+mesures = mesures.csv
+alertes = alertes.csv
 */

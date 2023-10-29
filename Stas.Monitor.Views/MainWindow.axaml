@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="450"
         x:Class="Stas.Monitor.Views.MainWindow"
+        Width="350" Height="450"
         Title="Stas.Monitor.Views">
 
     <Grid ColumnDefinitions="*" RowDefinitions="Auto,*" Margin="5">
@@ -11,7 +12,8 @@
             <ComboBox Background="Orange" SelectedIndex="0" Name="ComboBoxThermometers"/>
         </StackPanel>
         <StackPanel Grid.Column="0" Grid.Row="1" Background="Aqua">
-            <TextBlock Text="Hello World!" />
+            <!-- ajouter la vue de InfoView -->
+            <ContentControl Name="InfoViewContent"/>
         </StackPanel>
     </Grid>
 

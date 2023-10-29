@@ -29,4 +29,14 @@ public class InfoAlerte : IInfo
       _ecartTemperature.ToString()
     };
   }
+  
+  public bool IsAlerte()
+  {
+    return true;
+  }
+  
+  public bool IsCorrectThermo(string thermoName)
+  {
+    return _nomThermometre == thermoName;
+  }
 }

@@ -28,4 +28,14 @@ public class InfoMesure : IInfo
       _valeurMesure.ToString()
     };
   }
+  
+  public bool IsAlerte()
+  {
+    return false;
+  }
+  
+  public bool IsCorrectThermo(string thermoName)
+  {
+    return _nomThermometre == thermoName;
+  }
 }

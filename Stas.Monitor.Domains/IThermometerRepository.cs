@@ -4,5 +4,6 @@ public interface IThermometerRepository
 {
   string[] AllThermometers { get; }
 
-  LinkedList<IInfo> AllInfos { get; }
+
+  public LinkedList<IInfo> AllInfos(int thermometerId);
 }
