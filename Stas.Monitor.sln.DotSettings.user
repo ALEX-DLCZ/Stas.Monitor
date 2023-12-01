@@ -1,26 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/CodeInspection/PencilsConfiguration/ActualSeverity/@EntryValue">INFO</s:String>
-	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
-  &lt;Assembly Path="C:\0alex\HELMO\B2_A.I\PROG\Stas.Monitor\Stas.Monitor.Domains\bin\Debug\net6.0\Stas.Monitor.Domains.dll" /&gt;&#xD;
-&lt;/AssemblyExplorer&gt;</s:String>
 	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\ALEXANDRE\AppData\Local\JetBrains\Rider2023.2\resharper-host\temp\Rider\vAny\CoverageData\_Stas.Monitor.24837957\Snapshot\snapshot.utdcvr</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f10b408f_002D3e25_002D4cad_002D975b_002Ded16cac077e4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ArchTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Or&gt;&#xD;
-    &lt;TestAncestor&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::EB9B3961-B470-45FD-8826-82EABD7D35A8::net6.0::Stas.Monitor.App.Tests.ArchTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6856AA20-1ACB-42DE-9D71-1E94DABD714A::net6.0::Stas.Monitor.Infrastructures.Tests.IniConfigurationReaderTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::9C82CF23-B758-4B69-BE16-2938BD807347::net6.0::Stas.Monitor.Presentations.Tests.MainPresenterTests.Should_Provide_His_View_With_Thermometer_Name&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6856AA20-1ACB-42DE-9D71-1E94DABD714A::net6.0::Stas.Monitor.Infrastructures.Tests.MainConfigurationReaderTests.IsFileExistTest&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6856AA20-1ACB-42DE-9D71-1E94DABD714A::net6.0::Stas.Monitor.Infrastructures.Tests.MainConfigurationReaderTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6856AA20-1ACB-42DE-9D71-1E94DABD714A::net6.0::Stas.Monitor.Infrastructures.Tests.CsvInfoReaderTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6856AA20-1ACB-42DE-9D71-1E94DABD714A::net6.0::Stas.Monitor.Infrastructures.Tests.MainInfoReaderTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::6856AA20-1ACB-42DE-9D71-1E94DABD714A::net6.0::Stas.Monitor.Infrastructures.Tests.ThermometerRepositoryTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::97BE05D8-A0F9-4FFC-87B2-EA83BA926837::net6.0::Stas.Monitor.Domains.Tests.InfoCreatorTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::9C82CF23-B758-4B69-BE16-2938BD807347::net6.0::Stas.Monitor.Presentations.Tests.MainPresenterTests.dummy_test_always_true1&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::9C82CF23-B758-4B69-BE16-2938BD807347::net6.0::Stas.Monitor.Presentations.Tests.MainPresenterTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::97BE05D8-A0F9-4FFC-87B2-EA83BA926837::net6.0::Stas.Monitor.Domains.Tests.ConfigurationTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;NUnit3x::97BE05D8-A0F9-4FFC-87B2-EA83BA926837::net6.0::Stas.Monitor.Domains.Tests.InfosTests&lt;/TestId&gt;&#xD;
-    &lt;/TestAncestor&gt;&#xD;
-    &lt;Project Location="C:\0alex\HELMO\B2_A.I\PROG\Stas.Monitor\Stas.Monitor.Infrastructures.Tests" Presentation="&amp;lt;Stas.Monitor.Infrastructures.Tests&amp;gt;" /&gt;&#xD;
-  &lt;/Or&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=824b834b_002Ded7c_002D4f82_002D825c_002Df955cbbce27c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ArchTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::A5D72AC0-43D4-4EC1-8620-C5BA09BC647C::net6.0::Stas.Monitor.App.Tests.ArchTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

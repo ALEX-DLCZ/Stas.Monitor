@@ -14,9 +14,9 @@
         <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.2"/>
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.2"/>
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.7.0" />
-        <PackageReference Include="Serilog" Version="3.0.1" />
-        <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.8.0" />
+        <PackageReference Include="Serilog" Version="3.1.1" />
+        <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
     </ItemGroup>
 
 

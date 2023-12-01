@@ -5,15 +5,17 @@ using Stas.Monitor.Infrastructures;
 using Stas.Monitor.Presentations;
 using Stas.Monitor.Views;
 
-
 namespace Stas.Monitor.App.Tests;
 
 public class ArchTests
 {
   private static readonly Assembly[] Assemblies = new[]
   {
-    typeof(App).Assembly, typeof(Configuration).Assembly, typeof(IniConfigurationReader).Assembly,
-    typeof(MainPresenter).Assembly, typeof(MainWindow).Assembly
+    typeof(App).Assembly,
+    typeof(Configuration).Assembly, 
+    typeof(IniConfigurationReader).Assembly,
+    typeof(MainPresenter).Assembly,
+    typeof(MainWindow).Assembly
   };
 
 
@@ -69,6 +71,4 @@ public class ArchTests
       .GetResult()
       .IsSuccessful, Is.True);
   }
-  
-  
 }

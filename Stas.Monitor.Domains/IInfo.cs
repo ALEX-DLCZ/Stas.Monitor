@@ -2,10 +2,10 @@
 
 public interface IInfo
 {
-  List<string> GetInfo();
 
-  bool IsAlerte();
-  bool IsCorrectThermo(string thermoName);
+    bool IsAlerte();
 
-  string[] GetInfoForView();
+    bool IsCorrectThermo(string thermoName);
+
+    string[] GetInfoForView();
 }

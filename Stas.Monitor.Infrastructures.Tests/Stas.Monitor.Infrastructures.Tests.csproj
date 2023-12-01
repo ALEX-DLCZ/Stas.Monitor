@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.8.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0"/>
         <PackageReference Include="NSubstitute" Version="5.1.0" />
         <PackageReference Include="NUnit" Version="3.13.3"/>
@@ -20,25 +21,6 @@
     <ItemGroup>
       <ProjectReference Include="..\Stas.Monitor.Domains\Stas.Monitor.Domains.csproj" />
       <ProjectReference Include="..\Stas.Monitor.Infrastructures\Stas.Monitor.Infrastructures.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="Resources\config.ini" />
-      <Content Include="Resources\config.ini">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-      <None Remove="Resources\configNotIni.txt" />
-      <Content Include="Resources\configNotIni.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-      <None Remove="Resources\alertes.csv" />
-      <Content Include="Resources\alertes.csv">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-      <None Remove="Resources\mesures.csv" />
-      <Content Include="Resources\mesures.csv">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
     </ItemGroup>
 
 </Project>

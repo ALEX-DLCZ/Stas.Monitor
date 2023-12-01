@@ -2,5 +2,5 @@
 
 public interface IConfigurationReader
 {
-  IDictionary<string, IDictionary<string, string>> GetReadedConfiguration();
+    IDictionary<string, IDictionary<string, string>> GetReadedConfiguration();
 }
