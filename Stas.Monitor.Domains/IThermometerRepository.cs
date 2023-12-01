@@ -2,5 +2,5 @@
 
 public interface IThermometerRepository
 {
-    
+    string GetThermometerName();
 }

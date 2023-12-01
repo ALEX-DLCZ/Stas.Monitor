@@ -1,6 +1,6 @@
 ﻿namespace Stas.Monitor.Domains;
 
-public interface IInfo
+public interface IMeasure
 {
     bool IsAlerte();
 }
