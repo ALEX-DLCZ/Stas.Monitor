@@ -2,5 +2,7 @@
 
 public interface IThermometerRepository
 {
-    string GetThermometerName();
+    string[] AllThermometers { get; }
+
+    IThermometer  FindThermometer(string thermoName);
 }

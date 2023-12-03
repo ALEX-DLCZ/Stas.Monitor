@@ -1,6 +1,8 @@
-﻿namespace Stas.Monitor.Infrastructures.DataBase;
+﻿using Stas.Monitor.Domains;
 
-public class MainDataBaseRepository
+namespace Stas.Monitor.Infrastructures.DataBase;
+
+public class MainDataBaseRepository : IFilterSubscriber
 {
-    
+    public void Update(IFilterAccessor filterAccessor) => throw new NotImplementedException();
 }
