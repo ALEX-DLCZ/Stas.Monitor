@@ -1,22 +1,22 @@
-﻿using Avalonia;
-using System;
-using Avalonia.Controls;
-using Avalonia.Interactivity;
+﻿using Avalonia.Controls;
+using Avalonia.Media;
 
 namespace Stas.Monitor.Views;
 
 public partial class InfoView : UserControl
 {
-    public InfoView(string[] infos)
+    public InfoView(string[] infos, SolidColorBrush color)
     {
+        //string|] : 0=valeurFormater, 1=dateformater, 2=expectedValue
         InitializeComponent();
-        Temperature.Text = infos[0];
+        Measurement.Text = infos[0];
         Date.Text = infos[1];
 
-        //infos varie entre 2 et 3 éléments
-        if ( infos.Length == 3 )
+        //rentre dans la condition si la valeur attendue est présente
+        if ( infos.Length > 2 )
         {
-            TemperatureExpected.Text = "valeur attendue: " + infos[2];
+            MeasurementExpected.Text = "valeur attendue: " + infos[2];
+            InfoGrid.Background = color;
         }
     }
 }

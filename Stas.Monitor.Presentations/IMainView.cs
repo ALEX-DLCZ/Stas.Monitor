@@ -1,6 +1,4 @@
-﻿using Stas.Monitor.Presentations.DataPresenter;
-
-namespace Stas.Monitor.Presentations;
+﻿namespace Stas.Monitor.Presentations;
 
 public interface IMainView
 {
@@ -10,5 +8,5 @@ public interface IMainView
 
     string[] ThermometerNames { set; }
 
-    IList<MeasurePresenter> InfosThermometer { set; }
+    IList<ISievedType> InfosThermometer { set; }
 }
