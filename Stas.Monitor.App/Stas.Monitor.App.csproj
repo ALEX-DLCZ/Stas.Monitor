@@ -33,4 +33,12 @@
     <ProjectReference Include="..\Stas.Monitor.Presentations\Stas.Monitor.Presentations.csproj" />
     <ProjectReference Include="..\Stas.Monitor.Views\Stas.Monitor.Views.csproj" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <None Remove="config.ini" />
+    <Content Include="config.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

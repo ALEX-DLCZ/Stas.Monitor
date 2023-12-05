@@ -5,6 +5,8 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using Serilog;
+using Stas.Monitor.App.PersonalExceptions;
+using Stas.Monitor.Domains;
 using Stas.Monitor.Infrastructures;
 using Stas.Monitor.Presentations;
 using Stas.Monitor.Views;
@@ -50,19 +52,17 @@ public partial class App : Application
         try
         {
             //TODO implémenter le MainConfigurationReader pour récupérer les noms des thermomètres et lacces en base de donnée
-            //Test en forcant les valeur du dictionary pour le repository name1 = "couisine", name2 = "salon", name3 = "chambre"
-            IDictionary<string, string> dictionaryTEST = new Dictionary<string, string>();
+            ArgsExecutor argsExecutor = new ArgsExecutor(args);
 
-            var thermoRepository = new ThermometerRepository(dictionaryTEST);
+            var thermoRepository = new ThermometerRepository(  argsExecutor.GetThermoName() );
             var mainPresenter = new MainPresenter(_mainWindow, thermoRepository);
             mainPresenter.Start();
         }
         catch (Exception e)
         {
             Log.Logger.Error(e, "Error during app setup");
-            throw;
+            throw new FatalException("Error during app setup", e);
         }
-
     }
 
 }

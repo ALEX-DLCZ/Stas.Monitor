@@ -26,7 +26,6 @@ public partial class MainWindow : Window , IMainView
         {
             // _filterOption?.SetThermoName(comboBox.SelectedItem.ToString());
             // _presenter?.ThermometerSelected(comboBox.SelectedIndex);
-            Console.WriteLine("BAAAHHHHH");
             _presenter?.Update();
         }
     }

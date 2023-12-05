@@ -20,18 +20,13 @@ public class MainPresenter
     public void Start()
     {
         _view.SetFilterPresenter(_filterOption);
-        // _view.ThermometerNames = _repository.AllThermometers;
-        // test en forcant les valeur : "couisine", "salon", "chambre"
-        _view.ThermometerNames = new string[] { "couisine", "salon", "chambre" };
+        _view.ThermometerNames = _repository.AllThermometers;
     }
-
 
     public void Update()
     {
 
         // IThermometer thermometer = _repository.FindThermometer(_filterOption.GetThermoName());
-
-
 
         //Todo supprimer les valeur forcées
         IList <string[]> FORCETESTinfos = new List<string[]>();
@@ -46,7 +41,6 @@ public class MainPresenter
         infos.Add(FORCETESTTypePresented1);
         infos.Add(FORCETESTTypePresented2);
         _view.InfosThermometer = infos;
-        Console.WriteLine("BAAAHHHHH a la fin de update");
         //Todo donne les mesures a la vue
     }
 }
