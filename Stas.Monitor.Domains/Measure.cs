@@ -1,21 +1,25 @@
 ﻿namespace Stas.Monitor.Domains;
 
-public class Measure : IMeasure
+public class Measure
 {
     private readonly double _value;
-    private readonly double _valueExpected;
+    private readonly double _difference;
     private readonly string _format;
 
-    public Measure( double value, double valueExpected, string format )
+    public Measure( double value, double difference, string format )
     {
         _value = value;
-        _valueExpected = valueExpected;
+        _difference = difference;
         _format = format;
     }
 
-    public bool IsAlerte() => _value > _valueExpected;
+    // public string ValueToString() => _value.ToString(_format);
+    //
+    // public string ValueExpectedToString() => _valueExpected.ToString(_format);
 
-    public string ValueToString() => _value.ToString(_format);
+    public double Value => _value;
 
-    public string ValueExpectedToString() => _valueExpected.ToString(_format);
+    public double Difference => _difference;
+
+    public string Format => _format;
 }

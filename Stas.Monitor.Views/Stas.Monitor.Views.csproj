@@ -23,4 +23,16 @@
     <ItemGroup>
       <ProjectReference Include="..\Stas.Monitor.Presentations\Stas.Monitor.Presentations.csproj" />
     </ItemGroup>
+
+
+    <ItemGroup>
+      <Compile Update="Controls\TypeView.axaml.cs">
+        <DependentUpon>TypeView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Controls\InfoView.axaml.cs">
+        <DependentUpon>InfoView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
 </Project>

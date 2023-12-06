@@ -2,9 +2,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Stas.Monitor.Views.Controls"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Stas.Monitor.Views.MainWindow"
         Title="Stas.Monitor.Views">
+    
+    
+    <ScrollViewer>
+        <StackPanel>
+            <controls:FilterPanel x:Name="FilterPanel" FilterChanged="FilterPanel_OnFilterChanged"/>
+            <WrapPanel x:Name="ResultPanel" HorizontalAlignment="Stretch" />
+        </StackPanel>
+    </ScrollViewer>
+    
 
     
     <!-- <Grid> -->
@@ -26,14 +36,14 @@
 
 
     
-    <Grid ColumnDefinitions="*" RowDefinitions="Auto,*" Margin="5">
-        <StackPanel Grid.Column="0" Grid.Row="0">
-            <ComboBox Background="Orange" SelectedIndex="0" Name="ComboBoxThermometers"/>
-        </StackPanel>
-        <StackPanel Grid.Column="0" Grid.Row="1" Background="#555555">
-            <ItemsControl Name="TypeViewItems"/>
-        </StackPanel>
-    </Grid>
+    <!-- <Grid ColumnDefinitions="*" RowDefinitions="Auto,*" Margin="5"> -->
+    <!--     <StackPanel Grid.Column="0" Grid.Row="0"> -->
+    <!--         <ComboBox Background="Orange" SelectedIndex="0" Name="ComboBoxThermometers"/> -->
+    <!--     </StackPanel> -->
+    <!--     <StackPanel Grid.Column="0" Grid.Row="1" Background="#555555"> -->
+    <!--         <ItemsControl Name="TypeViewItems"/> -->
+    <!--     </StackPanel> -->
+    <!-- </Grid> -->
 
 
 </Window>

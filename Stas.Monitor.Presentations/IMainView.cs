@@ -2,11 +2,20 @@
 
 public interface IMainView
 {
-    void SetPresenter(MainPresenter presenterHimself);
+    IEnumerable<string> Types { set; }
 
-    void SetFilterPresenter(FilterOption filterOption);
+    IReadOnlyList<MeasurePresenterModel> Result { set; }
 
-    string[] ThermometerNames { set; }
+    event EventHandler<FilterEventArgs> FilterChanged;
 
-    IList<ISievedType> InfosThermometer { set; }
+
+
+
+    // void SetPresenter(MainPresenter presenterHimself);
+    //
+    // void SetFilterPresenter(FilterOption filterOption);
+    //
+    // string[] ThermometerNames { set; }
+    //
+    // IList<ISievedType> InfosThermometer { set; }
 }

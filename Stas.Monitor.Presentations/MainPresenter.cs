@@ -4,6 +4,54 @@ namespace Stas.Monitor.Presentations;
 
 public class MainPresenter
 {
+
+    private readonly IMainView _view;
+    private readonly IThermometerRepository _repository;
+
+    public MainPresenter(IMainView view, IThermometerRepository repository)
+    {
+        _view = view;
+        _repository = repository;
+    }
+
+    public void Start()
+    {
+        _view.FilterChanged += OnQueryChanged;
+
+        // _view.Types = _repository
+        //     .NewQuery()
+        //     .SelectDistinct(p => p.Type1);
+    }
+
+    private void OnQueryChanged(object? sender, FilterEventArgs args)
+    {
+        var typesAsSet = new HashSet<string>(args.Types);
+
+        // var query =  _repository
+        //     .NewQuery();
+        // if (args.OnlyLegendary)
+        // {
+        //     query = query.Where(p => p.Legendary);
+        // }
+        // _view.Result = query.Where(p => p.Name.Contains(args.Contains, StringComparison.OrdinalIgnoreCase))
+        //     .Where(p => p.Generation >= args.Generation)
+        //     .Where(p => typesAsSet.Contains(p.Type1) || typesAsSet.Contains(p.Type2))
+        //     .Select(pokemon => new MeasurePresenterModel(pokemon))
+        //     .ToList();
+        // where est une expression lambda un peut complex pour l'ai ca
+    }
+
+
+
+
+
+
+
+
+
+
+
+    /*
     private readonly IMainView _view;
     private readonly IThermometerRepository _repository;
     private readonly FilterOption _filterOption;
@@ -43,4 +91,6 @@ public class MainPresenter
         _view.InfosThermometer = infos;
         //Todo donne les mesures a la vue
     }
+
+    */
 }
