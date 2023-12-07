@@ -4,6 +4,8 @@ public interface IMainView
 {
     IEnumerable<string> Types { set; }
 
+    IEnumerable<string> ThermometersNames { set; }
+
     IReadOnlyList<MeasurePresenterModel> Result { set; }
 
     event EventHandler<FilterEventArgs> FilterChanged;

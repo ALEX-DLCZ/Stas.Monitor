@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 using Stas.Monitor.Presentations;
 
 namespace Stas.Monitor.Views.Controls;
@@ -42,6 +40,16 @@ public partial class FilterPanel : UserControl
             TypesPanel.Children.AddRange(_toggleSwitches);
         }
     }
+    public IEnumerable<string> Thermometers
+    {
+        set
+        {
+            foreach ( var item in value )
+            {
+                ComboBoxThermometers?.Items.Add(item);
+            }
+        }
+    }
 
     private void NotifyFilterChanged(object? sender, RoutedEventArgs e)
     {
@@ -70,11 +78,14 @@ public partial class FilterPanel : UserControl
             .Where(toggleSwitch => toggleSwitch.IsChecked ?? false)
             .Select(toggleSwitch => toggleSwitch.Tag as string ?? String.Empty);
 
-        var queryArgs = new FilterEventArgs(Types: selectedTypes,
-            Contains: NameBox.Text ?? String.Empty,
-            Generation: (int)GenerationSlider.Value,
-            OnlyLegendary: LegendarySwitch.IsChecked ?? false);
+        // var queryArgs = new FilterEventArgs(Types: selectedTypes,
+        //     Contains: NameBox.Text ?? String.Empty,
+        //     Generation: (int)GenerationSlider.Value,
+        //     OnlyLegendary: LegendarySwitch.IsChecked ?? false);
+        var filterArgs = new FilterEventArgs(Types: selectedTypes,
+            ThermometerIndex: ComboBoxThermometers.SelectedIndex,
+            TimeSelected: 60.0);
 
-        NotifyFilterChanged(queryArgs);
+        NotifyFilterChanged(filterArgs);
     }
 }

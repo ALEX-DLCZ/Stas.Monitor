@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Avalonia.Controls;
-using Avalonia.Media;
 using Stas.Monitor.Presentations;
 using Stas.Monitor.Views.Controls;
 
@@ -11,8 +10,8 @@ namespace Stas.Monitor.Views;
 public partial class MainWindow : Window , IMainView
 {
 
-    private IList<TypeView> _filterResult = new List<TypeView>();
-    private IDictionary<string, TypeView> _filterResultDict = new Dictionary<string, TypeView>();
+    // private readonly IList<TypeView> _filterResult = new List<TypeView>();
+    private readonly IDictionary<string, TypeView> _filterResultDict = new Dictionary<string, TypeView>();
 
     public MainWindow()
     {
@@ -22,6 +21,10 @@ public partial class MainWindow : Window , IMainView
     public IEnumerable<string> Types
     {
         set => FilterPanel.Types = value; // Forward call
+    }
+    public IEnumerable<string> ThermometersNames
+    {
+        set => FilterPanel.Thermometers = value; // Forward call
     }
 
     public IReadOnlyList<MeasurePresenterModel> Result
@@ -43,15 +46,12 @@ public partial class MainWindow : Window , IMainView
                     var typeView = new TypeView() { ViewTypeName = type.Type };
                     typeView.AddInfoView(new InfoView() { ViewModel = type });
                     _filterResultDict.Add(type.Type, typeView);
-                    _filterResult.Add(typeView);
+                    // _filterResult.Add(typeView);
                     ResultPanel.Children.Add(typeView);
 
 
                 }
             }
-
-
-
 
 
             // var delta = _filterResult.Count - value.Count;// < 0 => not enough elements

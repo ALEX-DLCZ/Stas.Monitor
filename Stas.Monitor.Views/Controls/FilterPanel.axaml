@@ -15,23 +15,26 @@
         <WrapPanel>
                 <StackPanel MinWidth="320" MaxWidth="800" Spacing="8" Margin="8">
                     <TextBlock Classes="h2">Types</TextBlock>
+                    <ComboBox Background="Orange" SelectedIndex="0" Name="ComboBoxThermometers"  /> 
+                </StackPanel>
+                <StackPanel  MinWidth="320" MinHeight="320" Spacing="8" Margin="8">
+                    <TextBlock Classes="h2">Basic criteria</TextBlock>
+                    
                     <WrapPanel x:Name="TypesPanel"  ItemWidth="200" Orientation="Horizontal">
                         <!-- Ces commutateurs sont donnés à titre d'exemple. -->
                         <ToggleSwitch OnContent="Include Poison" OffContent="Ignore Poison"></ToggleSwitch>
                         <ToggleSwitch OnContent="Include Fire" OffContent="Ignore Fire"></ToggleSwitch>
                         <ToggleSwitch OnContent="Include Ice" OffContent="Ignore Ice"></ToggleSwitch>
-                    </WrapPanel>    
-                </StackPanel>
-                <StackPanel  MinWidth="320" MinHeight="320" Spacing="8" Margin="8">
-                    <TextBlock Classes="h2">Basic criteria</TextBlock>
-                    <TextBlock>Name contains: </TextBlock>
-                    <TextBox Name="NameBox" Watermark="Type some pokemon name" TextChanged="NameBox_OnTextChanged" />
-                    
-                    <TextBlock Text="{Binding #GenerationSlider.Value, StringFormat={}From Generation: {0}}"></TextBlock>
-                    <Slider x:Name="GenerationSlider" 
-                            Value="1" Minimum="1" Maximum="10" 
-                            TickFrequency="1" TickPlacement="TopLeft" IsSnapToTickEnabled="True" 
-                            ValueChanged="GenerationSlider_OnValueChanged" ></Slider>
+                    </WrapPanel>   
+                    <!-- -->
+                    <!-- <TextBlock>Name contains: </TextBlock> -->
+                    <!-- <TextBox Name="NameBox" Watermark="Type some pokemon name" TextChanged="NameBox_OnTextChanged" /> -->
+                    <!-- -->
+                    <!-- <TextBlock Text="{Binding #GenerationSlider.Value, StringFormat={}From Generation: {0}}"></TextBlock> -->
+                    <!-- <Slider x:Name="GenerationSlider"  -->
+                    <!--         Value="1" Minimum="1" Maximum="10"  -->
+                    <!--         TickFrequency="1" TickPlacement="TopLeft" IsSnapToTickEnabled="True"  -->
+                    <!--         ValueChanged="GenerationSlider_OnValueChanged" ></Slider> -->
                 </StackPanel>
                 <StackPanel  MinWidth="200" MinHeight="200"  Spacing="8" Margin="8">
                     <TextBlock Classes="h2">Other settings</TextBlock>
