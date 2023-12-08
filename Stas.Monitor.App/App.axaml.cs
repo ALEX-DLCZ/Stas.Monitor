@@ -32,9 +32,11 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            _mainWindow = new MainWindow();
-            SetupApp(desktop?.Args ?? Array.Empty<string>());
 
+            Console.WriteLine("MainWindow créé");
+            _mainWindow = new MainWindow();
+
+            SetupApp(desktop?.Args ?? Array.Empty<string>());
             desktop.MainWindow = _mainWindow;
 
             DispatcherTimer.Run(() =>
@@ -53,7 +55,6 @@ public partial class App : Application
         {
             //TODO implémenter le MainConfigurationReader pour récupérer les noms des thermomètres et lacces en base de donnée
             ArgsExecutor argsExecutor = new ArgsExecutor(args);
-
             var thermoRepository = new ThermometerRepository(  argsExecutor.GetThermoName() );
             var mainPresenter = new MainPresenter(_mainWindow, thermoRepository);
             mainPresenter.Start();

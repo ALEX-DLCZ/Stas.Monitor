@@ -12,13 +12,44 @@ public partial class FilterPanel : UserControl
 {
     private IEnumerable<ToggleSwitch> _toggleSwitches = Array.Empty<ToggleSwitch>();
     private IEnumerable<CheckBox> _checkBoxes = Array.Empty<CheckBox>();
+    private IEnumerable<ComboBoxItem> _comboBoxes = Array.Empty<ComboBoxItem>();
 
     public FilterPanel()
     {
         InitializeComponent();
+
     }
 
     public event EventHandler<FilterEventArgs>? FilterChanged;
+
+    public IEnumerable<string> Thermometers
+    {
+        set
+        {
+            ComboBoxThermometers?.Items.Clear();
+            _comboBoxes = value.Select(type => new ComboBoxItem
+            {
+                Content = type,
+                Tag = type, // Associe une valeur au contrôle. Utile pour la création d'événements
+            }).ToList();
+
+            foreach (var comboBox in _comboBoxes)
+            {
+                ComboBoxThermometers?.Items.Add(comboBox);
+            }
+            ComboBoxThermometers.SelectedIndex = 0;
+            ComboBoxThermometers.SelectionChanged += ComboBox_OnSelectionChanged;
+            TimeBox.SelectionChanged += ComboBox_OnSelectionChanged;
+
+
+
+            // foreach ( var item in value )
+            // {
+            //     ComboBoxThermometers?.Items.Add(item);
+            // }
+            // ComboBoxThermometers.SelectedIndex = 0;
+        }
+    }
 
     public IEnumerable<string> Types
     {
@@ -29,7 +60,7 @@ public partial class FilterPanel : UserControl
             {
                 Content = type,
                 Tag = type, // Associe une valeur au contrôle. Utile pour la création d'événements
-                IsChecked = false
+                IsChecked = true
             }).ToList();
 
             foreach (var checkBox in _checkBoxes)
@@ -57,41 +88,20 @@ public partial class FilterPanel : UserControl
             // TypesPanel.Children.AddRange(_toggleSwitches);
         }
     }
-    public IEnumerable<string> Thermometers
-    {
-        set
-        {
-            foreach ( var item in value )
-            {
-                ComboBoxThermometers?.Items.Add(item);
-            }
-            ComboBoxThermometers.SelectedIndex = 0;
-        }
-    }
 
     private void NotifyFilterChanged(object? sender, RoutedEventArgs e)
     {
         OnFilterChanged();
     }
-
-    private void ComboBoxThermometers_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    private void ComboBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        OnFilterChanged();
-    }
-
-
-    private void NameBox_OnTextChanged(object? sender, TextChangedEventArgs e)
-    {
-        OnFilterChanged();
-    }
-
-    private void GenerationSlider_OnValueChanged(object? sender, RangeBaseValueChangedEventArgs e)
-    {
+        Console.WriteLine("ComboBox_OnSelectionChanged");
         OnFilterChanged();
     }
 
     private void NotifyFilterChanged(FilterEventArgs filterArgs)
     {
+        Console.WriteLine("NotifyFilterChanged");
         FilterChanged?.Invoke(this, filterArgs);
     }
 
@@ -102,13 +112,31 @@ public partial class FilterPanel : UserControl
             .Where(checkBoxes => checkBoxes.IsChecked ?? false)
             .Select(checkBoxes => checkBoxes.Tag as string ?? String.Empty);
 
+        // var selectedThermometer = ComboBoxThermometers.SelectedItem.GetType().GetProperty("Name")?.GetValue(ComboBoxThermometers.SelectedItem, null) as string ?? String.Empty;
+        var selectedThermometer = _comboBoxes.ElementAt(ComboBoxThermometers.SelectedIndex).Tag as string ?? String.Empty;
+
+
+        //si 0 alors 30
+        //si 1 alors 60
+        //si 2 alors 300
+        var selectedTime = TimeBox.SelectedIndex switch
+        {
+            0 => 30,
+            1 => 60,
+            2 => 300,
+            _ => 60
+        };
+
+
+
+
         // var queryArgs = new FilterEventArgs(Types: selectedTypes,
         //     Contains: NameBox.Text ?? String.Empty,
         //     Generation: (int)GenerationSlider.Value,
         //     OnlyLegendary: LegendarySwitch.IsChecked ?? false);
         var filterArgs = new FilterEventArgs(Types: selectedTypes,
-            ThermometerIndex: ComboBoxThermometers.SelectedIndex,
-            TimeSelected: 60.0);
+            ThermometerTarget: selectedThermometer,
+            TimeSelected: selectedTime);
 
         NotifyFilterChanged(filterArgs);
     }

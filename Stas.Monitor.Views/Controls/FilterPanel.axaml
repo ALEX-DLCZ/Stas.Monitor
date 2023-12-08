@@ -15,16 +15,16 @@
         <WrapPanel>
             <StackPanel MinWidth="320" MaxWidth="800" Spacing="8" Margin="8">
                 <TextBlock Classes="h2">Types</TextBlock>
-                <ComboBox Background="Orange" SelectedIndex="0" Name="ComboBoxThermometers"
-                          SelectionChanged="ComboBoxThermometers_OnSelectionChanged" />
+                <ComboBox Background="Orange"  Name="ComboBoxThermometers" />
             </StackPanel>
+
             <StackPanel MinWidth="320" MinHeight="320" Spacing="8" Margin="8">
                 <TextBlock Classes="h2">Type</TextBlock>
                 <!-- <CheckBox Content="Checked" IsChecked="True" Margin="0,5,0,0"/> -->
                 <WrapPanel x:Name="TypesPanel" ItemWidth="200" Orientation="Horizontal">
-                    <CheckBox Content="Checked" IsChecked="True" Margin="0,5,0,0" IsCheckedChanged="NotifyFilterChanged" />
+                    <CheckBox Content="Checked" IsChecked="True" Margin="0,5,0,0"
+                              IsCheckedChanged="NotifyFilterChanged" />
                 </WrapPanel>
-                
                 <!-- <TextBlock Classes="h2">Basic criteria</TextBlock> -->
                 <!-- <WrapPanel x:Name="TypesPanel" ItemWidth="200" Orientation="Horizontal"> -->
                 <!--     ~1~ Ces commutateurs sont donnés à titre d'exemple. @1@ -->
@@ -41,7 +41,20 @@
                 <!--         Value="1" Minimum="1" Maximum="10"  -->
                 <!--         TickFrequency="1" TickPlacement="TopLeft" IsSnapToTickEnabled="True"  -->
                 <!--         ValueChanged="GenerationSlider_OnValueChanged" ></Slider> -->
+                
             </StackPanel>
+            
+            
+            <StackPanel MinWidth="320" MaxWidth="800" Spacing="8" Margin="8">
+                <TextBlock Classes="h2">Durée</TextBlock>
+                <ComboBox Background="Orange" SelectedIndex="1" Name="TimeBox">
+                    <ComboBoxItem Content="30 Seconde" > </ComboBoxItem>
+                    <ComboBoxItem Content="1 Minute" > </ComboBoxItem>
+                    <ComboBoxItem Content="5 Minutes"> </ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+
             <!-- <StackPanel  MinWidth="200" MinHeight="200"  Spacing="8" Margin="8"> -->
             <!--     <TextBlock Classes="h2">Other settings</TextBlock> -->
             <!--     <ToggleSwitch OnContent="Keep Legendary Only" OffContent="All Included" Name="LegendarySwitch" IsCheckedChanged="NotifyFilterChanged" ></ToggleSwitch> -->

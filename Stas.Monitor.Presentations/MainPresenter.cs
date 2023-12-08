@@ -33,11 +33,12 @@ public class MainPresenter
     {
         var typesAsSet = new HashSet<string>(args.Types);
 
-        Console.WriteLine( args.ThermometerIndex );
+        Console.WriteLine( args.ThermometerTarget );
         foreach (var type in args.Types)
         {
             Console.WriteLine( type );
         }
+        Console.WriteLine( args.TimeSelected );
 
 
         // var query =  _repository

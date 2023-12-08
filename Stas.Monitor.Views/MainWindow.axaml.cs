@@ -16,6 +16,7 @@ public partial class MainWindow : Window , IMainView
     public MainWindow()
     {
         InitializeComponent();
+
     }
 
     public IEnumerable<string> Types
