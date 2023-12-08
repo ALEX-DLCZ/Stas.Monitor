@@ -56,6 +56,11 @@ public partial class FilterPanel : UserControl
         OnFilterChanged();
     }
 
+    private void ComboBoxThermometers_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        OnFilterChanged();
+    }
+
     private void NameBox_OnTextChanged(object? sender, TextChangedEventArgs e)
     {
         OnFilterChanged();
@@ -88,4 +93,5 @@ public partial class FilterPanel : UserControl
 
         NotifyFilterChanged(filterArgs);
     }
+
 }

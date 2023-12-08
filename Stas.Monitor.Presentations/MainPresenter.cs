@@ -18,6 +18,8 @@ public class MainPresenter
     {
         _view.FilterChanged += OnQueryChanged;
 
+        _view.ThermometersNames = new []{"thermo1", "thermo2", "thermo3"};
+
         // _view.Types = _repository
         //     .NewQuery()
         //     .SelectDistinct(p => p.Type1);
@@ -26,6 +28,8 @@ public class MainPresenter
     private void OnQueryChanged(object? sender, FilterEventArgs args)
     {
         var typesAsSet = new HashSet<string>(args.Types);
+
+        Console.WriteLine(args.ThermometerIndex);
 
         // var query =  _repository
         //     .NewQuery();

@@ -15,7 +15,7 @@
         <WrapPanel>
                 <StackPanel MinWidth="320" MaxWidth="800" Spacing="8" Margin="8">
                     <TextBlock Classes="h2">Types</TextBlock>
-                    <ComboBox Background="Orange" SelectedIndex="0" Name="ComboBoxThermometers"  /> 
+                    <ComboBox Background="Orange" SelectedIndex="0" Name="ComboBoxThermometers" SelectionChanged="ComboBoxThermometers_OnSelectionChanged"  /> 
                 </StackPanel>
                 <StackPanel  MinWidth="320" MinHeight="320" Spacing="8" Margin="8">
                     <TextBlock Classes="h2">Basic criteria</TextBlock>
@@ -36,10 +36,10 @@
                     <!--         TickFrequency="1" TickPlacement="TopLeft" IsSnapToTickEnabled="True"  -->
                     <!--         ValueChanged="GenerationSlider_OnValueChanged" ></Slider> -->
                 </StackPanel>
-                <StackPanel  MinWidth="200" MinHeight="200"  Spacing="8" Margin="8">
-                    <TextBlock Classes="h2">Other settings</TextBlock>
-                    <ToggleSwitch OnContent="Keep Legendary Only" OffContent="All Included" Name="LegendarySwitch" IsCheckedChanged="NotifyFilterChanged" ></ToggleSwitch>
-                </StackPanel>
+                <!-- <StackPanel  MinWidth="200" MinHeight="200"  Spacing="8" Margin="8"> -->
+                <!--     <TextBlock Classes="h2">Other settings</TextBlock> -->
+                <!--     <ToggleSwitch OnContent="Keep Legendary Only" OffContent="All Included" Name="LegendarySwitch" IsCheckedChanged="NotifyFilterChanged" ></ToggleSwitch> -->
+                <!-- </StackPanel> -->
         </WrapPanel>
     </Expander>
 </UserControl>
