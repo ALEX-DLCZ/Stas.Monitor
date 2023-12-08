@@ -18,7 +18,11 @@ public class MainPresenter
     {
         _view.FilterChanged += OnQueryChanged;
 
-        _view.ThermometersNames = new []{"thermo1", "thermo2", "thermo3"};
+        // _view.ThermometersNames = new []{"thermo1", "thermo2", "thermo3"};
+        _view.ThermometersNames = _repository.AllThermometers;
+
+        _view.Types = new []{"type1", "type2", "type3"};
+
 
         // _view.Types = _repository
         //     .NewQuery()
@@ -29,7 +33,12 @@ public class MainPresenter
     {
         var typesAsSet = new HashSet<string>(args.Types);
 
-        Console.WriteLine(args.ThermometerIndex);
+        Console.WriteLine( args.ThermometerIndex );
+        foreach (var type in args.Types)
+        {
+            Console.WriteLine( type );
+        }
+
 
         // var query =  _repository
         //     .NewQuery();

@@ -11,6 +11,7 @@ namespace Stas.Monitor.Views.Controls;
 public partial class FilterPanel : UserControl
 {
     private IEnumerable<ToggleSwitch> _toggleSwitches = Array.Empty<ToggleSwitch>();
+    private IEnumerable<CheckBox> _checkBoxes = Array.Empty<CheckBox>();
 
     public FilterPanel()
     {
@@ -24,20 +25,36 @@ public partial class FilterPanel : UserControl
         set
         {
             TypesPanel.Children.Clear();
-            _toggleSwitches = value.Select(type => new ToggleSwitch
+            _checkBoxes = value.Select(type => new CheckBox
             {
-                OffContent = $"Ignore {type}",
-                OnContent = $"Include {type}",
+                Content = type,
                 Tag = type, // Associe une valeur au contrôle. Utile pour la création d'événements
                 IsChecked = false
             }).ToList();
 
-            foreach (var toggleSwitch in _toggleSwitches)
+            foreach (var checkBox in _checkBoxes)
             {
-                toggleSwitch.IsCheckedChanged += NotifyFilterChanged;
+                checkBox.IsCheckedChanged += NotifyFilterChanged;
             }
 
-            TypesPanel.Children.AddRange(_toggleSwitches);
+            TypesPanel.Children.AddRange(_checkBoxes);
+
+
+            // TypesPanel.Children.Clear();
+            // _toggleSwitches = value.Select(type => new ToggleSwitch
+            // {
+            //     OffContent = $"Ignore {type}",
+            //     OnContent = $"Include {type}",
+            //     Tag = type, // Associe une valeur au contrôle. Utile pour la création d'événements
+            //     IsChecked = false
+            // }).ToList();
+            //
+            // foreach (var toggleSwitch in _toggleSwitches)
+            // {
+            //     toggleSwitch.IsCheckedChanged += NotifyFilterChanged;
+            // }
+            //
+            // TypesPanel.Children.AddRange(_toggleSwitches);
         }
     }
     public IEnumerable<string> Thermometers
@@ -48,6 +65,7 @@ public partial class FilterPanel : UserControl
             {
                 ComboBoxThermometers?.Items.Add(item);
             }
+            ComboBoxThermometers.SelectedIndex = 0;
         }
     }
 
@@ -60,6 +78,7 @@ public partial class FilterPanel : UserControl
     {
         OnFilterChanged();
     }
+
 
     private void NameBox_OnTextChanged(object? sender, TextChangedEventArgs e)
     {
@@ -79,9 +98,9 @@ public partial class FilterPanel : UserControl
 
     private void OnFilterChanged()
     {
-        var selectedTypes = _toggleSwitches
-            .Where(toggleSwitch => toggleSwitch.IsChecked ?? false)
-            .Select(toggleSwitch => toggleSwitch.Tag as string ?? String.Empty);
+        var selectedTypes = _checkBoxes
+            .Where(checkBoxes => checkBoxes.IsChecked ?? false)
+            .Select(checkBoxes => checkBoxes.Tag as string ?? String.Empty);
 
         // var queryArgs = new FilterEventArgs(Types: selectedTypes,
         //     Contains: NameBox.Text ?? String.Empty,
