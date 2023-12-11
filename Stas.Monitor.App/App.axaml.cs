@@ -8,6 +8,7 @@ using Serilog;
 using Stas.Monitor.App.PersonalExceptions;
 using Stas.Monitor.Domains;
 using Stas.Monitor.Infrastructures;
+using Stas.Monitor.Infrastructures.DataBase;
 using Stas.Monitor.Presentations;
 using Stas.Monitor.Views;
 
@@ -52,8 +53,31 @@ public partial class App : Application
     {
         try
         {
+
             //TODO implémenter le MainConfigurationReader pour récupérer les noms des thermomètres et lacces en base de donnée
             ArgsExecutor argsExecutor = new ArgsExecutor(args);
+
+            DbDialog dbDialog = new DbDialog(argsExecutor.GetConnectionString());
+
+            Console.WriteLine("connectionString : " + argsExecutor.GetConnectionString());
+            foreach (var thermo in dbDialog.AllThermometers)
+            {
+                Console.WriteLine(thermo);
+            }
+
+            foreach (var mesureList in dbDialog.allValeurGPT())
+            {
+                Console.WriteLine(" ");
+                Console.WriteLine(mesureList.Name);
+                Console.WriteLine(mesureList.Type);
+                Console.WriteLine(mesureList.Date);
+                Console.WriteLine(mesureList.Measure.Value);
+                Console.WriteLine(mesureList.Measure.Difference);
+                Console.WriteLine(mesureList.Measure.Format);
+
+            }
+
+
             var thermoRepository = new ThermometerRepository(  argsExecutor.GetThermoName(), argsExecutor.GetConnectionString() );
             var mainPresenter = new MainPresenter(_mainWindow, thermoRepository);
             mainPresenter.Start();
@@ -61,6 +85,7 @@ public partial class App : Application
         catch (Exception e)
         {
             Log.Logger.Error(e, "Error during app setup");
+            //TODO changer la main window pour une fenetre d'erreur et continuer l'execution
             throw new FatalException("Error during app setup", e);
         }
     }

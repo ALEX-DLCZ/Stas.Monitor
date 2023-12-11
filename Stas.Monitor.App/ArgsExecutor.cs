@@ -46,7 +46,9 @@ public class ArgsExecutor
         Configuration configuration = new Configuration(configurationStrategy);
         _thermomterName = configuration.GetGeneral();
         IDictionary<string, string> db = configuration.GetBb();
-        _connectionString = $"jdbc:mysql://{db["IpServer"]}:{db["PortServer"]}/{db["User"]}?user={db["User"]}&password={db["Pws"]}";
+        // "Server=db;Database=mydatbase;User=root;Password=mysql;Port=3306;"
+        // _connectionString = $"jdbc:mysql://{db["IpServer"]}:{db["PortServer"]}/{db["User"]}?User={db["User"]}&Password={db["Pws"]}";
+        _connectionString = $"Server={db["IpServer"]};Database={db["User"]};User={db["User"]};Password={db["Pws"]};Port={db["PortServer"]};";
     }
 
     public string GetConnectionString() => _connectionString;
