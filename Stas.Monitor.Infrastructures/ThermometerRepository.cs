@@ -1,24 +1,24 @@
 ﻿using Stas.Monitor.Domains;
+using Stas.Monitor.Infrastructures.DataBase;
 
 namespace Stas.Monitor.Infrastructures;
 
 public class ThermometerRepository : IThermometerRepository
 {
     private readonly IList<Thermometer> _thermometers;
+    private readonly string _connectionString;
 
-    public ThermometerRepository(IDictionary<string, string> thermometersName)
+    public ThermometerRepository(IDictionary<string, string> thermometersName, string connectionString)
     {
-        _thermometers = new List<Thermometer>();
-
+        _connectionString = connectionString;
         _thermometers = thermometersName.Select(t => new Thermometer(t.Value)).ToList();
     }
 
-    public IList<Thermometer> GetThermometers() => _thermometers;
-
     public string[] AllThermometers => _thermometers.Select(t => t.Name).ToArray();
 
-    public IThermometer FindThermometer(string thermoName)
+    public IRequest NewRequest()
     {
-        return _thermometers.FirstOrDefault(t => t.Name == thermoName) ?? throw new Exception("Thermometer not found");
+        return new DBRequest(_connectionString);
     }
+
 }

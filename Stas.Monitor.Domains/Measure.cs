@@ -16,7 +16,6 @@ public class Measure
     // public string ValueToString() => _value.ToString(_format);
     //
     // public string ValueExpectedToString() => _valueExpected.ToString(_format);
-
     public double Value => _value;
 
     public double Difference => _difference;

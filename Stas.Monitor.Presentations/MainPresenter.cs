@@ -4,7 +4,6 @@ namespace Stas.Monitor.Presentations;
 
 public class MainPresenter
 {
-
     private readonly IMainView _view;
     private readonly IThermometerRepository _repository;
 
@@ -33,12 +32,12 @@ public class MainPresenter
     {
         var typesAsSet = new HashSet<string>(args.Types);
 
-        Console.WriteLine( args.ThermometerTarget );
-        foreach (var type in args.Types)
-        {
-            Console.WriteLine( type );
-        }
-        Console.WriteLine( args.TimeSelected );
+        // Console.WriteLine( args.ThermometerTarget );
+        // foreach (var type in args.Types)
+        // {
+        //     Console.WriteLine( type );
+        // }
+        // Console.WriteLine( args.TimeSelected );
 
 
         // var query =  _repository
