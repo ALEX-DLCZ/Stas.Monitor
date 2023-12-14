@@ -20,7 +20,10 @@ public class MainPresenter
         // _view.ThermometersNames = new []{"thermo1", "thermo2", "thermo3"};
         _view.ThermometersNames = _repository.AllThermometers;
 
-        _view.Types = new []{"type1", "type2", "type3"};
+        // _view.Types = new []{"type1", "type2", "type3"};
+        _view.Types = _repository
+            .NewRequest()
+            .SelectDistinct("type");
 
 
         // _view.Types = _repository

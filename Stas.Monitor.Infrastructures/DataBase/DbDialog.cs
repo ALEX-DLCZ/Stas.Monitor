@@ -1,8 +1,10 @@
-﻿namespace Stas.Monitor.Infrastructures.DataBase;
+﻿using System.Collections;
+
+namespace Stas.Monitor.Infrastructures.DataBase;
 using Domains;
 
 using MySql.Data.MySqlClient;
-public class DbDialog
+public class DbDialog: IDialoger
 {
     private readonly string _connectionString;
 
@@ -49,29 +51,22 @@ public class DbDialog
         }
     }
 
-    //séléctionne tout les mesure avec la valeur expected_value si la mesure a une alerte
-    public IEnumerable<IDictionary<string, string>> allValeur()
+    public IEnumerable<string> SelectDistinctDialog(string request)
     {
+
         using MySqlConnection connection = new MySqlConnection(_connectionString);
         connection.Open();
         using MySqlCommand command = connection.CreateCommand();
-        command.CommandText = "SELECT * FROM Mesures INNER JOIN Alerts ON Mesures.id = Alerts.idMesure";
+        command.CommandText = request;
         using MySqlDataReader reader = command.ExecuteReader();
-        List<IDictionary<string, string>> mesures = new List<IDictionary<string, string>>();
+
+        var result = new List<string>();
+
         while (reader.Read())
         {
-            mesures.Add(new Dictionary<string, string>()
-            {
-                {"id", reader.GetString(0)},
-                {"thermometerName", reader.GetString(1)},
-                {"datetime", reader.GetString(2)},
-                {"type", reader.GetString(3)},
-                {"format", reader.GetString(4)},
-                {"value", reader.GetString(5)},
-                {"expectedValue", reader.GetString(7)}
-            });
+            result.Add(reader.GetString(0));
         }
-        return mesures;
+        return result;
     }
 
     public IEnumerable<MeasureRecord> allValeurGPT()
@@ -110,6 +105,9 @@ public class DbDialog
         double difference = expectedValue.HasValue ? expectedValue.Value - value : 0.0;
         Measure measure = new Measure(value, difference, format);
 
+
         return new MeasureRecord(name, type, date, measure);
     }
+
+
 }

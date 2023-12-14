@@ -1,20 +1,21 @@
-﻿using Stas.Monitor.Domains;
+﻿using System.Linq.Expressions;
+using Stas.Monitor.Domains;
 
 namespace Stas.Monitor.Infrastructures.DataBase;
 
-public class DBRequest : IRequest
+public class DbRequest : IRequest
 {
+    //TODO c'est ici qu'on crée les requêtes SQL
 
-    private string _connectionString;
+    private IDialoger _dialoger;
 
-    public DBRequest(string connectionString)
+    public DbRequest(IDialoger dialoger)
     {
-        _connectionString = connectionString;
+        _dialoger = dialoger;
     }
 
     public void AddThermometer(string thermometerName)
     {
-
         // using var connection = new SqlConnection(_connectionString);
         // connection.Open();
         // var command = connection.CreateCommand();
@@ -24,4 +25,13 @@ public class DBRequest : IRequest
     }
 
     public IRequest Where(object unknown) => throw new NotImplementedException();
+
+    public IEnumerable<string> SelectDistinct(string tableName)
+    {
+        var sqlRequest = "SELECT DISTINCT " + tableName + " FROM Mesures";
+        return _dialoger.SelectDistinctDialog(sqlRequest);
+
+
+    }
 }
+

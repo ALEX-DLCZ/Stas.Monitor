@@ -1,4 +1,6 @@
-﻿namespace Stas.Monitor.Domains;
+﻿using System.Linq.Expressions;
+
+namespace Stas.Monitor.Domains;
 
 public interface IRequest
 {
@@ -20,4 +22,6 @@ public interface IRequest
     //
     // IEnumerable<TArg> SelectDistinct<TArg>(Expression<Func<TArg>> mapper);
 
+
+    IEnumerable<string> SelectDistinct(string tableName);
 }

@@ -6,11 +6,11 @@ namespace Stas.Monitor.Infrastructures;
 public class ThermometerRepository : IThermometerRepository
 {
     private readonly IList<Thermometer> _thermometers;
-    private readonly string _connectionString;
+    private readonly IDialoger _dialoger;
 
-    public ThermometerRepository(IDictionary<string, string> thermometersName, string connectionString)
+    public ThermometerRepository(IDictionary<string, string> thermometersName, IDialoger dialoger)
     {
-        _connectionString = connectionString;
+        _dialoger = dialoger;
         _thermometers = thermometersName.Select(t => new Thermometer(t.Value)).ToList();
     }
 
@@ -18,7 +18,7 @@ public class ThermometerRepository : IThermometerRepository
 
     public IRequest NewRequest()
     {
-        return new DBRequest(_connectionString);
+        return new DbRequest(_dialoger);
     }
 
 

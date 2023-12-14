@@ -36,6 +36,7 @@ public partial class App : Application
 
             _mainWindow = new MainWindow();
 
+            //TODO gérer l'exception fatalException générée par le setup
             SetupApp(desktop?.Args ?? Array.Empty<string>());
             desktop.MainWindow = _mainWindow;
 
@@ -60,10 +61,6 @@ public partial class App : Application
             DbDialog dbDialog = new DbDialog(argsExecutor.GetConnectionString());
 
             Console.WriteLine("connectionString : " + argsExecutor.GetConnectionString());
-            foreach (var thermo in dbDialog.AllThermometers)
-            {
-                Console.WriteLine(thermo);
-            }
 
             foreach (var mesureList in dbDialog.allValeurGPT())
             {
@@ -77,8 +74,7 @@ public partial class App : Application
 
             }
 
-
-            var thermoRepository = new ThermometerRepository(  argsExecutor.GetThermoName(), argsExecutor.GetConnectionString() );
+            var thermoRepository = new ThermometerRepository(  argsExecutor.GetThermoName(), dbDialog );
             var mainPresenter = new MainPresenter(_mainWindow, thermoRepository);
             mainPresenter.Start();
         }
