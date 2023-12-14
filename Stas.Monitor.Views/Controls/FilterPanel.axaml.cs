@@ -22,6 +22,7 @@ public partial class FilterPanel : UserControl
 
     public event EventHandler<FilterEventArgs>? FilterChanged;
 
+
     public IEnumerable<string> Thermometers
     {
         set
@@ -63,12 +64,15 @@ public partial class FilterPanel : UserControl
                 IsChecked = true
             }).ToList();
 
+
             foreach (var checkBox in _checkBoxes)
             {
                 checkBox.IsCheckedChanged += NotifyFilterChanged;
             }
 
             TypesPanel.Children.AddRange(_checkBoxes);
+
+            OnFilterChanged();
 
 
             // TypesPanel.Children.Clear();
@@ -95,13 +99,11 @@ public partial class FilterPanel : UserControl
     }
     private void ComboBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        Console.WriteLine("ComboBox_OnSelectionChanged");
         OnFilterChanged();
     }
 
     private void NotifyFilterChanged(FilterEventArgs filterArgs)
     {
-        Console.WriteLine("NotifyFilterChanged");
         FilterChanged?.Invoke(this, filterArgs);
     }
 

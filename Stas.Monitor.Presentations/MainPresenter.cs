@@ -15,8 +15,8 @@ public class MainPresenter
 
     public void Start()
     {
-        _view.FilterChanged += OnQueryChanged;
 
+        _view.FilterChanged += OnQueryChanged;
         // _view.ThermometersNames = new []{"thermo1", "thermo2", "thermo3"};
         _view.ThermometersNames = _repository.AllThermometers;
 
@@ -35,6 +35,8 @@ public class MainPresenter
     {
         var typesAsSet = new HashSet<string>(args.Types);
 
+
+
         var request = _repository
             .NewRequest();
 
@@ -46,6 +48,8 @@ public class MainPresenter
         //     .Where(m => typesAsSet.Contains(m.Type))
         //     .Select(mesure => new MeasurePresenterModel(mesure))
         //     .ToList();
+        //
+
 
 
 
