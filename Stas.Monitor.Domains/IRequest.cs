@@ -3,6 +3,7 @@
 public interface IRequest
 {
 
+    IRequest Where(object unknown);
 
 
     // IRequest Where(ICondition criterion);

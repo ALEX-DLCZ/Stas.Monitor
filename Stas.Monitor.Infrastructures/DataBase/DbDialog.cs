@@ -76,13 +76,18 @@ public class DbDialog
 
     public IEnumerable<MeasureRecord> allValeurGPT()
     {
+        int secondAfterFirstValue = 600;
         using MySqlConnection connection = new MySqlConnection(_connectionString);
         connection.Open();
         using MySqlCommand command = connection.CreateCommand();
         command.CommandText = "SELECT Mesures.*, Alerts.expectedValue " +
                               "FROM Mesures " +
                               "LEFT JOIN Alerts ON Mesures.id = Alerts.idMesure " +
-                              "WHERE Mesures.id = 479";
+                              "WHERE datetime >= (SELECT MAX(datetime) FROM Mesures) - INTERVAL ?seconds SECOND " +
+                              "ORDER BY datetime DESC";
+
+
+        command.Parameters.AddWithValue("seconds", secondAfterFirstValue);
         using MySqlDataReader reader = command.ExecuteReader();
         List<MeasureRecord> measureRecords = new List<MeasureRecord>();
         while (reader.Read())
@@ -102,8 +107,8 @@ public class DbDialog
         double? expectedValue = reader["expectedValue"] as double?;
         string format = reader["format"] as string ?? "DefaultFormat";
 
-        double? difference = expectedValue.HasValue ? value - expectedValue.Value : null;
-        Measure measure = new Measure(value, difference ?? 0.0, format);
+        double difference = expectedValue.HasValue ? expectedValue.Value - value : 0.0;
+        Measure measure = new Measure(value, difference, format);
 
         return new MeasureRecord(name, type, date, measure);
     }

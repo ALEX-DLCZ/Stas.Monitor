@@ -32,6 +32,20 @@ public class MainPresenter
     {
         var typesAsSet = new HashSet<string>(args.Types);
 
+        var request = _repository
+            .NewRequest();
+
+
+            // .Where(m => m.DateMesure >= args.TimeSelected)
+
+        // _view.Result = request
+        //     .Where(m => m.Name.Contains(args.ThermometerTarget, StringComparison.OrdinalIgnoreCase))
+        //     .Where(m => typesAsSet.Contains(m.Type))
+        //     .Select(mesure => new MeasurePresenterModel(mesure))
+        //     .ToList();
+
+
+
         // Console.WriteLine( args.ThermometerTarget );
         // foreach (var type in args.Types)
         // {

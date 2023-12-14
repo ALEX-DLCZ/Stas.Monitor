@@ -23,4 +23,5 @@ public class DBRequest : IRequest
         // command.ExecuteNonQuery();
     }
 
+    public IRequest Where(object unknown) => throw new NotImplementedException();
 }

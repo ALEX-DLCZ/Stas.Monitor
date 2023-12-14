@@ -21,4 +21,5 @@ public class ThermometerRepository : IThermometerRepository
         return new DBRequest(_connectionString);
     }
 
+
 }
