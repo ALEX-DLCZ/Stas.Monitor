@@ -35,7 +35,6 @@ public class MainPresenter
     {
         var type = new HashSet<string>(args.Types);
 
-        Console.WriteLine( args.TimeSelected );
 
 
         var request = _repository
