@@ -33,106 +33,22 @@ public class MainPresenter
 
     private void OnQueryChanged(object? sender, FilterEventArgs args)
     {
-        var typesAsSet = new HashSet<string>(args.Types);
+        var type = new HashSet<string>(args.Types);
 
+        Console.WriteLine( args.TimeSelected );
 
 
         var request = _repository
             .NewRequest();
 
-        var result = request.Select(mesure => new MeasurePresenterModel(mesure)).ToList();
-
-        foreach ( var mesure in result )
-        {
-            Console.WriteLine( mesure.Type );
-            Console.WriteLine( mesure.Value );
-        }
+        _view.Result = request.
+            Where("thermometerName", val => $"LIKE '%{val}%'", args.ThermometerTarget).
+            Where("type", val => $"IN ('{val}')", string.Join("','", args.Types)).
+            Where("datetime", val => $">= (SELECT MAX(datetime) FROM Mesures) - INTERVAL ?{val} SECOND", args.TimeSelected).
+            Select(mesure => new MeasurePresenterModel(mesure)).ToList();
 
 
-            // .Where(m => m.DateMesure >= args.TimeSelected)
-
-        // _view.Result = request
-        //     .Where(m => m.Name.Contains(args.ThermometerTarget, StringComparison.OrdinalIgnoreCase))
-        //     .Where(m => typesAsSet.Contains(m.Type))
-        //     .Select(mesure => new MeasurePresenterModel(mesure))
-        //     .ToList();
-        //
-
-
-
-
-        // Console.WriteLine( args.ThermometerTarget );
-        // foreach (var type in args.Types)
-        // {
-        //     Console.WriteLine( type );
-        // }
-        // Console.WriteLine( args.TimeSelected );
-
-
-        // var query =  _repository
-        //     .NewQuery();
-        // if (args.OnlyLegendary)
-        // {
-        //     query = query.Where(p => p.Legendary);
-        // }
-        // _view.Result = query.Where(p => p.Name.Contains(args.Contains, StringComparison.OrdinalIgnoreCase))
-        //     .Where(p => p.Generation >= args.Generation)
-        //     .Where(p => typesAsSet.Contains(p.Type1) || typesAsSet.Contains(p.Type2))
-        //     .Select(pokemon => new MeasurePresenterModel(pokemon))
-        //     .ToList();
-        // where est une expression lambda un peut complex pour l'ai ca
     }
 
 
-
-
-
-
-
-
-
-
-
-    /*
-    private readonly IMainView _view;
-    private readonly IThermometerRepository _repository;
-    private readonly FilterOption _filterOption;
-
-    public MainPresenter(IMainView view, IThermometerRepository repository)
-    {
-        _view = view ?? throw new ArgumentException("view");
-
-        _view.SetPresenter(this);
-        _repository = repository ?? throw new ArgumentException("repository");
-        _filterOption = new FilterOption();
-    }
-
-    public void Start()
-    {
-        _view.SetFilterPresenter(_filterOption);
-        _view.ThermometerNames = _repository.AllThermometers;
-    }
-
-    public void Update()
-    {
-
-        // IThermometer thermometer = _repository.FindThermometer(_filterOption.GetThermoName());
-
-        //Todo supprimer les valeur forcées
-        IList <string[]> FORCETESTinfos = new List<string[]>();
-        FORCETESTinfos.Add(new string[] { "20.00°", "10/19/2021" });
-        FORCETESTinfos.Add(new string[] { "21.00°", "10/20/2021" });
-        FORCETESTinfos.Add(new string[] { "22.00°", "10/21/2021", "10.50°" });
-        FORCETESTinfos.Add(new string[] { "23.00°", "10/22/2021" });
-        var FORCETESTTypePresented1 = new TypePresenter( "temperature", FORCETESTinfos );
-        var FORCETESTTypePresented2 = new TypePresenter( "humidite", FORCETESTinfos );
-
-        var infos = new List<ISievedType>();
-        infos.Add(FORCETESTTypePresented1);
-        infos.Add(FORCETESTTypePresented2);
-        _view.InfosThermometer = infos;
-        //Todo donne les mesures a la vue
-    }
-
-    */
 }

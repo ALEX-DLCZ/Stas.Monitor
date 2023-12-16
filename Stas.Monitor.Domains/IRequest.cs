@@ -5,12 +5,12 @@ namespace Stas.Monitor.Domains;
 public interface IRequest
 {
 
-    IRequest Where(object unknown);
+
+    IRequest Where<T>(string columnName, Func<T, string> condition, T value);
 
 
     // IRequest Where(ICondition criterion);
     //
-    // IRequest Where(Expression<Func<bool>> condition);
     //
     // IRequest SortBy(Expression<Comparison> comparison);
     //

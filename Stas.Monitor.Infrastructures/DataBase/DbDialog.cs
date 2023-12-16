@@ -79,6 +79,8 @@ public class DbDialog: IDialoger
                               "FROM Mesures " +
                               "LEFT JOIN Alerts ON Mesures.id = Alerts.idMesure " +
                               "WHERE datetime >= (SELECT MAX(datetime) FROM Mesures) - INTERVAL ?seconds SECOND " +
+                              "AND thermometerName LIKE '%Living Room 1%'" +
+                              "AND  type IN ('temperature','humidity') " +
                               "ORDER BY datetime DESC";
 
 

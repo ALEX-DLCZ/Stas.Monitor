@@ -62,17 +62,17 @@ public partial class App : Application
 
             Console.WriteLine("connectionString : " + argsExecutor.GetConnectionString());
 
-            // foreach (var mesureList in dbDialog.allValeurGPT())
-            // {
-            //     Console.WriteLine(" ");
-            //     Console.WriteLine(mesureList.Name);
-            //     Console.WriteLine(mesureList.Type);
-            //     Console.WriteLine(mesureList.Date);
-            //     Console.WriteLine(mesureList.Measure.Value);
-            //     Console.WriteLine(mesureList.Measure.Difference);
-            //     Console.WriteLine(mesureList.Measure.Format);
-            //
-            // }
+            foreach (var mesureList in dbDialog.allValeurGPT())
+            {
+                Console.WriteLine(" ");
+                Console.WriteLine(mesureList.Name);
+                Console.WriteLine(mesureList.Type);
+                Console.WriteLine(mesureList.Date);
+                Console.WriteLine(mesureList.Measure.Value);
+                Console.WriteLine(mesureList.Measure.Difference);
+                Console.WriteLine(mesureList.Measure.Format);
+
+            }
 
             var thermoRepository = new ThermometerRepository(  argsExecutor.GetThermoName(), dbDialog );
             var mainPresenter = new MainPresenter(_mainWindow, thermoRepository);

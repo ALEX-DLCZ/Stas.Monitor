@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using System.Reflection;
 using Stas.Monitor.Domains;
 
 namespace Stas.Monitor.Infrastructures.DataBase;
@@ -8,13 +9,23 @@ public class DbRequest : IRequest
     //TODO c'est ici qu'on crée les requêtes SQL
 
     private IDialoger _dialoger;
+    private IList<string> _conditions = new List<string>();
 
     public DbRequest(IDialoger dialoger)
     {
         _dialoger = dialoger;
     }
 
-    public IRequest Where(object unknown) => throw new NotImplementedException();
+
+
+    public IRequest Where<T>(string columnName, Func<T, string> condition, T value)
+    {
+        string whereClause = condition.Invoke(value);
+        _conditions.Add($"{columnName} {whereClause}");
+        return this;
+    }
+
+
 
     public IEnumerable<string> SelectDistinct(string tableName)
     {
@@ -23,15 +34,24 @@ public class DbRequest : IRequest
 
     }
 
+
+
+
     public IEnumerable<TObjet> Select<TObjet>(Expression<Func<MeasureRecord, TObjet>> mapper)
         => Select()
             .Select(entity => mapper.Compile()(entity));
 
-    public IEnumerable<MeasureRecord> Select()
+    private IEnumerable<MeasureRecord> Select()
     {
+        foreach (var condition in _conditions)
+        {
+            Console.WriteLine("condition:  " +condition);
+        }
+
+        //TODO
         //mesure de test forcé
-        Measure measure = new Measure(0.5976, 0.0, "0%");
-        Measure measure2 = new Measure(16.798352, 0.0, "00.00°");
+        Measure measure = new Measure(0.5976, 0.01, "0%");
+        Measure measure2 = new Measure(16.798352, 168.5, "00.00°");
 
         MeasureRecord measureRecord = new MeasureRecord("thermometer1", "humidity", DateTime.Now, measure);
         MeasureRecord measureRecord2 = new MeasureRecord("thermometer1", "temperature", DateTime.Now, measure2);

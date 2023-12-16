@@ -17,8 +17,19 @@ public record MeasurePresenterModel(MeasureRecord Model)
 
 
     public string Difference
-        => Model.Measure.Difference.ToString(Model.Measure.Format);
-
+    {
+        get
+        {
+            if (Model.Measure.Difference == 0)
+            {
+                return "0";
+            }
+            else
+            {
+                return Model.Measure.Difference.ToString(Model.Measure.Format);
+            }
+        }
+    }
 
     public string Date
         => Model.Date.ToString("dd/MM/yyyy HH:mm:ss");
@@ -27,12 +38,12 @@ public record MeasurePresenterModel(MeasureRecord Model)
     //si type = humidite alors couleur bleu
     //si type = pression alors couleur vert
     //si type = vent alors couleur orange
-    public uint UintColor
+    public string Color
         => Model.Type switch
         {
-            "temperature" => 0xFFA500,
-            "humidite" => 0x0000FF,
-            _ => 0x00FFFF
+            "temperature" => "0xFFA500",
+            "humidity" => "0x0000FF",
+            _ => "0x00FFFF"
         };
 
 }
