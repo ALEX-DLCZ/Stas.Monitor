@@ -40,6 +40,14 @@ public class MainPresenter
         var request = _repository
             .NewRequest();
 
+        var result = request.Select(mesure => new MeasurePresenterModel(mesure)).ToList();
+
+        foreach ( var mesure in result )
+        {
+            Console.WriteLine( mesure.Type );
+            Console.WriteLine( mesure.Value );
+        }
+
 
             // .Where(m => m.DateMesure >= args.TimeSelected)
 

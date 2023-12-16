@@ -24,4 +24,7 @@ public interface IRequest
 
 
     IEnumerable<string> SelectDistinct(string tableName);
+
+    IEnumerable<TObjet> Select<TObjet>(Expression<Func<MeasureRecord, TObjet>> mapper);
+
 }

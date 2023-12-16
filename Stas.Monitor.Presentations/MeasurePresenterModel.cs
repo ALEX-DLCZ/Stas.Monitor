@@ -9,11 +9,16 @@ public record MeasurePresenterModel(MeasureRecord Model)
         => Model.Type;
 
 
+    //Model.Measure.Value = 0.6126041
+    //Model.Measure.Format = 0%
+    //MeasurePresenterModel.Value = 61%
     public string Value
-        => $"#{Model.Measure.Value:Model.Measure.Format}";
+        => Model.Measure.Value.ToString(Model.Measure.Format);
+
 
     public string Difference
-        => Model.Measure.Difference == 0 ? "0" : $"#{Model.Measure.Difference:Model.Measure.Format}";
+        => Model.Measure.Difference.ToString(Model.Measure.Format);
+
 
     public string Date
         => Model.Date.ToString("dd/MM/yyyy HH:mm:ss");
