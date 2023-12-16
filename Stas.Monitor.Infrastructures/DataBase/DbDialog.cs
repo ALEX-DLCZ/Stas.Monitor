@@ -93,6 +93,21 @@ public class DbDialog: IDialoger
         }
         return measureRecords;
     }
+    public IEnumerable<MeasureRecord> AllValeur(string commande)
+    {
+        using MySqlConnection connection = new MySqlConnection(_connectionString);
+        connection.Open();
+        using MySqlCommand command = connection.CreateCommand();
+        command.CommandText = commande;
+
+        using MySqlDataReader reader = command.ExecuteReader();
+        List<MeasureRecord> measureRecords = new List<MeasureRecord>();
+        while (reader.Read())
+        {
+            measureRecords.Add(MapMeasure(reader));
+        }
+        return measureRecords;
+    }
 
     private MeasureRecord MapMeasure(MySqlDataReader reader)
     {

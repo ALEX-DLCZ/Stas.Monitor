@@ -59,7 +59,24 @@ public class DbRequest : IRequest
         List<MeasureRecord> mesures = new List<MeasureRecord>();
         mesures.Add(measureRecord);
         mesures.Add(measureRecord2);
-        return mesures;
+
+
+        // string whereClause = "WHERE " + string.Join(" AND ", _conditions);
+        string whereClause = " ";
+        if (_conditions.Count > 0)
+        {
+             whereClause = "WHERE " + string.Join(" AND ", _conditions) + " ";
+        }
+
+        var result = "SELECT Mesures.*, Alerts.expectedValue " +
+                     "FROM Mesures " +
+                     "LEFT JOIN Alerts ON Mesures.id = Alerts.idMesure " +
+                     whereClause +
+                     "ORDER BY datetime DESC";
+
+
+
+        return _dialoger.AllValeur(result);
     }
 
 }
