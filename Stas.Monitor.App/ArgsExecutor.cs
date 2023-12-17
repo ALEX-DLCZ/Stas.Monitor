@@ -43,9 +43,10 @@ public class ArgsExecutor
             throw new FatalException("Unknown argument");
         }
 
-        Configuration configuration = new Configuration(configurationStrategy);
+        var configuration = new Configuration(configurationStrategy);
         _thermomterName = configuration.GetGeneral();
-        IDictionary<string, string> db = configuration.GetBb();
+        var db = configuration.GetBb();
+
         // "Server=db;Database=mydatbase;User=root;Password=mysql;Port=3306;"
         _connectionString = $"Server={db["IpServer"]};Database={db["User"]};User={db["User"]};Password={db["Pws"]};Port={db["PortServer"]};";
     }

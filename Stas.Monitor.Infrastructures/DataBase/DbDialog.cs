@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Data;
 
 namespace Stas.Monitor.Infrastructures.DataBase;
 
@@ -37,12 +37,12 @@ public class DbDialog : IDialoger
     {
         get
         {
-            using MySqlConnection connection = new MySqlConnection(_connectionString);
+            using var connection = new MySqlConnection(_connectionString);
             connection.Open();
-            using MySqlCommand command = connection.CreateCommand();
+            using var command = connection.CreateCommand();
             command.CommandText = "SELECT DISTINCT thermometerName FROM Mesures";
-            using MySqlDataReader reader = command.ExecuteReader();
-            List<string> thermometers = new List<string>();
+            using var reader = command.ExecuteReader();
+            var thermometers = new List<string>();
             while (reader.Read())
             {
                 thermometers.Add(reader.GetString(0));
@@ -54,11 +54,11 @@ public class DbDialog : IDialoger
 
     public IEnumerable<string> SelectDistinctDialog(string request)
     {
-        using MySqlConnection connection = new MySqlConnection(_connectionString);
+        using var connection = new MySqlConnection(_connectionString);
         connection.Open();
-        using MySqlCommand command = connection.CreateCommand();
+        using var command = connection.CreateCommand();
         command.CommandText = request;
-        using MySqlDataReader reader = command.ExecuteReader();
+        using var reader = command.ExecuteReader();
 
         var result = new List<string>();
 
@@ -72,15 +72,14 @@ public class DbDialog : IDialoger
 
     public IEnumerable<MeasureRecord> AllValeur(string commande)
     {
-        using MySqlConnection connection = new MySqlConnection(_connectionString);
+        using var connection = new MySqlConnection(_connectionString);
         connection.Open();
-        using MySqlCommand command = connection.CreateCommand();
+        using var command = connection.CreateCommand();
         command.CommandText = commande;
 
-
         command.Parameters.AddWithValue("lastupdate", _lastUpdate);
-        using MySqlDataReader reader = command.ExecuteReader();
-        List<MeasureRecord> measureRecords = new List<MeasureRecord>();
+        using var reader = command.ExecuteReader();
+        var measureRecords = new List<MeasureRecord>();
         while (reader.Read())
         {
             measureRecords.Add(MapMeasure(reader));
@@ -90,19 +89,18 @@ public class DbDialog : IDialoger
         return measureRecords;
     }
 
-    private MeasureRecord MapMeasure(MySqlDataReader reader)
+    private MeasureRecord MapMeasure(IDataRecord reader)
     {
-        string name = reader["thermometerName"] as string ?? "Unknown";
-        string type = reader["type"] as string ?? "Unknown";
-        DateTime date = reader.GetDateTime(reader.GetOrdinal("datetime"));
+        var name = reader["thermometerName"] as string ?? "Unknown";
+        var type = reader["type"] as string ?? "Unknown";
+        var date = reader.GetDateTime(reader.GetOrdinal("datetime"));
 
-        double value = reader.GetDouble(reader.GetOrdinal("value"));
-        double? expectedValue = reader["expectedValue"] as double?;
-        string format = reader["format"] as string ?? "DefaultFormat";
+        var value = reader.GetDouble(reader.GetOrdinal("value"));
+        var expectedValue = reader["expectedValue"] as double?;
+        var format = reader["format"] as string ?? "DefaultFormat";
 
-        double difference = expectedValue.HasValue ? expectedValue.Value - value : 0.0;
-        Measure measure = new Measure(value, difference, format);
-
+        var difference = expectedValue.HasValue ? expectedValue.Value - value : 0.0;
+        var measure = new Measure(value, difference, format);
 
         return new MeasureRecord(name, type, date, measure);
     }

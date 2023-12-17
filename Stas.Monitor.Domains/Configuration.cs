@@ -19,13 +19,7 @@ public class Configuration
         }
     }
 
-    public IDictionary<string, string> GetGeneral()
-    {
-        return _configDico["general"];
-    }
+    public IDictionary<string, string> GetGeneral() => _configDico["general"];
 
-    public IDictionary<string, string> GetBb()
-    {
-        return _configDico["BD"];
-    }
+    public IDictionary<string, string> GetBb() => _configDico["BD"];
 }

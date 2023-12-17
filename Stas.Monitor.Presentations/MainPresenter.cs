@@ -28,7 +28,6 @@ public class MainPresenter
     private void OnQueryChanged(object? sender, FilterEventArgs args)
     {
         _args = args;
-        var type = new HashSet<string>(args.Types);
 
         var request = _repository
             .NewRequest();

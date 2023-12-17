@@ -10,21 +10,7 @@ public record MeasurePresenterModel(MeasureRecord Model)
     public string Value
         => Model.Measure.Value.ToString(Model.Measure.Format);
 
-
-    public string Difference
-    {
-        get
-        {
-            if (Model.Measure.Difference == 0)
-            {
-                return "0";
-            }
-            else
-            {
-                return Model.Measure.Difference.ToString(Model.Measure.Format);
-            }
-        }
-    }
+    public string Difference => Model.Measure.Difference == 0 ? "0" : Model.Measure.Difference.ToString(Model.Measure.Format);
 
     public string Date
         => Model.Date.ToString("dd/MM/yyyy HH:mm:ss");

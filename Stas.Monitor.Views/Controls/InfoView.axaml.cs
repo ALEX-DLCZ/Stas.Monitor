@@ -29,7 +29,7 @@ public partial class InfoView : UserControl
             }
 
             MeasurementExpected.Text = "valeur attendue: " + value.Difference;
-            System.Drawing.Color color = System.Drawing.ColorTranslator.FromHtml(value.Color);
+            var color = System.Drawing.ColorTranslator.FromHtml(value.Color);
             InfoGrid.Background = new SolidColorBrush(new Color(color.A, color.R, color.G, color.B));
         }
     }

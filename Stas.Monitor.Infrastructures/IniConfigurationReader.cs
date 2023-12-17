@@ -40,15 +40,9 @@ public class IniConfigurationReader : IConfigurationStrategy
         }
     }
 
-    private bool IsCommentOrEmpty(string line)
-    {
-        return line.Equals(null) || line.StartsWith(";") || line.StartsWith("#");
-    }
+    private bool IsCommentOrEmpty(string line) => line.Equals(null) || line.StartsWith(";") || line.StartsWith("#");
 
-    private bool IsNewSection(string line)
-    {
-        return line.StartsWith("[") && line.EndsWith("]");
-    }
+    private bool IsNewSection(string line) => line.StartsWith("[") && line.EndsWith("]");
 
     private void HandleNewSection(string line)
     {
@@ -57,10 +51,7 @@ public class IniConfigurationReader : IConfigurationStrategy
         _sectionMaps.Add(sectionName, _currentSection);
     }
 
-    private bool IsValuePair(string line)
-    {
-        return line.Contains('=');
-    }
+    private bool IsValuePair(string line) => line.Contains('=');
 
     private void ProcessKeyValuePair(string line)
     {

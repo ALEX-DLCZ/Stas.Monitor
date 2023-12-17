@@ -1,12 +1,10 @@
 using System;
-using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using Serilog;
 using Stas.Monitor.App.PersonalExceptions;
-using Stas.Monitor.Domains;
 using Stas.Monitor.Infrastructures;
 using Stas.Monitor.Infrastructures.DataBase;
 using Stas.Monitor.Presentations;
@@ -14,7 +12,17 @@ using Stas.Monitor.Views;
 
 namespace Stas.Monitor.App;
 
-public partial class App : Application
+/**
+ * <summary>
+ *     l'applications se lance avec les arguments suivants :
+ * dotnet run -- --config-file config.ini
+ *
+ * --config-file config.ini : permet de spécifier le fichier de configuration
+ * la connexion a la base de donnée est spécifié dans le fichier config.ini et est obligatoire.
+ * </summary>
+
+ */
+public class App : Application
 {
     private MainWindow? _mainWindow;
     private MainPresenter? _mainPresenter;
@@ -37,7 +45,7 @@ public partial class App : Application
             _mainWindow = new MainWindow();
 
             //TODO gérer l'exception fatalException générée par le setup
-            SetupApp(desktop?.Args ?? Array.Empty<string>());
+            SetupApp(desktop.Args ?? Array.Empty<string>());
             desktop.MainWindow = _mainWindow;
 
             DispatcherTimer.Run(() =>
@@ -55,9 +63,9 @@ public partial class App : Application
     {
         try
         {
-            ArgsExecutor argsExecutor = new ArgsExecutor(args);
+            var argsExecutor = new ArgsExecutor(args);
 
-            DbDialog dbDialog = new DbDialog(argsExecutor.GetConnectionString());
+            var dbDialog = new DbDialog(argsExecutor.GetConnectionString());
 
             var thermoRepository = new ThermometerRepository(argsExecutor.GetThermoName(), dbDialog);
             _mainPresenter = new MainPresenter(_mainWindow, thermoRepository);
@@ -66,6 +74,7 @@ public partial class App : Application
         catch (Exception e)
         {
             Log.Logger.Error(e, "Error during app setup");
+
             //TODO changer la main window pour une fenetre d'erreur et continuer l'execution
             throw new FatalException("Error during app setup", e);
         }

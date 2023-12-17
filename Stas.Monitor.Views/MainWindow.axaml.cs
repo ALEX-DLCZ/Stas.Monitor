@@ -35,9 +35,9 @@ public partial class MainWindow : Window, IMainView
 
             foreach (var type in value)
             {
-                if (_filterResultDict.ContainsKey(type.Type))
+                if (_filterResultDict.TryGetValue(type.Type, out var value1))
                 {
-                    _filterResultDict[type.Type].AddInfoView(new InfoView() { ViewModel = type });
+                    value1.AddInfoView(new InfoView() { ViewModel = type });
                 }
                 else
                 {
@@ -64,8 +64,5 @@ public partial class MainWindow : Window, IMainView
 
     public event EventHandler<FilterEventArgs>? FilterChanged;
 
-    private void FilterPanel_OnFilterChanged(object? sender, FilterEventArgs e)
-    {
-        FilterChanged?.Invoke(this, e);
-    }
+    private void FilterPanel_OnFilterChanged(object? sender, FilterEventArgs e) => FilterChanged?.Invoke(this, e);
 }

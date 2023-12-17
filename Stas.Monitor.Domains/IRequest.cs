@@ -5,6 +5,7 @@ namespace Stas.Monitor.Domains;
 public interface IRequest
 {
     IRequest WhereUpdate();
+
     IRequest Where<T>(string columnName, Func<T, string> condition, T value);
 
     IEnumerable<string> SelectDistinct(string tableName);
