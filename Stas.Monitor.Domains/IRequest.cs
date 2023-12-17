@@ -6,6 +6,7 @@ public interface IRequest
 {
 
 
+    IRequest WhereUpdate();
     IRequest Where<T>(string columnName, Func<T, string> condition, T value);
 
 

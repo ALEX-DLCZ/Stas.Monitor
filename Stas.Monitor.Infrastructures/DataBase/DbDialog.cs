@@ -7,6 +7,7 @@ using MySql.Data.MySqlClient;
 public class DbDialog: IDialoger
 {
     private readonly string _connectionString;
+    private DateTime _lastUpdate;
 
     public DbDialog(string connectionString)
     {
@@ -100,12 +101,15 @@ public class DbDialog: IDialoger
         using MySqlCommand command = connection.CreateCommand();
         command.CommandText = commande;
 
+
+        command.Parameters.AddWithValue("lastupdate", _lastUpdate);
         using MySqlDataReader reader = command.ExecuteReader();
         List<MeasureRecord> measureRecords = new List<MeasureRecord>();
         while (reader.Read())
         {
             measureRecords.Add(MapMeasure(reader));
         }
+        _lastUpdate = DateTime.Now;
         return measureRecords;
     }
 

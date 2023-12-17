@@ -93,21 +93,7 @@ public partial class MainWindow : Window , IMainView
 
             foreach (var type in value)
             {
-                //vérifie si le type est déjà présent dans le dictionnaire
-                if (_filterResultDict.ContainsKey(type.Type))
-                {
-                    //si oui on ajoute l'info au type
-                    _filterResultDict[type.Type].AddInfoView(new InfoView() { ViewModel = type });
-                }
-                else
-                {
-                    //si non on crée un nouveau type et on l'ajoute au dictionnaire
-                    var typeView = new TypeView() { ViewTypeName = type.Type };
-                    typeView.AddInfoView(new InfoView() { ViewModel = type });
-                    _filterResultDict.Add(type.Type, typeView);
-                    // _filterResult.Add(typeView);
-                    ResultPanel.Children.Add(typeView);
-                }
+                _filterResultDict[type.Type].AddInfoView(new InfoView() { ViewModel = type });
             }
         }
     }

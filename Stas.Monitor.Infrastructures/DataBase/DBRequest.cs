@@ -24,6 +24,11 @@ public class DbRequest : IRequest
         _conditions.Add($"{columnName} {whereClause}");
         return this;
     }
+    public IRequest WhereUpdate()
+    {
+        _conditions.Add("datetime > ?lastupdate");
+        return this;
+    }
 
 
 
@@ -47,18 +52,18 @@ public class DbRequest : IRequest
         {
             Console.WriteLine("condition:  " +condition);
         }
-
-        //TODO
-        //mesure de test forcé
-        Measure measure = new Measure(0.5976, 0.01, "0%");
-        Measure measure2 = new Measure(16.798352, 168.5, "00.00°");
-
-        MeasureRecord measureRecord = new MeasureRecord("thermometer1", "humidity", DateTime.Now, measure);
-        MeasureRecord measureRecord2 = new MeasureRecord("thermometer1", "temperature", DateTime.Now, measure2);
-
-        List<MeasureRecord> mesures = new List<MeasureRecord>();
-        mesures.Add(measureRecord);
-        mesures.Add(measureRecord2);
+        //
+        // //TODO
+        // //mesure de test forcé
+        // Measure measure = new Measure(0.5976, 0.01, "0%");
+        // Measure measure2 = new Measure(16.798352, 168.5, "00.00°");
+        //
+        // MeasureRecord measureRecord = new MeasureRecord("thermometer1", "humidity", DateTime.Now, measure);
+        // MeasureRecord measureRecord2 = new MeasureRecord("thermometer1", "temperature", DateTime.Now, measure2);
+        //
+        // List<MeasureRecord> mesures = new List<MeasureRecord>();
+        // mesures.Add(measureRecord);
+        // mesures.Add(measureRecord2);
 
 
         // string whereClause = "WHERE " + string.Join(" AND ", _conditions);

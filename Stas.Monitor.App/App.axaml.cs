@@ -17,6 +17,7 @@ namespace Stas.Monitor.App;
 public partial class App : Application
 {
     private MainWindow? _mainWindow;
+    private MainPresenter? _mainPresenter;
 
     public override void Initialize()
     {
@@ -43,8 +44,9 @@ public partial class App : Application
             DispatcherTimer.Run(() =>
             {
                 Log.Logger.Information("You should starts checking for file updates here");
+                _mainPresenter?.Update();
                 return true;
-            }, TimeSpan.FromSeconds(1));
+            }, TimeSpan.FromSeconds(5));
         }
 
         base.OnFrameworkInitializationCompleted();
@@ -60,23 +62,23 @@ public partial class App : Application
 
             DbDialog dbDialog = new DbDialog(argsExecutor.GetConnectionString());
 
-            Console.WriteLine("connectionString : " + argsExecutor.GetConnectionString());
-
-            foreach (var mesureList in dbDialog.allValeurGPT())
-            {
-                Console.WriteLine(" ");
-                Console.WriteLine(mesureList.Name);
-                Console.WriteLine(mesureList.Type);
-                Console.WriteLine(mesureList.Date);
-                Console.WriteLine(mesureList.Measure.Value);
-                Console.WriteLine(mesureList.Measure.Difference);
-                Console.WriteLine(mesureList.Measure.Format);
-
-            }
+            // Console.WriteLine("connectionString : " + argsExecutor.GetConnectionString());
+            //
+            // foreach (var mesureList in dbDialog.allValeurGPT())
+            // {
+            //     Console.WriteLine(" ");
+            //     Console.WriteLine(mesureList.Name);
+            //     Console.WriteLine(mesureList.Type);
+            //     Console.WriteLine(mesureList.Date);
+            //     Console.WriteLine(mesureList.Measure.Value);
+            //     Console.WriteLine(mesureList.Measure.Difference);
+            //     Console.WriteLine(mesureList.Measure.Format);
+            //
+            // }
 
             var thermoRepository = new ThermometerRepository(  argsExecutor.GetThermoName(), dbDialog );
-            var mainPresenter = new MainPresenter(_mainWindow, thermoRepository);
-            mainPresenter.Start();
+            _mainPresenter = new MainPresenter(_mainWindow, thermoRepository);
+            _mainPresenter.Start();
         }
         catch (Exception e)
         {

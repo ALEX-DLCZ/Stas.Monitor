@@ -6,6 +6,7 @@ public class MainPresenter
 {
     private readonly IMainView _view;
     private readonly IThermometerRepository _repository;
+    private FilterEventArgs _args;
 
     public MainPresenter(IMainView view, IThermometerRepository repository)
     {
@@ -33,6 +34,7 @@ public class MainPresenter
 
     private void OnQueryChanged(object? sender, FilterEventArgs args)
     {
+        _args = args;
         var type = new HashSet<string>(args.Types);
 
 
@@ -46,6 +48,18 @@ public class MainPresenter
             Where("datetime", val => $">= (SELECT MAX(datetime) FROM Mesures) - INTERVAL {val} SECOND", args.TimeSelected).
             Select(mesure => new MeasurePresenterModel(mesure)).ToList();
 
+    }
+
+    public void Update()
+    {
+        var request = _repository
+            .NewRequest();
+
+        _view.UpdateResult = request.
+            Where("thermometerName", val => $"LIKE '%{val}%'", _args.ThermometerTarget).
+            Where("type", val => $"IN ('{val}')", string.Join("','", _args.Types)).
+            WhereUpdate().
+            Select(mesure => new MeasurePresenterModel(mesure)).ToList();
     }
 
 

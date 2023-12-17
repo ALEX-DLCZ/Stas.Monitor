@@ -7,6 +7,7 @@ public interface IMainView
     IEnumerable<string> ThermometersNames { set; }
 
     IReadOnlyList<MeasurePresenterModel> Result { set; }
+    IReadOnlyList<MeasurePresenterModel> UpdateResult { set; }
 
     event EventHandler<FilterEventArgs> FilterChanged;
 
