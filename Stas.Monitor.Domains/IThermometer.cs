@@ -3,6 +3,4 @@
 public interface IThermometer
 {
     string Name { get; }
-
-    IList<IType> Types { get; }
 }

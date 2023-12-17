@@ -20,6 +20,4 @@ public class ThermometerRepository : IThermometerRepository
     {
         return new DbRequest(_dialoger);
     }
-
-
 }

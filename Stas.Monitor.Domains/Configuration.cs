@@ -8,7 +8,7 @@ public class Configuration
     {
         _configDico = reader.GetReadedConfiguration();
 
-        if(!_configDico.ContainsKey("general"))
+        if (!_configDico.ContainsKey("general"))
         {
             throw new KeyNotFoundException("monitor: missing required section thermometers (general)");
         }

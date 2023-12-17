@@ -47,11 +47,10 @@ public class ArgsExecutor
         _thermomterName = configuration.GetGeneral();
         IDictionary<string, string> db = configuration.GetBb();
         // "Server=db;Database=mydatbase;User=root;Password=mysql;Port=3306;"
-        // _connectionString = $"jdbc:mysql://{db["IpServer"]}:{db["PortServer"]}/{db["User"]}?User={db["User"]}&Password={db["Pws"]}";
         _connectionString = $"Server={db["IpServer"]};Database={db["User"]};User={db["User"]};Password={db["Pws"]};Port={db["PortServer"]};";
     }
 
     public string GetConnectionString() => _connectionString;
 
-    public IDictionary<string, string> GetThermoName () => _thermomterName;
+    public IDictionary<string, string> GetThermoName() => _thermomterName;
 }

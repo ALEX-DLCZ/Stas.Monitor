@@ -34,7 +34,6 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-
             _mainWindow = new MainWindow();
 
             //TODO gérer l'exception fatalException générée par le setup
@@ -56,27 +55,11 @@ public partial class App : Application
     {
         try
         {
-
-            //TODO implémenter le MainConfigurationReader pour récupérer les noms des thermomètres et lacces en base de donnée
             ArgsExecutor argsExecutor = new ArgsExecutor(args);
 
             DbDialog dbDialog = new DbDialog(argsExecutor.GetConnectionString());
 
-            // Console.WriteLine("connectionString : " + argsExecutor.GetConnectionString());
-            //
-            // foreach (var mesureList in dbDialog.allValeurGPT())
-            // {
-            //     Console.WriteLine(" ");
-            //     Console.WriteLine(mesureList.Name);
-            //     Console.WriteLine(mesureList.Type);
-            //     Console.WriteLine(mesureList.Date);
-            //     Console.WriteLine(mesureList.Measure.Value);
-            //     Console.WriteLine(mesureList.Measure.Difference);
-            //     Console.WriteLine(mesureList.Measure.Format);
-            //
-            // }
-
-            var thermoRepository = new ThermometerRepository(  argsExecutor.GetThermoName(), dbDialog );
+            var thermoRepository = new ThermometerRepository(argsExecutor.GetThermoName(), dbDialog);
             _mainPresenter = new MainPresenter(_mainWindow, thermoRepository);
             _mainPresenter.Start();
         }
@@ -87,5 +70,4 @@ public partial class App : Application
             throw new FatalException("Error during app setup", e);
         }
     }
-
 }

@@ -6,44 +6,12 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Stas.Monitor.Views.MainWindow"
         Title="Stas.Monitor.Views">
-    
-    
+
+
     <ScrollViewer>
         <StackPanel>
-            <controls:FilterPanel x:Name="FilterPanel" FilterChanged="FilterPanel_OnFilterChanged"/>
+            <controls:FilterPanel x:Name="FilterPanel" FilterChanged="FilterPanel_OnFilterChanged" />
             <WrapPanel x:Name="ResultPanel" HorizontalAlignment="Stretch" />
         </StackPanel>
     </ScrollViewer>
-    
-
-    
-    <!-- <Grid> -->
-    <!--     ~1~ l'expand se trouve en haut de la fenetre @1@ -->
-    <!--     <Expander Header="Thermometers" IsExpanded="True" Background="Orange"> -->
-    <!--         ~1~ stack de choix de thermomètre @1@ -->
-    <!--         <StackPanel Orientation="Horizontal"> -->
-    <!--             <ComboBox Background="Orange" SelectedIndex="0" Name="ComboBoxThermometers" /> -->
-    <!--             <ItemsControl Name="TypeViewItems" /> -->
-    <!--         </StackPanel> -->
-    <!--         ~1~ stack de choix de1 ou plusieur Type @1@ -->
-    <!--         ~1~ <StackPanel Orientation="Horizontal"> @1@ -->
-    <!--         ~1~     <ComboBox Background="Orange" SelectedIndex="0" Name="ComboBoxType" /> @1@ -->
-    <!--         ~1~     <ItemsControl Name="InfoViewItems" /> @1@ -->
-    <!--         ~1~ </StackPanel> @1@ -->
-    <!--     </Expander> -->
-    <!--      -->
-    <!-- </Grid> -->
-
-
-    
-    <!-- <Grid ColumnDefinitions="*" RowDefinitions="Auto,*" Margin="5"> -->
-    <!--     <StackPanel Grid.Column="0" Grid.Row="0"> -->
-    <!--         <ComboBox Background="Orange" SelectedIndex="0" Name="ComboBoxThermometers"/> -->
-    <!--     </StackPanel> -->
-    <!--     <StackPanel Grid.Column="0" Grid.Row="1" Background="#555555"> -->
-    <!--         <ItemsControl Name="TypeViewItems"/> -->
-    <!--     </StackPanel> -->
-    <!-- </Grid> -->
-
-
 </Window>

@@ -17,7 +17,6 @@ public partial class FilterPanel : UserControl
     public FilterPanel()
     {
         InitializeComponent();
-
     }
 
     public event EventHandler<FilterEventArgs>? FilterChanged;
@@ -28,27 +27,16 @@ public partial class FilterPanel : UserControl
         set
         {
             ComboBoxThermometers?.Items.Clear();
-            _comboBoxes = value.Select(type => new ComboBoxItem
-            {
-                Content = type,
-                Tag = type, // Associe une valeur au contrôle. Utile pour la création d'événements
-            }).ToList();
+            _comboBoxes = value.Select(type => new ComboBoxItem { Content = type, Tag = type, }).ToList();
 
             foreach (var comboBox in _comboBoxes)
             {
                 ComboBoxThermometers?.Items.Add(comboBox);
             }
+
             ComboBoxThermometers.SelectedIndex = 0;
             ComboBoxThermometers.SelectionChanged += ComboBox_OnSelectionChanged;
             TimeBox.SelectionChanged += ComboBox_OnSelectionChanged;
-
-
-
-            // foreach ( var item in value )
-            // {
-            //     ComboBoxThermometers?.Items.Add(item);
-            // }
-            // ComboBoxThermometers.SelectedIndex = 0;
         }
     }
 
@@ -57,12 +45,7 @@ public partial class FilterPanel : UserControl
         set
         {
             TypesPanel.Children.Clear();
-            _checkBoxes = value.Select(type => new CheckBox
-            {
-                Content = type,
-                Tag = type, // Associe une valeur au contrôle. Utile pour la création d'événements
-                IsChecked = true
-            }).ToList();
+            _checkBoxes = value.Select(type => new CheckBox { Content = type, Tag = type, IsChecked = true }).ToList();
 
 
             foreach (var checkBox in _checkBoxes)
@@ -73,23 +56,6 @@ public partial class FilterPanel : UserControl
             TypesPanel.Children.AddRange(_checkBoxes);
 
             OnFilterChanged();
-
-
-            // TypesPanel.Children.Clear();
-            // _toggleSwitches = value.Select(type => new ToggleSwitch
-            // {
-            //     OffContent = $"Ignore {type}",
-            //     OnContent = $"Include {type}",
-            //     Tag = type, // Associe une valeur au contrôle. Utile pour la création d'événements
-            //     IsChecked = false
-            // }).ToList();
-            //
-            // foreach (var toggleSwitch in _toggleSwitches)
-            // {
-            //     toggleSwitch.IsCheckedChanged += NotifyFilterChanged;
-            // }
-            //
-            // TypesPanel.Children.AddRange(_toggleSwitches);
         }
     }
 
@@ -97,6 +63,7 @@ public partial class FilterPanel : UserControl
     {
         OnFilterChanged();
     }
+
     private void ComboBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         OnFilterChanged();
@@ -114,13 +81,8 @@ public partial class FilterPanel : UserControl
             .Where(checkBoxes => checkBoxes.IsChecked ?? false)
             .Select(checkBoxes => checkBoxes.Tag as string ?? String.Empty);
 
-        // var selectedThermometer = ComboBoxThermometers.SelectedItem.GetType().GetProperty("Name")?.GetValue(ComboBoxThermometers.SelectedItem, null) as string ?? String.Empty;
         var selectedThermometer = _comboBoxes.ElementAt(ComboBoxThermometers.SelectedIndex).Tag as string ?? String.Empty;
 
-
-        //si 0 alors 30
-        //si 1 alors 60
-        //si 2 alors 300
         var selectedTime = TimeBox.SelectedIndex switch
         {
             0 => 30,
@@ -130,17 +92,10 @@ public partial class FilterPanel : UserControl
         };
 
 
-
-
-        // var queryArgs = new FilterEventArgs(Types: selectedTypes,
-        //     Contains: NameBox.Text ?? String.Empty,
-        //     Generation: (int)GenerationSlider.Value,
-        //     OnlyLegendary: LegendarySwitch.IsChecked ?? false);
         var filterArgs = new FilterEventArgs(Types: selectedTypes,
             ThermometerTarget: selectedThermometer,
             TimeSelected: selectedTime);
 
         NotifyFilterChanged(filterArgs);
     }
-
 }

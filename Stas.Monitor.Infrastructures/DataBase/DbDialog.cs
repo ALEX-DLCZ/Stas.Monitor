@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 
 namespace Stas.Monitor.Infrastructures.DataBase;
-using Domains;
 
+using Domains;
 using MySql.Data.MySqlClient;
-public class DbDialog: IDialoger
+
+public class DbDialog : IDialoger
 {
     private readonly string _connectionString;
     private DateTime _lastUpdate;
@@ -14,7 +15,6 @@ public class DbDialog: IDialoger
         _connectionString = connectionString;
     }
 
-    //sélectionne le nom de tout les thermomètres dans la base de données dans la table Mesure
     /*
      * -- Table 'Mesures'
      * CREATE TABLE Mesures (
@@ -32,7 +32,7 @@ public class DbDialog: IDialoger
      * idMesure INT NOT NULL,
      * FOREIGN KEY (idMesure) REFERENCES Mesures(id)
      * );
-*/
+     */
     public string[] AllThermometers
     {
         get
@@ -54,7 +54,6 @@ public class DbDialog: IDialoger
 
     public IEnumerable<string> SelectDistinctDialog(string request)
     {
-
         using MySqlConnection connection = new MySqlConnection(_connectionString);
         connection.Open();
         using MySqlCommand command = connection.CreateCommand();
@@ -67,33 +66,10 @@ public class DbDialog: IDialoger
         {
             result.Add(reader.GetString(0));
         }
+
         return result;
     }
 
-    public IEnumerable<MeasureRecord> allValeurGPT()
-    {
-        int secondAfterFirstValue = 600;
-        using MySqlConnection connection = new MySqlConnection(_connectionString);
-        connection.Open();
-        using MySqlCommand command = connection.CreateCommand();
-        command.CommandText = "SELECT Mesures.*, Alerts.expectedValue " +
-                              "FROM Mesures " +
-                              "LEFT JOIN Alerts ON Mesures.id = Alerts.idMesure " +
-                              "WHERE datetime >= (SELECT MAX(datetime) FROM Mesures) - INTERVAL ?seconds SECOND " +
-                              "AND thermometerName LIKE '%Living Room 1%'" +
-                              "AND  type IN ('temperature','humidity') " +
-                              "ORDER BY datetime DESC";
-
-
-        command.Parameters.AddWithValue("seconds", secondAfterFirstValue);
-        using MySqlDataReader reader = command.ExecuteReader();
-        List<MeasureRecord> measureRecords = new List<MeasureRecord>();
-        while (reader.Read())
-        {
-            measureRecords.Add(MapMeasure(reader));
-        }
-        return measureRecords;
-    }
     public IEnumerable<MeasureRecord> AllValeur(string commande)
     {
         using MySqlConnection connection = new MySqlConnection(_connectionString);
@@ -109,6 +85,7 @@ public class DbDialog: IDialoger
         {
             measureRecords.Add(MapMeasure(reader));
         }
+
         _lastUpdate = DateTime.Now;
         return measureRecords;
     }
@@ -129,6 +106,4 @@ public class DbDialog: IDialoger
 
         return new MeasureRecord(name, type, date, measure);
     }
-
-
 }

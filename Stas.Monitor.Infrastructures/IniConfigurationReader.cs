@@ -11,12 +11,12 @@ public class IniConfigurationReader : IConfigurationStrategy
     {
         try
         {
-            foreach ( var line in File.ReadLines(path) )
+            foreach (var line in File.ReadLines(path))
             {
                 ReadLine(line);
             }
         }
-        catch ( FileNotFoundException )
+        catch (FileNotFoundException)
         {
             throw new FileNotFoundException("monitor: configuration file not found");
         }
@@ -27,14 +27,14 @@ public class IniConfigurationReader : IConfigurationStrategy
     //---------- private methods ----------
     private void ReadLine(string line)
     {
-        if ( IsCommentOrEmpty(line) )
+        if (IsCommentOrEmpty(line))
         {
         }
-        else if ( IsNewSection(line) )
+        else if (IsNewSection(line))
         {
             HandleNewSection(line);
         }
-        else if ( IsValuePair(line) )
+        else if (IsValuePair(line))
         {
             ProcessKeyValuePair(line);
         }
