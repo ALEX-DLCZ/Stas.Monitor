@@ -4,6 +4,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using Serilog;
+using Stas.Monitor.App.PersonalExceptions;
 using Stas.Monitor.Infrastructures;
 using Stas.Monitor.Infrastructures.DataBase;
 using Stas.Monitor.Infrastructures.PersonalExceptions;
@@ -47,7 +48,6 @@ public class App : Application
         {
             _mainWindow = new MainWindow();
 
-            //TODO gérer l'exception fatalException générée par le setup
             SetupApp(desktop.Args ?? Array.Empty<string>());
             desktop.MainWindow = _mainWindow;
 

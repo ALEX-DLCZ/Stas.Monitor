@@ -16,8 +16,5 @@ public class ThermometerRepository : IThermometerRepository
 
     public string[] AllThermometers => _thermometers.Select(t => t.Name).ToArray();
 
-    public IRequest NewRequest()
-    {
-        return new DbRequest(_dialoger);
-    }
+    public IRequest NewRequest() => new DbRequest(_dialoger);
 }

@@ -23,4 +23,11 @@
       <ProjectReference Include="..\Stas.Monitor.Infrastructures\Stas.Monitor.Infrastructures.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Resources\config.ini" />
+      <Content Include="Resources\config.ini">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>

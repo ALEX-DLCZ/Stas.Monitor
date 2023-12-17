@@ -5,11 +5,20 @@
 	<s:String x:Key="/Default/CodeInspection/PencilsConfiguration/FiltersState/=CodeStyle/@EntryIndexedValue">On</s:String>
 	<s:String x:Key="/Default/CodeInspection/PencilsConfiguration/FiltersState/=NamingFilter/@EntryIndexedValue">On</s:String>
 	<s:String x:Key="/Default/CodeInspection/PencilsConfiguration/FiltersState/=SpellingFilter/@EntryIndexedValue">On</s:String>
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\ALEXANDRE\AppData\Local\JetBrains\Rider2023.3\resharper-host\temp\Rider\vAny\CoverageData\_Stas.Monitor.24837957\Snapshot\snapshot.utdcvr</s:String>
 	<s:Boolean x:Key="/Default/Environment/InlayHints/GeneralInlayHintsOptions/EnableInlayHints/@EntryValue">True</s:Boolean>
 	
 	
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=824b834b_002Ded7c_002D4f82_002D825c_002Df955cbbce27c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ArchTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::A5D72AC0-43D4-4EC1-8620-C5BA09BC647C::net6.0::Stas.Monitor.App.Tests.ArchTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::6AA43CC3-A8BB-4CC7-8AFE-A1D92C840984::net6.0::Stas.Monitor.Domains.Tests.ConfigurationTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::6AA43CC3-A8BB-4CC7-8AFE-A1D92C840984::net6.0::Stas.Monitor.Domains.Tests.DtosAndRecordsTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::29CED7E2-C6F7-4D3A-9393-C3587E14B963::net6.0::Stas.Monitor.Presentations.Tests.MeasurePresenterModelTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::29CED7E2-C6F7-4D3A-9393-C3587E14B963::net6.0::Stas.Monitor.Presentations.Tests.MainPresenterTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::38CA6943-9CC1-4289-807A-F566E8F53EA6::net6.0::Stas.Monitor.Infrastructures.Tests.IniConfigurationReaderTests.Should_Throw_Exception_When_File_Not_Found&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::38CA6943-9CC1-4289-807A-F566E8F53EA6::net6.0::Stas.Monitor.Infrastructures.Tests.IniConfigurationReaderTests.Should_Read_A_Section&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::38CA6943-9CC1-4289-807A-F566E8F53EA6::net6.0::Stas.Monitor.Infrastructures.Tests.IniConfigurationReaderTests.Should_Read_A_Section_With_Keys_And_Values&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::38CA6943-9CC1-4289-807A-F566E8F53EA6::net6.0::Stas.Monitor.Infrastructures.Tests.IniConfigurationReaderTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

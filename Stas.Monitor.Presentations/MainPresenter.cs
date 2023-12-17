@@ -25,7 +25,7 @@ public class MainPresenter
             .SelectDistinct("type");
     }
 
-    private void OnQueryChanged(object? sender, FilterEventArgs? args)
+    public void OnQueryChanged(object? sender, FilterEventArgs? args)
     {
         _args = args;
 
@@ -33,9 +33,9 @@ public class MainPresenter
             .NewRequest();
 
         _view.Result = request.Where("thermometerName", val => $"LIKE '%{val}%'", args?.ThermometerTarget)
-                .Where("type", val => $"IN ('{val}')", string.Join("','", args?.Types ?? Array.Empty<string>()))
-                .Where("datetime", val => $">= (SELECT MAX(datetime) FROM Mesures) - INTERVAL {val} SECOND", args!.TimeSelected)
-                .Select(mesure => new MeasurePresenterModel(mesure)).ToList();
+            .Where("type", val => $"IN ('{val}')", string.Join("','", args?.Types ?? Array.Empty<string>()))
+            .Where("datetime", val => $">= (SELECT MAX(datetime) FROM Mesures) - INTERVAL {val} SECOND", args!.TimeSelected)
+            .Select(mesure => new MeasurePresenterModel(mesure)).ToList();
     }
 
     public void Update()

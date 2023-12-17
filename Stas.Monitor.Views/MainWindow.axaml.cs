@@ -48,7 +48,6 @@ public partial class MainWindow : Window, IMainView
                     ResultPanel.Children.Add(typeView);
                 }
             }
-
         }
     }
 

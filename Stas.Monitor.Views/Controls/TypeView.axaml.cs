@@ -4,8 +4,6 @@ namespace Stas.Monitor.Views.Controls;
 
 public partial class TypeView : UserControl
 {
-
-
     public TypeView()
     {
         InitializeComponent();

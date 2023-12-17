@@ -11,7 +11,6 @@ public partial class InfoView : UserControl
         InitializeComponent();
     }
 
-
     public MeasurePresenterModel ViewModel
     {
         set

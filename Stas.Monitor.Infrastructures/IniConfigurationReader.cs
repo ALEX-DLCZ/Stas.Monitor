@@ -14,7 +14,7 @@ public class IniConfigurationReader : IConfigurationStrategy
             //Linq qui remplace un foreach
             File.ReadLines(path).ToList().ForEach(ReadLine);
         }
-        catch (FileNotFoundException)
+        catch (DirectoryNotFoundException)
         {
             throw new FileNotFoundException("monitor: configuration file not found");
         }
