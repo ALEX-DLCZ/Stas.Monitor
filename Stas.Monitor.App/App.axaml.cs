@@ -4,7 +4,6 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using Serilog;
-using Stas.Monitor.App.PersonalExceptions;
 using Stas.Monitor.Infrastructures;
 using Stas.Monitor.Infrastructures.DataBase;
 using Stas.Monitor.Infrastructures.PersonalExceptions;
@@ -15,7 +14,7 @@ namespace Stas.Monitor.App;
 
 /**
  * <summary>
- *     l'applications se lance avec les arguments suivants :
+ *     l'applications se lance dans Stas.Monitor.App avec la commande :
  * dotnet run -- --config-file config.ini
  *
  * --config-file config.ini : permet de spécifier le fichier de configuration
@@ -54,7 +53,6 @@ public class App : Application
 
             DispatcherTimer.Run(() =>
             {
-                Log.Logger.Information("You should starts checking for file updates here");
                 _mainPresenter?.Update();
                 return true;
             }, TimeSpan.FromSeconds(5));
@@ -72,8 +70,12 @@ public class App : Application
             var dbDialog = new DbDialog(argsExecutor.GetConnectionString());
 
             var thermoRepository = new ThermometerRepository(argsExecutor.GetThermoName(), dbDialog);
-            _mainPresenter = new MainPresenter(_mainWindow, thermoRepository);
-            _mainPresenter.Start();
+            if (_mainWindow != null)
+            {
+                _mainPresenter = new MainPresenter(_mainWindow, thermoRepository);
+            }
+
+            _mainPresenter?.Start();
         }
         catch (DbConnectionException e)
         {

@@ -11,10 +11,8 @@ public class IniConfigurationReader : IConfigurationStrategy
     {
         try
         {
-            foreach (var line in File.ReadLines(path))
-            {
-                ReadLine(line);
-            }
+            //Linq qui remplace un foreach
+            File.ReadLines(path).ToList().ForEach(ReadLine);
         }
         catch (FileNotFoundException)
         {

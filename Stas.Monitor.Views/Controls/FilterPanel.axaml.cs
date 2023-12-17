@@ -32,8 +32,12 @@ public partial class FilterPanel : UserControl
                 ComboBoxThermometers?.Items.Add(comboBox);
             }
 
-            ComboBoxThermometers.SelectedIndex = 0;
-            ComboBoxThermometers.SelectionChanged += ComboBox_OnSelectionChanged;
+            if (ComboBoxThermometers != null)
+            {
+                ComboBoxThermometers.SelectedIndex = 0;
+                ComboBoxThermometers.SelectionChanged += ComboBox_OnSelectionChanged;
+            }
+
             TimeBox.SelectionChanged += ComboBox_OnSelectionChanged;
         }
     }
@@ -43,6 +47,8 @@ public partial class FilterPanel : UserControl
         set
         {
             TypesPanel.Children.Clear();
+
+            //utilise LINQ pour créer une liste de CheckBox à partir des éléments
             _checkBoxes = value.Select(type => new CheckBox { Content = type, Tag = type, IsChecked = true }).ToList();
 
 

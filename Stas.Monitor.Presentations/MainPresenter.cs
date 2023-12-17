@@ -6,7 +6,7 @@ public class MainPresenter
 {
     private readonly IMainView _view;
     private readonly IThermometerRepository _repository;
-    private FilterEventArgs _args;
+    private FilterEventArgs? _args;
 
     public MainPresenter(IMainView view, IThermometerRepository repository)
     {
@@ -25,16 +25,16 @@ public class MainPresenter
             .SelectDistinct("type");
     }
 
-    private void OnQueryChanged(object? sender, FilterEventArgs args)
+    private void OnQueryChanged(object? sender, FilterEventArgs? args)
     {
         _args = args;
 
         var request = _repository
             .NewRequest();
 
-        _view.Result = request.Where("thermometerName", val => $"LIKE '%{val}%'", args.ThermometerTarget)
-                .Where("type", val => $"IN ('{val}')", string.Join("','", args.Types))
-                .Where("datetime", val => $">= (SELECT MAX(datetime) FROM Mesures) - INTERVAL {val} SECOND", args.TimeSelected)
+        _view.Result = request.Where("thermometerName", val => $"LIKE '%{val}%'", args?.ThermometerTarget)
+                .Where("type", val => $"IN ('{val}')", string.Join("','", args?.Types ?? Array.Empty<string>()))
+                .Where("datetime", val => $">= (SELECT MAX(datetime) FROM Mesures) - INTERVAL {val} SECOND", args!.TimeSelected)
                 .Select(mesure => new MeasurePresenterModel(mesure)).ToList();
     }
 
@@ -43,8 +43,8 @@ public class MainPresenter
         var request = _repository
             .NewRequest();
 
-        _view.UpdateResult = request.Where("thermometerName", val => $"LIKE '%{val}%'", _args.ThermometerTarget)
-            .Where("type", val => $"IN ('{val}')", string.Join("','", _args.Types))
+        _view.UpdateResult = request.Where("thermometerName", val => $"LIKE '%{val}%'", _args?.ThermometerTarget)
+            .Where("type", val => $"IN ('{val}')", string.Join("','", _args?.Types ?? Array.Empty<string>()))
             .WhereUpdate()
             .Select(mesure => new MeasurePresenterModel(mesure)).ToList();
     }

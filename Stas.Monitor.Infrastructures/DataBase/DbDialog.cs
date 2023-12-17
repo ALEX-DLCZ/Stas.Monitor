@@ -46,14 +46,11 @@ public class DbDialog : IDialoger
 
             var result = new List<string>();
 
-            while (reader.Read())
-            {
-                result.Add(reader.GetString(0));
-            }
+            result.AddRange(reader.Cast<IDataRecord>().Select(record => record.GetString(0)));
 
             return result;
         }
-        catch (MySqlException e)
+        catch (MySqlException)
         {
             throw new DbConnectionException(" stas monitor : unable to connect to the database");
         }
@@ -71,15 +68,14 @@ public class DbDialog : IDialoger
             command.Parameters.AddWithValue("lastupdate", _lastUpdate);
             using var reader = command.ExecuteReader();
             var measureRecords = new List<MeasureRecord>();
-            while (reader.Read())
-            {
-                measureRecords.Add(MapMeasure(reader));
-            }
+
+            //remplace un while
+            measureRecords.AddRange(reader.Cast<IDataRecord>().Select(MapMeasure));
 
             _lastUpdate = DateTime.Now;
             return measureRecords;
         }
-        catch (MySqlException e)
+        catch (MySqlException)
         {
             throw new DbDataRequestException("  stas monitor : unable to read data");
         }
