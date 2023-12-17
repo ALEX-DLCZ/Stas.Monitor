@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" 
              x:Class="Stas.Monitor.Views.Controls.FilterPanel">
     <UserControl.Styles>
         <Styles>
@@ -11,16 +11,16 @@
             </Style>
         </Styles>
     </UserControl.Styles>
-    <Expander HorizontalAlignment="Stretch" Header="Search Panel" IsExpanded="True">
+    <Expander HorizontalAlignment="Stretch" Header="Search Panel" IsExpanded="True" Margin="0">
         <WrapPanel>
             <StackPanel MinWidth="320" MaxWidth="800" Spacing="8" Margin="8">
                 <TextBlock Classes="h2">Types</TextBlock>
                 <ComboBox Background="Orange" Name="ComboBoxThermometers" />
             </StackPanel>
 
-            <StackPanel MinWidth="320" MinHeight="320" Spacing="8" Margin="8">
+            <StackPanel MinWidth="320" MaxWidth="800" Spacing="8" Margin="8">
                 <TextBlock Classes="h2">Type</TextBlock>
-                <WrapPanel x:Name="TypesPanel" ItemWidth="200" Orientation="Horizontal">
+                <WrapPanel x:Name="TypesPanel" ItemWidth="200" Orientation="Vertical">
                     <CheckBox Content="Checked" IsChecked="True" Margin="0,5,0,0"
                               IsCheckedChanged="NotifyFilterChanged" />
                 </WrapPanel>

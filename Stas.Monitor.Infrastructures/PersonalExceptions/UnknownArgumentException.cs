@@ -5,5 +5,4 @@ public class UnknownArgumentException : Exception
     public UnknownArgumentException(string message) : base(message)
     {
     }
-
 }
