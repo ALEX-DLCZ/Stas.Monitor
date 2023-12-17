@@ -16,7 +16,7 @@ public partial class TypeView : UserControl
         set => TypeName.Text = value.ToUpper();
     }
 
-    public void AddInfoView(InfoView infoView) => InfoViewItems.Items.Add(infoView);
+    public void AddInfoView(InfoView infoView) => InfoViewItems.Items.Insert(0, infoView);
 
     public void Reset()
     {

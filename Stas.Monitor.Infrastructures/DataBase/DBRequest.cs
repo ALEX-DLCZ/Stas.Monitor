@@ -1,5 +1,7 @@
 ﻿using System.Linq.Expressions;
+using Serilog;
 using Stas.Monitor.Domains;
+using Stas.Monitor.Infrastructures.PersonalExceptions;
 
 namespace Stas.Monitor.Infrastructures.DataBase;
 
@@ -48,8 +50,22 @@ public class DbRequest : IRequest
                      "FROM Mesures " +
                      "LEFT JOIN Alerts ON Mesures.id = Alerts.idMesure " +
                      whereClause +
-                     "ORDER BY datetime DESC";
+                     "ORDER BY datetime ASC";
 
-        return _dialoger.AllValeur(result);
+        try
+        {
+            return _dialoger.AllValeur(result);
+        }
+        catch (DbDataRequestException e)
+        {
+            using var log = new LoggerConfiguration()
+                .WriteTo.Console()
+                .CreateLogger();
+
+            Log.Logger = log;
+
+            Log.Error(e.Message);
+            return new List<MeasureRecord>();
+        }
     }
 }

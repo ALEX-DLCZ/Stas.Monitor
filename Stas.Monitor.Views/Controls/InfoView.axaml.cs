@@ -11,10 +11,6 @@ public partial class InfoView : UserControl
         InitializeComponent();
     }
 
-    public SolidColorBrush Color
-    {
-        set => InfoGrid.Background = value;
-    }
 
     public MeasurePresenterModel ViewModel
     {
@@ -28,7 +24,7 @@ public partial class InfoView : UserControl
                 return;
             }
 
-            MeasurementExpected.Text = "valeur attendue: " + value.Difference;
+            MeasurementExpected.Text = "Différence de: " + value.Difference;
             var color = System.Drawing.ColorTranslator.FromHtml(value.Color);
             InfoGrid.Background = new SolidColorBrush(new Color(color.A, color.R, color.G, color.B));
         }

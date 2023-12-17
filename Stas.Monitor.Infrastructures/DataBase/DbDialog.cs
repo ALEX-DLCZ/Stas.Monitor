@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using Stas.Monitor.Infrastructures.PersonalExceptions;
 
 namespace Stas.Monitor.Infrastructures.DataBase;
 
@@ -33,60 +34,55 @@ public class DbDialog : IDialoger
      * FOREIGN KEY (idMesure) REFERENCES Mesures(id)
      * );
      */
-    public string[] AllThermometers
+    public IEnumerable<string> SelectDistinctDialog(string request)
     {
-        get
+        try
         {
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
             using var command = connection.CreateCommand();
-            command.CommandText = "SELECT DISTINCT thermometerName FROM Mesures";
+            command.CommandText = request;
             using var reader = command.ExecuteReader();
-            var thermometers = new List<string>();
+
+            var result = new List<string>();
+
             while (reader.Read())
             {
-                thermometers.Add(reader.GetString(0));
+                result.Add(reader.GetString(0));
             }
 
-            return thermometers.ToArray();
+            return result;
         }
-    }
-
-    public IEnumerable<string> SelectDistinctDialog(string request)
-    {
-        using var connection = new MySqlConnection(_connectionString);
-        connection.Open();
-        using var command = connection.CreateCommand();
-        command.CommandText = request;
-        using var reader = command.ExecuteReader();
-
-        var result = new List<string>();
-
-        while (reader.Read())
+        catch (MySqlException e)
         {
-            result.Add(reader.GetString(0));
+            throw new DbConnectionException(" stas monitor : unable to connect to the database");
         }
-
-        return result;
     }
 
     public IEnumerable<MeasureRecord> AllValeur(string commande)
     {
-        using var connection = new MySqlConnection(_connectionString);
-        connection.Open();
-        using var command = connection.CreateCommand();
-        command.CommandText = commande;
-
-        command.Parameters.AddWithValue("lastupdate", _lastUpdate);
-        using var reader = command.ExecuteReader();
-        var measureRecords = new List<MeasureRecord>();
-        while (reader.Read())
+        try
         {
-            measureRecords.Add(MapMeasure(reader));
-        }
+            using var connection = new MySqlConnection(_connectionString);
+            connection.Open();
+            using var command = connection.CreateCommand();
+            command.CommandText = commande;
 
-        _lastUpdate = DateTime.Now;
-        return measureRecords;
+            command.Parameters.AddWithValue("lastupdate", _lastUpdate);
+            using var reader = command.ExecuteReader();
+            var measureRecords = new List<MeasureRecord>();
+            while (reader.Read())
+            {
+                measureRecords.Add(MapMeasure(reader));
+            }
+
+            _lastUpdate = DateTime.Now;
+            return measureRecords;
+        }
+        catch (MySqlException e)
+        {
+            throw new DbDataRequestException("  stas monitor : unable to read data");
+        }
     }
 
     private MeasureRecord MapMeasure(IDataRecord reader)

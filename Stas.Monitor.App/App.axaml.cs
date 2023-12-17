@@ -7,6 +7,7 @@ using Serilog;
 using Stas.Monitor.App.PersonalExceptions;
 using Stas.Monitor.Infrastructures;
 using Stas.Monitor.Infrastructures.DataBase;
+using Stas.Monitor.Infrastructures.PersonalExceptions;
 using Stas.Monitor.Presentations;
 using Stas.Monitor.Views;
 
@@ -19,6 +20,9 @@ namespace Stas.Monitor.App;
  *
  * --config-file config.ini : permet de spécifier le fichier de configuration
  * la connexion a la base de donnée est spécifié dans le fichier config.ini et est obligatoire.
+ *
+ * !!! ATTENTION !!!
+ * les mesures affichées se base sur la mesure la plus récente TOUT THERMOMETRE CONFONDUS.
  * </summary>
 
  */
@@ -71,12 +75,19 @@ public class App : Application
             _mainPresenter = new MainPresenter(_mainWindow, thermoRepository);
             _mainPresenter.Start();
         }
+        catch (DbConnectionException e)
+        {
+            Log.Logger.Error(e.Message);
+
+            //TODO changer la main window pour une fenetre d'erreur et continuer l'execution
+            // throw new FatalException("Error during app setup", e);
+        }
         catch (Exception e)
         {
             Log.Logger.Error(e, "Error during app setup");
 
             //TODO changer la main window pour une fenetre d'erreur et continuer l'execution
-            throw new FatalException("Error during app setup", e);
+            // throw new FatalException("Error during app setup", e);
         }
     }
 }
