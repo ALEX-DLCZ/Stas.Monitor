@@ -22,6 +22,7 @@ namespace Stas.Monitor.App;
  *
  * !!! ATTENTION !!!
  * les mesures affichées se base sur la mesure la plus récente TOUT THERMOMETRE CONFONDUS.
+ * --CORRECTION: ce n'est plus le cas, les mesures affichées se base sur la mesure la plus récente de chaque thermomètre.
  * </summary>
 
  */

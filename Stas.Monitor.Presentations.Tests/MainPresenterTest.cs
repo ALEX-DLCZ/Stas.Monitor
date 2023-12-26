@@ -74,7 +74,7 @@ public class MainPresenterTest
 
         // Assert
         repository.Received(2).NewRequest();
-        request.Received(2).Where(Arg.Any<string>(), Arg.Any<Func<string, string>>(), Arg.Any<string>());
+        request.Received(3).Where(Arg.Any<string>(), Arg.Any<Func<string, string>>(), Arg.Any<string>());
         view.Received(1).Result = Arg.Any<List<MeasurePresenterModel>>();
         request.Received(0).WhereUpdate();
     }
@@ -99,7 +99,7 @@ public class MainPresenterTest
 
         // Assert
         repository.Received(3).NewRequest();
-        request.Received(4).Where(Arg.Any<string>(), Arg.Any<Func<string, string>>(), Arg.Any<string>());
+        request.Received(5).Where(Arg.Any<string>(), Arg.Any<Func<string, string>>(), Arg.Any<string>());
         view.Received(1).Result = Arg.Any<List<MeasurePresenterModel>>();
         request.Received(1).WhereUpdate();
     }

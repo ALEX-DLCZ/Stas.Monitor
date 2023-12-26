@@ -16,7 +16,7 @@ public class ConfigurationTests
         }
         catch (KeyNotFoundException e)
         {
-            Assert.That(e.Message, Is.EqualTo("monitor: missing required section thermometers (general)"));
+            Assert.That(e.Message, Is.EqualTo("monitor: missing required section general (general)"));
         }
     }
 
@@ -25,7 +25,9 @@ public class ConfigurationTests
     {
         var readerMock = Substitute.For<IConfigurationReader>();
         var dico = new Dictionary<string, IDictionary<string, string>>();
-        dico.Add("general", new Dictionary<string, string>());
+        var thermoDico = new Dictionary<string, string>();
+        thermoDico.Add("test", "test");
+        dico.Add("general", thermoDico);
 
         readerMock.GetReadedConfiguration().Returns(dico);
 

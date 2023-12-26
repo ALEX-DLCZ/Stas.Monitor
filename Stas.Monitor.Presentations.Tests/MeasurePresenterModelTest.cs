@@ -1,4 +1,5 @@
-﻿using Stas.Monitor.Domains;
+﻿using System.Globalization;
+using Stas.Monitor.Domains;
 
 namespace Stas.Monitor.Presentations.Tests;
 
@@ -95,12 +96,16 @@ public class MeasurePresenterModelTest
         // Arrange
         var measureRecord = new MeasureRecord("name", "temperature", new DateTime(2021, 01, 01, 12, 0, 0), new Measure(0, 0, "0.00"));
         var measurePresenterModel = new MeasurePresenterModel(measureRecord);
+        var expectedDate = "01-01-2021 12:00:00";
+        IFormatProvider culture = new CultureInfo("fr-FR", true);
 
+        Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("fr-FR");
+        Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("fr-FR");
         // Act
         var date = measurePresenterModel.Date;
 
         // Assert
-        Assert.That(date, Is.EqualTo("01/01/2021 12:00:00"));
+        Assert.That(date, Is.EqualTo(expectedDate));
     }
 
     [Test]
