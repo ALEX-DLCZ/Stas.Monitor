@@ -32,9 +32,10 @@ public class MainPresenter
         var request = _repository
             .NewRequest();
 
+        var complexRequest = $"(SELECT MAX(datetime) FROM Mesures WHERE thermometerName = '{args?.ThermometerTarget}') - INTERVAL {args!.TimeSelected} SECOND";
         _view.Result = request.Where("thermometerName", val => $"LIKE '%{val}%'", args?.ThermometerTarget)
             .Where("type", val => $"IN ('{val}')", string.Join("','", args?.Types ?? Array.Empty<string>()))
-            .Where("datetime", val => $">= (SELECT MAX(datetime) FROM Mesures) - INTERVAL {val} SECOND", args!.TimeSelected)
+            .Where("datetime", val => $">=  {val} ", complexRequest)
             .Select(mesure => new MeasurePresenterModel(mesure)).ToList();
     }
 

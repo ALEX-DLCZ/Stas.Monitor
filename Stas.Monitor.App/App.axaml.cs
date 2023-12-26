@@ -4,7 +4,6 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Threading;
 using Serilog;
-using Stas.Monitor.App.PersonalExceptions;
 using Stas.Monitor.Infrastructures;
 using Stas.Monitor.Infrastructures.DataBase;
 using Stas.Monitor.Infrastructures.PersonalExceptions;

@@ -60,6 +60,7 @@ public class DbDialog : IDialoger
     {
         try
         {
+            Console.WriteLine(commande);
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
             using var command = connection.CreateCommand();
