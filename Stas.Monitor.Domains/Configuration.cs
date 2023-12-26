@@ -8,11 +8,10 @@ public class Configuration
     {
         _configDico = reader.GetReadedConfiguration();
 
-        if (!_configDico.ContainsKey("general"))
+        if (!_configDico.ContainsKey("general") || _configDico["general"].Count == 0)
         {
-            throw new KeyNotFoundException("monitor: missing required section thermometers (general)");
+            throw new KeyNotFoundException("monitor: missing required section general (general)");
         }
-
         if (!_configDico.ContainsKey("BD"))
         {
             throw new KeyNotFoundException("monitor: missing required section paths");

@@ -60,7 +60,6 @@ public class DbDialog : IDialoger
     {
         try
         {
-            Console.WriteLine(commande);
             using var connection = new MySqlConnection(_connectionString);
             connection.Open();
             using var command = connection.CreateCommand();
@@ -92,7 +91,8 @@ public class DbDialog : IDialoger
         var expectedValue = reader["expectedValue"] as double?;
         var format = reader["format"] as string ?? "DefaultFormat";
 
-        var difference = expectedValue.HasValue ? expectedValue.Value - value : 0.0;
+        var difference = expectedValue.HasValue ? value - expectedValue.Value : 0.0;
+
         var measure = new Measure(value, difference, format);
 
         return new MeasureRecord(name, type, date, measure);

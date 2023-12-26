@@ -11,7 +11,10 @@
     <ScrollViewer>
         <StackPanel>
             <controls:FilterPanel x:Name="FilterPanel" FilterChanged="FilterPanel_OnFilterChanged" />
+            <!-- message d'erreur en rouge et au centre de l'écran -->
+            <TextBlock Name="ErrorBox" Foreground="Red" HorizontalAlignment="Center" />
             <WrapPanel x:Name="ResultPanel" HorizontalAlignment="Stretch" />
+            
         </StackPanel>
     </ScrollViewer>
 </Window>

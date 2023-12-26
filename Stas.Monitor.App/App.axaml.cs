@@ -85,7 +85,12 @@ public class App : Application
         }
         catch (Exception e)
         {
-            Log.Logger.Error(e, "Error during app setup");
+            Log.Logger.Error( "Error during app setup - monitor: " + e.Message);
+
+            if (_mainWindow != null)
+            {
+                _mainWindow.ErrorView = e.Message;
+            }
 
             //TODO changer la main window pour une fenetre d'erreur et continuer l'execution
             // throw new FatalException("Error during app setup", e);

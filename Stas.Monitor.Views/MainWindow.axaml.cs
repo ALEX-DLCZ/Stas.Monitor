@@ -65,4 +65,10 @@ public partial class MainWindow : Window, IMainView
     public event EventHandler<FilterEventArgs>? FilterChanged;
 
     private void FilterPanel_OnFilterChanged(object? sender, FilterEventArgs e) => FilterChanged?.Invoke(this, e);
+
+
+    public string ErrorView
+    {
+        set => ErrorBox.Text = value;
+    }
 }

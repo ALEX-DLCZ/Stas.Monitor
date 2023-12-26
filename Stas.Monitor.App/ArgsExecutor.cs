@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Stas.Monitor.App.PersonalExceptions;
 using Stas.Monitor.Domains;
@@ -45,6 +46,7 @@ public class ArgsExecutor
 
         var configuration = new Configuration(configurationStrategy);
         _thermomterName = configuration.GetGeneral();
+
         var db = configuration.GetBb();
 
         // "Server=db;Database=mydatbase;User=root;Password=mysql;Port=3306;"
