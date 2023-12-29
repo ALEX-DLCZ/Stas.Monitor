@@ -12,6 +12,7 @@ public class Configuration
         {
             throw new KeyNotFoundException("monitor: missing required section general (general)");
         }
+
         if (!_configDico.ContainsKey("BD"))
         {
             throw new KeyNotFoundException("monitor: missing required section paths");

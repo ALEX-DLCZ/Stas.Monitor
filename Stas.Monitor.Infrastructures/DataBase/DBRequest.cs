@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.Data;
+using System.Linq.Expressions;
 using Serilog;
 using Stas.Monitor.Domains;
 using Stas.Monitor.Infrastructures.PersonalExceptions;

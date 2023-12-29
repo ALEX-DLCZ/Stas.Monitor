@@ -56,8 +56,15 @@ public class DbDialog : IDialoger
         }
     }
 
+
+
+
+
+
     public IEnumerable<MeasureRecord> AllValeur(string commande)
     {
+
+
         try
         {
             using var connection = new MySqlConnection(_connectionString);
@@ -80,6 +87,7 @@ public class DbDialog : IDialoger
             throw new DbDataRequestException("  stas monitor : unable to read data");
         }
     }
+
 
     private MeasureRecord MapMeasure(IDataRecord reader)
     {

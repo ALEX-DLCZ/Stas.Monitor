@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Data;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
@@ -67,13 +69,35 @@ public class App : Application
         {
             var argsExecutor = new ArgsExecutor(args);
 
-            var dbDialog = new DbDialog(argsExecutor.GetConnectionString());
-
-            var thermoRepository = new ThermometerRepository(argsExecutor.GetThermoName(), dbDialog);
-            if (_mainWindow != null)
+            try
             {
-                _mainPresenter = new MainPresenter(_mainWindow, thermoRepository);
+                IMesureRepo mesureRepository = new MySqlMesureRepo(argsExecutor.GetConnectionString());
+                DbQuery dbQuery = new(new DbMesureRequest(mesureRepository));
+                var thermoRepository = new ThermometerRepository( dbQuery);
+
+
+
+                if (_mainWindow != null)
+                {
+                    _mainPresenter = new MainPresenter(_mainWindow, thermoRepository,argsExecutor.GetThermoName());
+                }
+
+
+
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            //
+            // var dbDialog = new DbDialog(argsExecutor.GetConnectionString());
+            //
+            // var thermoRepository = new ThermometerRepository( dbDialog);
+            // if (_mainWindow != null)
+            // {
+            //     _mainPresenter = new MainPresenter(_mainWindow, thermoRepository,argsExecutor.GetThermoName());
+            // }
 
             _mainPresenter?.Start();
         }

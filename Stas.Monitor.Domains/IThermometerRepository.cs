@@ -2,7 +2,10 @@
 
 public interface IThermometerRepository
 {
-    string[] AllThermometers { get; }
+    // string[] AllThermometers { get; }
 
-    IRequest NewRequest();
+
+    //IRequest NewRequest();
+    IQueryManager NewQueryManager();
+
 }
