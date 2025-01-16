@@ -24,7 +24,7 @@ Stas.Monitor est une application .NET 6 utilisant Avalonia 11+ qui récupère le
 - **Filtrage des données** : Des options sont disponibles pour filtrer l'affichage des données en fonction des thermomètres, des types de mesures et du temps (température, humidité, etc.).
 
 
- ##Particularité Technique du projet
+ ## Particularité Technique du projet
  - **Plateforme** : C# cible .NET 6 et Avalonia 11+ pour l’interface graphique multiplateforme.
  - **Exploitation de spécificités C#** : Utilisation de `async/await`, des expressions lambda, des delegates, de Linq et des événements pour la gestion des données.
  - **Tests unitaires** : couverture a 100%Domains et 87%Presenter, utilisation de Mocks
